@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react';
+import { Context } from '../App'
 import '../styles/APIPopUp.css'
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 
 const APIPopUp = (props: Props) => {
     const [inputValue, setInputValue] = useState('');
+    const setAPIKey = useContext(Context);
+    
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
@@ -17,6 +20,7 @@ const APIPopUp = (props: Props) => {
         event.preventDefault();
         // Do something with the input value, e.g. submit to server or update state
         console.log(inputValue); // TODO remove this
+        setAPIKey(inputValue);
         setInputValue('');
         props.togglePopUp();
     };
