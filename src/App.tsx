@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <Toolbar />
-      <h1>GISTAR</h1>
       <TranscriptPanel />
       <SummaryPanel />
       <AudioPanel />
