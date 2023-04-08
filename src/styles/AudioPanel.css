@@ -1,1 +1,7 @@
-/*# sourceMappingURL=AudioPanel.css.map */
+#audio-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}/*# sourceMappingURL=AudioPanel.css.map */
