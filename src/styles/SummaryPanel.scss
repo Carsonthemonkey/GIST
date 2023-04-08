@@ -4,6 +4,11 @@
     position: absolute;
     top: vars.$toolbar-height;
     right: 0;
-    width: 50%;
+    width: 40%;
     bottom: 50px;
+    overflow-y: scroll;
+
+    #summary-content {
+        padding: 0 20px;
+    }
 }
