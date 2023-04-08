@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/Toolbar.css'
 
 const Toolbar = () => {
   return (

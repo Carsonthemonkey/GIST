@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/TranscriptPanel.css'
 
 const TranscriptPanel = () => {
   return (
