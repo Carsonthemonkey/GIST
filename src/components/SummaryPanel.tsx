@@ -3,7 +3,7 @@ import '../styles/SummaryPanel.css'
 
 const SummaryPanel = () => {
   return (
-    <div>SummaryPanel</div>
+    <div id="summary-panel">SummaryPanel</div>
   )
 }
 

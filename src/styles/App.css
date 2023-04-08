@@ -3,4 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+#middle-panels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#middle-panels #left-panel {
+  width: 50%;
+}
+#middle-panels #right-panel {
+  width: 50%;
 }/*# sourceMappingURL=App.css.map */

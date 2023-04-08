@@ -3,7 +3,7 @@ import '../styles/TranscriptPanel.css'
 
 const TranscriptPanel = () => {
   return (
-    <div>TranscriptPanel</div>
+    <div id="transcript-panel">TranscriptPanel</div>
   )
 }
 
