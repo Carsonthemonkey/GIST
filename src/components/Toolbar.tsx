@@ -16,7 +16,7 @@ const Toolbar = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Do something with the input value, e.g. submit to server or update state
-    console.log(inputValue);
+    console.log(inputValue); // TODO remove this
     setInputValue('');
     setIsPopupOpen(false);
   };
