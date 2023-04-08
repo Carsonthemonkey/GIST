@@ -28,7 +28,7 @@ const Toolbar = () => {
           <div>
             <form onSubmit={handleSubmit}>
               <input
-                type="text"
+                type="password"
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Enter API Key..."
