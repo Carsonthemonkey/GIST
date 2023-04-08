@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 interface Props {
-    isPopupOpen: boolean;
-    togglePopup: () => void;
+    isPopUpOpen: boolean;
+    togglePopUp: () => void;
 }
 
 const APIPopUp = (props: Props) => {
@@ -17,12 +17,12 @@ const APIPopUp = (props: Props) => {
         // Do something with the input value, e.g. submit to server or update state
         console.log(inputValue); // TODO remove this
         setInputValue('');
-        props.togglePopup();
+        props.togglePopUp();
     };
 
     return (
         <div>
-            {props.isPopupOpen && (
+            {props.isPopUpOpen && (
             <div>
                 <form onSubmit={handleSubmit}>
                 <input
