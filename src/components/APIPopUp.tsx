@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../styles/APIPopUp.css'
 
 interface Props {
     isPopUpOpen: boolean;
@@ -21,7 +22,7 @@ const APIPopUp = (props: Props) => {
     };
 
     return (
-        <div>
+        <div id="api-popup">
             {props.isPopUpOpen && (
             <div>
                 <form onSubmit={handleSubmit}>

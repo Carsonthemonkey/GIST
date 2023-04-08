@@ -1,0 +1,13 @@
+@use 'variables' as vars;
+
+#api-popup {
+    position: absolute;
+    top: vars.$toolbar-height;
+    left: 0;
+    width: 20%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
