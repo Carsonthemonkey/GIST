@@ -1,3 +1,5 @@
+@use 'variables' as vars;
+
 #audio-panel {
     // makes audio panel fixed to bottom of page
     position: fixed;
@@ -5,4 +7,7 @@
     left: 0;
     right: 0;
     z-index: 100;
+    padding: 0;
+    border-top: 1px solid #000;
+    height: vars.$audio-panel-height;
 }

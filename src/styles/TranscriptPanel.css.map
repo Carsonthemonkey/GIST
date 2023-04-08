@@ -1,1 +1,1 @@
-{"version":3,"sources":["TranscriptPanel.scss","TranscriptPanel.css"],"names":[],"mappings":"AAAA;EACI,cAAA;ACCJ","file":"TranscriptPanel.css"}
+{"version":3,"sources":["TranscriptPanel.scss","variables.scss","TranscriptPanel.css"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,SCJa;EDKb,OAAA;EACA,UAAA;EACA,YAAA;AEDJ","file":"TranscriptPanel.css"}

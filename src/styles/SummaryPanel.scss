@@ -1,3 +1,9 @@
+@use 'variables' as vars;
+
 #summary-panel {
-    padding: 150px;
+    position: absolute;
+    top: vars.$toolbar-height;
+    right: 0;
+    width: 50%;
+    bottom: 50px;
 }

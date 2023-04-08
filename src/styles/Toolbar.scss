@@ -1,4 +1,4 @@
-$toolbar-height: 50px;
+@use 'variables' as vars;
 
 #toolbar {
     // makes toolbar fixed to top of page
@@ -14,7 +14,7 @@ $toolbar-height: 50px;
     justify-content: space-between;
     // adds a border at the bottom
     border-bottom: 1px solid #000;
-    height: $toolbar-height;
+    height: vars.$toolbar-height;
     #api-button {
         order: 1;
     }

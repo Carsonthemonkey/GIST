@@ -9,10 +9,8 @@ function App() {
   return (
     <div className="App">
       <Toolbar />
-      <div id="middle-panels">
-        <TranscriptPanel />
-        <SummaryPanel />
-      </div>
+      <TranscriptPanel />
+      <SummaryPanel />
       <AudioPanel />
     </div>
   )

@@ -4,15 +4,3 @@
     padding: 2rem;
     text-align: center;
 }
-
-#middle-panels {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    #left-panel {
-        width: 50%;
-    }
-    #right-panel {
-        width: 50%;
-    }
-}

@@ -3,7 +3,9 @@ import '../styles/AudioPanel.css'
 
 const AudioPanel = () => {
   return (
-    <div id="audio-panel">AudioPanel</div>
+    <div id="audio-panel">
+      <p>AudioPanel</p>
+    </div>
   )
 }
 
