@@ -3,6 +3,7 @@ import '../styles/SummaryPanel.css'
 
 interface Props {
   APIKeyProp: string;
+  transcriptProp: string;
 }
 
 const SummaryPanel = (props: Props) => {
