@@ -1,0 +1,11 @@
+#api-popup {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=APIPopUp.css.map */

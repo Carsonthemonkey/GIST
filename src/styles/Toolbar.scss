@@ -1,0 +1,29 @@
+@use 'variables' as vars;
+
+#toolbar {
+    // makes toolbar fixed to top of page
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    // aligns elements in a row
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    // adds a border at the bottom
+    border-bottom: 1px solid #000;
+    height: vars.$toolbar-height;
+    #api-button {
+        order: 1;
+    }
+    #app-name {
+        order: 2;
+        font-size: 18px;
+        margin: 0;
+    }
+    #info-button {
+        order: 3;
+    }
+}

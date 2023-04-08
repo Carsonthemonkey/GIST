@@ -1,0 +1,11 @@
+#summary-panel {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 40%;
+  bottom: 50px;
+  overflow-y: scroll;
+}
+#summary-panel #summary-content {
+  padding: 0 20px;
+}/*# sourceMappingURL=SummaryPanel.css.map */
