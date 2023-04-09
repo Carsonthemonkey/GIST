@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 h2 {
     font-size: 30px;
 }
@@ -20,7 +22,7 @@ button {
 
     &:hover {
         background-color: #000;
-        color: #fff1bb;
+        color: vars.$main-background-color;
     }
 }
 
@@ -29,7 +31,7 @@ button {
     width: 50vw;
     height: 50vh;
     z-index: 1;
-    background-color: #fff1bb;
+    background-color: vars.$main-background-color;
     border-radius: 20px;
     border: 2px solid #000;
     border-left: 10px solid #000;

@@ -200,7 +200,7 @@ const TranscriptPanel = (props: Props) => {
             </div>
             <p id="transcript-content">
                 <br />
-                {/* Add a nice style to this */}
+                {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
                 {fileUploaded && props.transcriptProp}
             </p>

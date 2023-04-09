@@ -28,7 +28,7 @@
         padding: 0;
         margin-top: 0;
         width: 35%;
-        background-color: #fff1bb;
+        background-color: vars.$main-background-color;
         // centers the drop down
         position: absolute;
         left: 50%;
@@ -46,7 +46,7 @@
             border-radius: 15px;
 
             &:hover {
-                background-color: lighten(#fff1bb, 7%);
+                background-color: lighten(vars.$main-background-color, 7%);
             }
         }
     }
