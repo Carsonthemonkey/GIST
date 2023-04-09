@@ -3,7 +3,7 @@
   top: 50px;
   right: 0;
   width: 50%;
-  bottom: 50px;
+  bottom: 0;
   overflow-y: scroll;
 }
 #summary-panel #notes-button {
