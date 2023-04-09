@@ -25,7 +25,7 @@ const Toolbar = () => {
                     />
                 )}
                 <div className="filler"></div>
-                <h1 id="app-name">GISTAR</h1>
+                <h1 id="app-name">GIST</h1>
                 <button id="info-button" className="icon">
                     <FontAwesomeIcon icon={faCircleInfo} size="2x" />
                 </button>
