@@ -1,5 +1,7 @@
 $main-background-color: #fff1bb;
+$grayed-out-color: desaturate(darken($main-background-color, 23%), 70%);
 $toolbar-height: 50px;
 $audio-panel-height: 50px;
+$word-counter-bar-height: 30px;
 $notes-button-width: 210px;
 $summary-drop-down-button-width: 41px;
