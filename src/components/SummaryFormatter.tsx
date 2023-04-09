@@ -57,7 +57,6 @@ function formatText(text: string, isList: boolean) {
             }
             //join the children back together
             updatedChildren = updatedChildren.join(" ");
-            console.log("updatedChildren" + updatedChildren);
 
             // const updatedChildren = element.props.children.split(" ");
             // const updatedChildren = element.props.children.replaceAll(
@@ -65,9 +64,6 @@ function formatText(text: string, isList: boolean) {
             //     // `$latex$${latexArray[latexIndex]}$latex$`
             //     latexArray[latexIndex++]
             // );
-            console.log(`latex: ${latexArray[latexIndex]}`)
-            console.log(`updatedChildren: ${typeof(updatedChildren)}`);
-            // return jsxArray;
             return (
                 <>
                 {isList ? <li><Latex>{updatedChildren}</Latex></li> : <Latex>{updatedChildren}</Latex>}
