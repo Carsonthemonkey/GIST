@@ -24,21 +24,21 @@
   padding: 0;
   margin-top: 0;
   width: 35%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #fff1bb;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 251px;
+  width: 231px;
 }
 #summary-panel #summary-drop-down .summary-drop-down-item {
+  margin-top: 3px;
   padding: 10px;
   cursor: pointer;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #000;
+  border-radius: 15px;
 }
 #summary-panel #summary-drop-down .summary-drop-down-item:hover {
-  background-color: #eee;
+  background-color: #fff8df;
 }
 #summary-panel #summary-content {
   padding: 0 20px;
