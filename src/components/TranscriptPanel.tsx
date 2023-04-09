@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/TranscriptPanel.css";
 import Modal from "react-modal";
-import {transcribeWhisper, translateWhisper} from "../utils/transcibe";
+import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 
 interface Props {
     APIKeyProp: string;
@@ -131,14 +131,14 @@ const TranscriptPanel = (props: Props) => {
                 Transcribe
             </button>
             <br />
-            {fileUploaded && !isLoading && !props.transcriptProp &&(
-            <div id="file-preview">
-                {/* TODO add a little box around the filename maybe */}
-                <em>
-                    {!props.transcriptProp && !isLoading && audioFile?.name}
-                </em>
-                <button onClick={removeFile}>X</button>
-            </div>
+            {fileUploaded && !isLoading && !props.transcriptProp && (
+                <div id="file-preview">
+                    {/* TODO add a little box around the filename maybe */}
+                    <em id="file-name">
+                        {!props.transcriptProp && !isLoading && audioFile?.name}
+                    </em>
+                    <button onClick={removeFile}>X</button>
+                </div>
             )}
             <div id="file-drop-dialog">
                 {!fileUploaded && "Drag and drop your audio file here"}

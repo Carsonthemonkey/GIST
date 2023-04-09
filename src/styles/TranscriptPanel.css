@@ -23,11 +23,12 @@
 }
 #transcript-panel #file-preview {
   margin: 20px;
-  padding-left: 10px;
-  padding-right: 0px;
   border: 2px solid black;
   border-radius: 7px;
   display: inline-block;
+}
+#transcript-panel #file-preview #file-name {
+  padding: 0 10px;
 }
 #transcript-panel #file-preview button {
   margin: 0;
