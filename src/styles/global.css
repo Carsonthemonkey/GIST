@@ -43,6 +43,17 @@ input:focus {
   color: #fff1bb;
 }
 
+.disabled-button {
+  color: #beb387;
+  border-color: #beb387;
+  transition: none;
+  cursor: default;
+}
+.disabled-button:hover {
+  background-color: transparent;
+  color: #beb387;
+}
+
 .modal {
   transform: translate(50%, 50%);
   width: 50vw;

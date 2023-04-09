@@ -45,6 +45,17 @@ input {
     }
 }
 
+.disabled-button {
+    color: desaturate(darken(vars.$main-background-color, 23%), 70%);
+    border-color: desaturate(darken(vars.$main-background-color, 23%), 70%);
+    transition: none;
+    cursor: default;
+    &:hover {
+        background-color: transparent;
+        color: desaturate(darken(vars.$main-background-color, 23%), 70%);
+    }
+}
+
 .modal {
     transform: translate(50%, 50%);
     width: 50vw;
