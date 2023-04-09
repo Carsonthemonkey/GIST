@@ -9,7 +9,7 @@ interface Props {
 const TranscriptPanel = (props: Props) => {
   return (
     <div id="transcript-panel">
-      <h2>TranscriptPanel</h2>
+      <h2 id="transcript-title">Transcript</h2>
       <p id="transcript-content">This is where the transcript will go <br/>
         {props.transcriptProp}
       </p>
