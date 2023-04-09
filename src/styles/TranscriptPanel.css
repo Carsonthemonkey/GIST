@@ -30,8 +30,9 @@
 #transcript-panel #file-preview #file-name {
   padding: 0 10px;
 }
-#transcript-panel #file-preview button {
+#transcript-panel #file-preview #x-button {
   margin: 0;
+  padding: 10px 15px;
   border: none;
   border-left: 2px solid black;
 }
