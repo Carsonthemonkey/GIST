@@ -1,1 +1,1 @@
-{"version":3,"sources":["SummaryPanel.scss","variables.scss","SummaryPanel.css"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,SCJa;EDKb,QAAA;EACA,UAAA;EACA,YAAA;EACA,kBAAA;AEDJ;AFGI;EACI,eAAA;AEDR","file":"SummaryPanel.css"}
+{"version":3,"sources":["SummaryPanel.scss","variables.scss","SummaryPanel.css"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,SCJa;EDKb,QAAA;EACA,UAAA;EACA,YAAA;EACA,kBAAA;AEDJ;AFGI;EACI,sBAAA;EACA,kBAAA;EACA,0BAAA;EACA,6BAAA;AEDR;AFII;EACI,sBAAA;EACA,yBAAA;EACA,4BAAA;AEFR;AFKI;EACI,eAAA;AEHR","file":"SummaryPanel.css"}

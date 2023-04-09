@@ -6,6 +6,17 @@
   bottom: 50px;
   overflow-y: scroll;
 }
+#summary-panel #notes-button {
+  border: 1px solid #fff;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#summary-panel #summary-drop-down-button {
+  border: 1px solid #fff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 #summary-panel #summary-content {
   padding: 0 20px;
 }/*# sourceMappingURL=SummaryPanel.css.map */

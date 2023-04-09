@@ -8,6 +8,19 @@
     bottom: 50px;
     overflow-y: scroll;
 
+    #notes-button {
+        border: 1px solid #fff;
+        border-right: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #summary-drop-down-button {
+        border: 1px solid #fff;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
     #summary-content {
         padding: 0 20px;
     }
