@@ -1,9 +1,10 @@
 //This function can only transcibe, not translate. Translation is a different API call.
 export default async function transcribeWhisper(
-    audioFile: File,
-    language: string = "en",
+    //language should probably be an optional parameter but whatever
+    audioFile: File, //this might wanna be a blob according to copilot
+    language: string,
     API_KEY: string
-) {
+): Promise<string> {
     const reader = new FileReader();
     reader.readAsDataURL(audioFile);
     return new Promise((resolve, reject) => {

@@ -22,6 +22,7 @@ function App() {
         <TranscriptPanel 
           APIKeyProp={APIKey}
           transcriptProp={transcript}
+          setTranscriptProp={setTranscriptText}
           />
         <SummaryPanel 
           APIKeyProp={APIKey}
