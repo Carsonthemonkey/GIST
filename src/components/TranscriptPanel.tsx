@@ -1,11 +1,8 @@
 import React from "react";
 import "../styles/TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faX,
-    faSquareCheck,
-    faSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import Modal from "react-modal";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 
@@ -25,7 +22,7 @@ const TranscriptPanel = (props: Props) => {
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
 
-        // Find the element with the ID 'overlay'
+        // Find the element with the class 'overlay'
         const overlayElement = document.querySelector(".overlay");
         // Add the 'dragging-over' class to the element
         if (overlayElement) {
@@ -155,10 +152,11 @@ const TranscriptPanel = (props: Props) => {
                         className="icon"
                         onClick={handleCheckBoxChange}
                     >
-                        {doTranslate && (
+                        {doTranslate ? (
                             <FontAwesomeIcon icon={faSquareCheck} />
+                        ) : (
+                            <FontAwesomeIcon icon={faSquare} />
                         )}
-                        {!doTranslate && <FontAwesomeIcon icon={faSquare} />}
                     </div>
                     <p id="checkmark-label">Translate Audio</p>
                 </label>
