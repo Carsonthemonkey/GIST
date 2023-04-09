@@ -46,10 +46,4 @@
 }
 #transcript-panel #transcript-content {
   padding: 0 20px;
-}
-#transcript-panel .disabled-button {
-  color: #beb387;
-  border-color: #beb387;
-  transition: none;
-  background-color: #fff1bb;
 }/*# sourceMappingURL=TranscriptPanel.css.map */

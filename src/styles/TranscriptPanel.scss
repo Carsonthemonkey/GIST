@@ -54,11 +54,4 @@
     #transcript-content {
         padding: 0 20px;
     }
-
-    .disabled-button {
-        color: desaturate(darken(vars.$main-background-color, 23%), 70%);
-        border-color: desaturate(darken(vars.$main-background-color, 23%), 70%);
-        transition: none;
-        background-color: vars.$main-background-color;
-    }
 }

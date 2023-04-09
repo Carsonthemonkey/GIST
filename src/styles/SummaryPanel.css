@@ -11,6 +11,7 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   width: 210px;
+  padding-right: 8px;
 }
 #summary-panel #summary-drop-down-button {
   border-top-left-radius: 0;
