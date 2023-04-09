@@ -13,6 +13,7 @@ const TranscriptPanel = (props: Props) => {
     const [fileUploaded, setFileUploaded] = React.useState(false);
     const [audioFile, setAudioFile] = React.useState<File | null>(null);
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -76,12 +77,17 @@ const TranscriptPanel = (props: Props) => {
             return;
         }
         try {
-            await transcribeWhisper(audioFile, "en", props.APIKeyProp).then(
-                (transcript) => {
-                    console.log(transcript);
-                    props.setTranscriptProp(transcript);
-                }
-            );
+            setIsLoading(true);
+            await transcribeWhisper(
+                true,
+                audioFile,
+                "en",
+                props.APIKeyProp
+            ).then((transcript) => {
+                console.log(transcript);
+                props.setTranscriptProp(transcript);
+            });
+            setIsLoading(false);
         } catch (e) {
             console.error(e);
         }
@@ -107,11 +113,17 @@ const TranscriptPanel = (props: Props) => {
             <button className="non-icon-button" onClick={transcribeAudio}>
                 Transcribe
             </button>
+            <div>
+                {/* TODO add a little box around the filename maybe */}
+                {!props.transcriptProp &&
+                    !isLoading &&
+                    `fileName: ${audioFile?.name}`}
+            </div>
             <p id="transcript-content">
                 <br />
                 {/* Add a nice style to this */}
                 {!fileUploaded && "Drag and drop your audio file here"}
-                {fileUploaded && `fileName: ${audioFile?.name}`}
+                {isLoading && "Loading..."}
                 {fileUploaded && props.transcriptProp}
             </p>
         </div>
