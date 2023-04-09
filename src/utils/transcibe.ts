@@ -1,5 +1,5 @@
 //This function can only transcibe, not translate. Translation is a different API call.
-export default async function transcribeWhisper(
+async function transcribeWhisper(
     debug: boolean,
     audioFile: File,
     language: string,
@@ -78,7 +78,10 @@ export default async function transcribeWhisper(
         body: formData,
     };
     console.log("fetching...");
-    const response = await fetch("https://api.openai.com/v1/audio/transcriptions", requestOptions);
+    const response = await fetch(
+        "https://api.openai.com/v1/audio/transcriptions",
+        requestOptions
+    );
     console.log("fetched");
     if (response.status === 200) {
         console.log("success");
@@ -90,3 +93,44 @@ export default async function transcribeWhisper(
         }
     }
 }
+
+async function translateWhisper(
+    debug: boolean,
+    audioFile: File,
+    API_KEY: string
+) {
+    if (debug){
+        //wait 2 seconds to simulate a network call
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        return "This is some translated debug text from the transcription script. It's not actually translated, it's just a placeholder.";
+    }
+    console.log("translating with translateWhisper");
+    const data = new FormData();
+    data.append("file", audioFile);
+    data.append("model", "whisper-1");
+    let formData = data;
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${API_KEY}`,
+        },
+        body: formData,
+    };
+    console.log("fetching...");
+    const response = await fetch(
+        "https://api.openai.com/v1/audio/translations",
+        requestOptions
+    );
+    console.log("fetched");
+    if (response.status === 200) {
+        console.log("success");
+        const data = await response.json();
+        if (data.text) {
+            return data.text;
+        } else {
+            console.error("Error. No response from OpenAI API");
+        }
+    }
+}
+
+export { transcribeWhisper, translateWhisper };
