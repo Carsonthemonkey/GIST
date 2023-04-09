@@ -19,9 +19,9 @@ const SummaryPanel = (props: Props) => {
       <button id="notes-button">Generate Notes</button>
       <button id="summary-drop-down-button" onClick={toggleDropdown}>v</button>
       {isOpen && (
-        <ul>
-          <li>Bullets</li>
-          <li>Summary</li>
+        <ul id="summary-drop-down">
+          <li className='summary-drop-down-item'>Bullets</li>
+          <li className='summary-drop-down-item'>Summary</li>
         </ul>
       )}
       <p id="summary-content">This is where the summary will go <br/>

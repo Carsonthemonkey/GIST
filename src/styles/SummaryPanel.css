@@ -17,6 +17,26 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+#summary-panel #summary-drop-down {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+  width: 45%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#summary-panel #summary-drop-down .summary-drop-down-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+#summary-panel #summary-drop-down .summary-drop-down-item:hover {
+  background-color: #eee;
+}
 #summary-panel #summary-content {
   padding: 0 20px;
 }/*# sourceMappingURL=SummaryPanel.css.map */
