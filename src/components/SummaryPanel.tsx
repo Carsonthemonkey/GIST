@@ -10,27 +10,31 @@ interface Props {
     transcriptProp: string;
 }
 
+interface Prompts {
+    [key: string]: string;
+}
+
 const SummaryPanel = (props: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const prompts = {
-        "Bullets":
+    const prompts: Prompts = {
+        Bullets:
             "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points",
-        "Summarize":
+        Summarize:
             "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lecture. Respond to any input with the summary only, no extra explanation text",
     };
 
     //This is a placeholder for testing purposes
     const [summary, setSummary] = React.useState(``);
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
-    const [activePrompt, setActivePrompt] = React.useState(prompts.Bullets);
+    const [activePrompt, setActivePrompt] = React.useState("Bullets");
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
     const handleItemClick = (e: any) => {
-        setActivePrompt(prompts[e.target.innerText]); // TODO: fix this, it still works though
+        setActivePrompt(e.target.innerText);
         setIsOpen(false);
     }
 
@@ -42,7 +46,7 @@ const SummaryPanel = (props: Props) => {
             //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
                 true,
-                activePrompt,
+                prompts[activePrompt],
                 props.transcriptProp,
                 props.APIKeyProp,
             ).then((r) => {
@@ -61,7 +65,7 @@ const SummaryPanel = (props: Props) => {
         <div id="summary-panel">
             <h2 id="summary-title">Summarize</h2>
             {/* //TODO dynamically change the prompt based on the dropdown */}
-            <button id="notes-button" onClick={generateSummary}>Generate Summary</button>
+            <button id="notes-button" onClick={generateSummary}>Generate {activePrompt}</button>
             <button id="summary-drop-down-button" onClick={toggleDropdown}>
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
