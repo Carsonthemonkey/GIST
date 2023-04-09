@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/Toolbar.css'
 import APIPopUp from './APIPopUp';
-//import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
