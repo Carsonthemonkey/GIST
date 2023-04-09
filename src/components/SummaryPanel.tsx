@@ -11,6 +11,13 @@ interface Props {
 }
 
 const SummaryPanel = (props: Props) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    //This is a placeholder for testing purposes
+    const [summary, setSummary] = React.useState(``);
+    const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
+    const [response, setResponse] = React.useState({ results: [] });
+
     const prompts = {
         Bullets:
             "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points",
@@ -18,10 +25,17 @@ const SummaryPanel = (props: Props) => {
             "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lecture. Respond to any input with the summary only, no extra explanation text",
     };
 
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
     async function generateSummary() {
+        
         try {
             //TODO dynamically change the prompt based on the dropdown
             setIsLoading(true);
+            //! fix this, it seems to be one button press behind
+            //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
                 true,
                 prompts.Bullets,
@@ -38,16 +52,7 @@ const SummaryPanel = (props: Props) => {
             console.log(e);
         }
     }
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-    //This is a placeholder for testing purposes
-    const [summary, setSummary] =
-        React.useState(`- The argument is about giving to charities as a moral obligation - Absolute poverty is bad, meaning suffering and death from lack of food and medical care - Some people don't have access to clean drinking water and will die from dehydration or diseases - Some people don't have enough food to eat and will die from starvation - It doesn't matter what causes absolute poverty - The author is not saying anything controversial or trying to sneak anything past the reader`);
-    const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
-    const [response, setResponse] = React.useState({ results: [] });
+    
     return (
         <div id="summary-panel">
             <h2 id="summary-title">Summarize</h2>
