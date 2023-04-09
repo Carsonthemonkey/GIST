@@ -5,7 +5,10 @@ interface Props {
 }
 
 const WordCounter = (props: Props) => {
-    const wordCount = props.transcriptProp.split(" ").length;
+    let wordCount = props.transcriptProp.split(" ").length;
+    if (props.transcriptProp === "") {
+        wordCount = 0;
+    }
 
     return (
         <div>
