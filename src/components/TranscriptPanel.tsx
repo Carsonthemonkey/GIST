@@ -93,6 +93,11 @@ const TranscriptPanel = (props: Props) => {
         }
     }
 
+    function removeFile() {
+        setFileUploaded(false);
+        setAudioFile(null);
+    }
+
     return (
         <div
             id="transcript-panel"
@@ -125,16 +130,22 @@ const TranscriptPanel = (props: Props) => {
             <button className="non-icon-button" onClick={transcribeAudio}>
                 Transcribe
             </button>
-            <div>
+            <br />
+            {fileUploaded && !isLoading && !props.transcriptProp &&(
+            <div id="file-preview">
                 {/* TODO add a little box around the filename maybe */}
-                {!props.transcriptProp &&
-                    !isLoading &&
-                    `fileName: ${audioFile?.name}`}
+                <em>
+                    {!props.transcriptProp && !isLoading && audioFile?.name}
+                </em>
+                <button onClick={removeFile}>X</button>
+            </div>
+            )}
+            <div id="file-drop-dialog">
+                {!fileUploaded && "Drag and drop your audio file here"}
             </div>
             <p id="transcript-content">
                 <br />
                 {/* Add a nice style to this */}
-                {!fileUploaded && "Drag and drop your audio file here"}
                 {isLoading && "Loading..."}
                 {fileUploaded && props.transcriptProp}
             </p>

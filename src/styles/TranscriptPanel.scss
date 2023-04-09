@@ -24,6 +24,20 @@
     .dragging-over {
         display: block;
     }
+
+    #file-preview{
+        margin: 20px;
+        padding-left: 10px;
+        padding-right: 0px;
+        border: 2px solid black;
+        border-radius: 7px;
+        display: inline-block;
+        button{
+            margin:0;
+            border: none;
+            border-left: 2px solid black;
+        }
+    }
     
     #transcript-content {
         padding: 0 20px;
