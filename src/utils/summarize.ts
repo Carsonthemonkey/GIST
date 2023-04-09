@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
 
-export default async function summarizeHTTPS(
+export default async function summarizeGPT(
     testReturn: boolean,
     systemPrompt: string,
     userPrompt: string,
