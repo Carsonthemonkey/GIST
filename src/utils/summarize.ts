@@ -24,7 +24,7 @@ export default async function summarizeGPT(
         // wait 3 seconds to simulate a long request
         await new Promise((resolve) => setTimeout(resolve, 3000));
         response.status = 200;
-        response.results[0] = "Debug Summary Response";
+        response.results[0] = `Debug Summary Response. Prompt: ${systemPrompt}`;
         // setResponse(response);
         return response;
     }

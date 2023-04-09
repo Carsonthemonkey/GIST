@@ -23,7 +23,7 @@ const APIPopUp = (props: Props) => {
                     type="password"
                     value={APIKey}
                     onChange={handleInputChange}
-                    placeholder="Enter API Key..."
+                    placeholder="Your OpenAI API Key..."
                 />
             </div>
             )}
