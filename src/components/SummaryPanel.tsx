@@ -1,4 +1,5 @@
-import React from "react";
+//import react and useState
+import React, { useState } from "react";
 import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";
 
@@ -20,6 +21,7 @@ const SummaryPanel = (props: Props) => {
             //TODO dynamically change the prompt based on the dropdown
             setIsLoading(true);
             //! fix this, it seems to be one button press behind
+            //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
                 true,
                 prompts.Bullets,
@@ -35,6 +37,11 @@ const SummaryPanel = (props: Props) => {
             console.log(e);
         }
     }
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
     //This is a placeholder for testing purposes
     const [summary, setSummary] =
         React.useState(`Cras non tortor turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus aliquet ante turpis, eget dapibus nisl malesuada vulputate. Sed ut neque magna. Pellentesque sagittis tortor eu vulputate gravida. Morbi nec luctus metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin finibus, dui in porttitor faucibus, est erat blandit odio, et viverra sapien dui at mi. Integer volutpat orci vitae risus cursus rutrum. Mauris et tristique nunc, vitae fermentum dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris quis tellus feugiat, suscipit elit in, rhoncus purus. Fusce dictum pharetra diam, sed vestibulum nunc mollis ac. Aenean placerat orci at est placerat, nec tempus elit auctor.
@@ -46,13 +53,20 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
             <h2 id="summary-title">Summarize</h2>
-            <button id="notes-button" onClick={generateSummary}>
-                Generate Notes
+            <button id="notes-button" onClick={generateSummary}>Generate Notes</button>
+            <button id="summary-drop-down-button" onClick={toggleDropdown}>
+                v
             </button>
+            {isOpen && (
+                <ul id="summary-drop-down">
+                    <li className="summary-drop-down-item">Bullets</li>
+                    <li className="summary-drop-down-item">Summary</li>
+                </ul>
+            )}
             <p id="summary-content">
                 This is where the summary will go <br />
-                {/* TODO: add a loading icon instead of text (low priority) */}
-                {/* {<p>Loading...</p>}  */}
+                {/* TODO: add a loading spinner here */}
+                {/* {isLoading && <p>Loading...</p>} */}
                 {summary}
             </p>
         </div>
