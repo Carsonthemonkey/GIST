@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
     APIKeyProp: string;
@@ -36,10 +36,9 @@ const SummaryPanel = (props: Props) => {
     const handleItemClick = (e: any) => {
         setActivePrompt(e.target.innerText);
         setIsOpen(false);
-    }
+    };
 
     async function generateSummary() {
-        
         try {
             setIsLoading(true);
             //! fix this, it seems to be one button press behind
@@ -48,30 +47,46 @@ const SummaryPanel = (props: Props) => {
                 true,
                 prompts[activePrompt],
                 props.transcriptProp,
-                props.APIKeyProp,
+                props.APIKeyProp
             ).then((r) => {
                 setIsLoading(false);
-                if(r && r.results[0]){
+                if (r && r.results[0]) {
                     setSummary(r.results[0]);
                     console.log(r.results[0]);
                 }
             });
-        } catch(e) {
+        } catch (e) {
             console.log(e);
         }
     }
-    
+
     return (
         <div id="summary-panel">
             <h2 id="summary-title">Summary</h2>
-            <button id="notes-button" className="non-icon-button" onClick={generateSummary}>Generate {activePrompt}</button>
-            <button id="summary-drop-down-button" className="non-icon-button" onClick={toggleDropdown}>
+            <button
+                id="notes-button"
+                className="non-icon-button"
+                onClick={generateSummary}
+            >
+                Generate {activePrompt}
+            </button>
+            <button
+                id="summary-drop-down-button"
+                className="non-icon-button"
+                onClick={toggleDropdown}
+            >
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
             {isOpen && (
                 <ul id="summary-drop-down">
                     {Object.keys(prompts).map((title) => (
-                        <li key={title} onClick={handleItemClick}>{title}</li>
+                        <li
+                            className="summary-drop-down-item"
+                            key={title}
+                            onClick={handleItemClick}
+                        >
+                            {title}
+                        </li>
                     ))}
                 </ul>
             )}
