@@ -63,7 +63,7 @@ const SummaryPanel = (props: Props) => {
     
     return (
         <div id="summary-panel">
-            <h2 id="summary-title">Summarize</h2>
+            <h2 id="summary-title">Summary</h2>
             <button id="notes-button" className="non-icon-button" onClick={generateSummary}>Generate {activePrompt}</button>
             <button id="summary-drop-down-button" className="non-icon-button" onClick={toggleDropdown}>
                 <FontAwesomeIcon icon={faChevronDown} />
