@@ -16,6 +16,7 @@ const TranscriptPanel = (props: Props) => {
     const [audioFile, setAudioFile] = React.useState<File | null>(null);
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
+    const [doTranslate, setDoTranslate] = React.useState(false);
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -74,21 +75,31 @@ const TranscriptPanel = (props: Props) => {
     };
 
     async function transcribeAudio() {
+      console.log(doTranslate)
         if (!fileUploaded || !audioFile) {
             console.error("No file uploaded");
             return;
         }
         try {
             setIsLoading(true);
-            await transcribeWhisper(
-                true,
-                audioFile,
-                "en",
-                props.APIKeyProp
-            ).then((transcript) => {
-                console.log(transcript);
-                props.setTranscriptProp(transcript);
-            });
+            if (doTranslate) {
+                await translateWhisper(true, audioFile, props.APIKeyProp).then(
+                    (transcript) => {
+                        console.log(transcript);
+                        props.setTranscriptProp(transcript);
+                    }
+                );
+            } else {
+                await transcribeWhisper(
+                    true,
+                    audioFile,
+                    "en",
+                    props.APIKeyProp
+                ).then((transcript) => {
+                    console.log(transcript);
+                    props.setTranscriptProp(transcript);
+                });
+            }
             setIsLoading(false);
         } catch (e) {
             console.error(e);
@@ -98,6 +109,10 @@ const TranscriptPanel = (props: Props) => {
     function removeFile() {
         setFileUploaded(false);
         setAudioFile(null);
+    }
+
+    function handleCheckBoxChange() {
+        setDoTranslate(!doTranslate);
     }
 
     return (
@@ -129,6 +144,12 @@ const TranscriptPanel = (props: Props) => {
                 </p>
             </Modal>
             <h2 id="transcript-title">Transcript</h2>
+            <div>
+                <label>
+                    <input type="checkbox" checked={doTranslate} onChange={handleCheckBoxChange} />
+                    Translate Audio
+                </label>
+            </div>
             <button className="non-icon-button" onClick={transcribeAudio}>
                 Transcribe
             </button>
