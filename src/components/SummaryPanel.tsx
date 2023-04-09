@@ -17,14 +17,14 @@ interface Prompts {
 
 const SummaryPanel = (props: Props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const LatexPrompt = "If the transcript involves any math equations, include any important math formulas in LaTeX notation."
+    const LatexPrompt = " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability."
     const prompts: Prompts = {
         Bullets:
-            "You are NotesGPT. You take read transcripts of audio, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points" + LatexPrompt,
+            "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points." + LatexPrompt,
         Summary:
-            "You are NotesGPT. You take read transcripts of audio, and create a summary of the audio. Respond to any input with the summary only, no extra explanation text" + LatexPrompt,
+            "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lectures. Respond to any input with the summary only, no extra explanation text." + LatexPrompt,
         Explanation:
-            "You are NotesGPT. You take read transcripts of audio, and explain the key concepts of the audio in an understandable way. Be detailed but concise. Respond to any input with the explanation only, no extra decoration text." + LatexPrompt,
+            "You are NotesGPT. You take read transcripts of lectures, and explain the key concepts of the lectures in an understandable way. Be detailed but concise. Respond to any input with the explanation only, no extra decoration text." + LatexPrompt,
     };
 
     //This is a placeholder for testing purposes
