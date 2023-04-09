@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/TranscriptPanel.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 
@@ -155,10 +157,12 @@ const TranscriptPanel = (props: Props) => {
             {fileUploaded && !isLoading && !props.transcriptProp && (
                 <div id="file-preview">
                     {/* TODO add a little box around the filename maybe */}
-                    <em>
+                    <em id="file-name">
                         {!props.transcriptProp && !isLoading && audioFile?.name}
                     </em>
-                    <button onClick={removeFile}>X</button>
+                    <button id="x-button" onClick={removeFile}>
+                        <FontAwesomeIcon icon={faX} />
+                    </button>
                 </div>
             )}
             <div id="file-drop-dialog">

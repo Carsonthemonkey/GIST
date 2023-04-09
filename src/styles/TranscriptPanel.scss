@@ -1,4 +1,4 @@
-@use 'variables' as vars;
+@use "variables" as vars;
 
 #transcript-panel {
     position: absolute;
@@ -19,26 +19,28 @@
         opacity: 0.5;
         z-index: 1;
         display: none;
-    }  
+    }
 
     .dragging-over {
         display: block;
     }
 
-    #file-preview{
+    #file-preview {
         margin: 20px;
-        padding-left: 10px;
-        padding-right: 0px;
         border: 2px solid black;
         border-radius: 7px;
         display: inline-block;
-        button{
-            margin:0;
+        #file-name {
+            padding: 0 10px;
+        }
+        #x-button {
+            margin: 0;
+            padding: 10px 15px;
             border: none;
             border-left: 2px solid black;
         }
     }
-    
+
     #transcript-content {
         padding: 0 20px;
     }
