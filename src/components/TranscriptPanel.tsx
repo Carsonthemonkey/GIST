@@ -1,7 +1,11 @@
 import React from "react";
 import "../styles/TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import {
+    faX,
+    faSquareCheck,
+    faSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 
@@ -75,7 +79,7 @@ const TranscriptPanel = (props: Props) => {
     };
 
     async function transcribeAudio() {
-      console.log(doTranslate)
+        console.log(doTranslate);
         if (!fileUploaded || !audioFile) {
             console.error("No file uploaded");
             return;
@@ -145,9 +149,18 @@ const TranscriptPanel = (props: Props) => {
             </Modal>
             <h2 id="transcript-title">Transcript</h2>
             <div>
-                <label>
-                    <input type="checkbox" checked={doTranslate} onChange={handleCheckBoxChange} />
-                    Translate Audio
+                <label id="translate-section">
+                    <div
+                        id="checkmark"
+                        className="icon"
+                        onClick={handleCheckBoxChange}
+                    >
+                        {doTranslate && (
+                            <FontAwesomeIcon icon={faSquareCheck} />
+                        )}
+                        {!doTranslate && <FontAwesomeIcon icon={faSquare} />}
+                    </div>
+                    <p>Translate Audio</p>
                 </label>
             </div>
             <button className="non-icon-button" onClick={transcribeAudio}>
