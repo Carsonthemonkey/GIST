@@ -13,19 +13,41 @@ const TranscriptPanel = (props: Props) => {
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        //TODO highlight the screen in some way so it is clear that a file is being dragged over the screen
+        //TODO make drag highlight go away if file isn't dropped but drag is done
         event.preventDefault();
+
+        // Find the element with the ID 'overlay'
+        const overlayElement = document.querySelector(".overlay");
+        // Add the 'dragging-over' class to the element
+        if (overlayElement) {
+            // console.log("overlay element found");
+            overlayElement.classList.add("dragging-over");
+        }
     };
 
     const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      const file = event.dataTransfer.files[0];
-      const validFileTypes = ["mp3", "mp4", "mpeg", "mpga", "m4a", "wav", "webm"];
-      if(!validFileTypes.includes(file.name.split(".").pop()!)){
-          setModalIsOpen(true);
-          return;
-      }
-      setAudioFile(file);
+        event.preventDefault();
+        // Find the element with the ID 'overlay'
+        const overlayElement = document.querySelector(".overlay");
+        // Remove the 'dragging-over' class to the element
+        if (overlayElement) {
+            overlayElement.classList.remove("dragging-over");
+        }
+        const file = event.dataTransfer.files[0];
+        const validFileTypes = [
+            "mp3",
+            "mp4",
+            "mpeg",
+            "mpga",
+            "m4a",
+            "wav",
+            "webm",
+        ];
+        if (!validFileTypes.includes(file.name.split(".").pop()!)) {
+            setModalIsOpen(true);
+            return;
+        }
+        setAudioFile(file);
         // console log the file extension
         console.log(file.name.split(".").pop());
         //TODO Check if file is compatible file type
@@ -38,7 +60,14 @@ const TranscriptPanel = (props: Props) => {
             onDrop={handleFileDrop}
             onDragOver={handleDragOver}
         >
-          <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>File is not a valid filetype. Please use mp3, mp4, mpeg, mpga, m4a, wav, or webm.</Modal>
+            <div className="overlay"></div>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setModalIsOpen(false)}
+            >
+                File is not a valid filetype. Please use mp3, mp4, mpeg, mpga,
+                m4a, wav, or webm.
+            </Modal>
             <h2 id="transcript-title">Transcript</h2>
             <button className="non-icon-button">Transcribe</button>
             <p id="transcript-content">
