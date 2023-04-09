@@ -160,7 +160,7 @@ const TranscriptPanel = (props: Props) => {
                         )}
                         {!doTranslate && <FontAwesomeIcon icon={faSquare} />}
                     </div>
-                    <p>Translate Audio</p>
+                    <p id="checkmark-label">Translate Audio</p>
                 </label>
             </div>
             <button className="non-icon-button" onClick={transcribeAudio}>
@@ -169,7 +169,6 @@ const TranscriptPanel = (props: Props) => {
             <br />
             {fileUploaded && !isLoading && !props.transcriptProp && (
                 <div id="file-preview">
-                    {/* TODO add a little box around the filename maybe */}
                     <em id="file-name">
                         {!props.transcriptProp && !isLoading && audioFile?.name}
                     </em>

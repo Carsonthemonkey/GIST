@@ -25,6 +25,12 @@
         display: block;
     }
 
+    #checkmark,
+    #checkmark-label {
+        display: inline-block;
+        padding: 5px;
+    }
+
     #file-preview {
         margin: 20px;
         border: 2px solid black;

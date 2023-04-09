@@ -21,6 +21,11 @@
 #transcript-panel .dragging-over {
   display: block;
 }
+#transcript-panel #checkmark,
+#transcript-panel #checkmark-label {
+  display: inline-block;
+  padding: 5px;
+}
 #transcript-panel #file-preview {
   margin: 20px;
   border: 2px solid black;
