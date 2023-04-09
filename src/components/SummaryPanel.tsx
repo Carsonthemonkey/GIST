@@ -67,7 +67,7 @@ const SummaryPanel = (props: Props) => {
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
                 {/* Todo also, format summary with proper newlines and bullet points */}
-                {summary}
+                {!isLoading && summary}
             </p>
         </div>
     );
