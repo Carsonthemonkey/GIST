@@ -48,14 +48,25 @@ function formatText(text: string, isList: boolean) {
     const updatedJsxArray = jsxArray.map((element, index) => {
         if (element.props.children.includes("__latex__")) {
             console.log(`found latex: ${element.props.children}`);
-            const updatedChildren = element.props.children.replace(
-                "__latex__",
-                // `$latex$${latexArray[latexIndex]}$latex$`
-                latexArray[latexIndex]
-            );
+            // split children by spaces
+            let updatedChildren = element.props.children.split(" ");
+            for(let i = 0; i < updatedChildren.length; i++){
+                if(updatedChildren[i].includes("__latex__")){
+                    updatedChildren[i] = latexArray[latexIndex++];
+                }
+            }
+            //join the children back together
+            updatedChildren = updatedChildren.join(" ");
+            console.log("updatedChildren" + updatedChildren);
+
+            // const updatedChildren = element.props.children.split(" ");
+            // const updatedChildren = element.props.children.replaceAll(
+            //     "__latex__",
+            //     // `$latex$${latexArray[latexIndex]}$latex$`
+            //     latexArray[latexIndex++]
+            // );
             console.log(`latex: ${latexArray[latexIndex]}`)
-            console.log(updatedChildren);
-            latexIndex++;
+            console.log(`updatedChildren: ${typeof(updatedChildren)}`);
             // return jsxArray;
             return (
                 <>
@@ -68,8 +79,7 @@ function formatText(text: string, isList: boolean) {
     });
 
     return updatedJsxArray;
-    console.log(latexArray);
-    return <Latex>{text}</Latex>;
+
     // if(isList)
 }
 
