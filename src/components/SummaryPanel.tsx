@@ -22,8 +22,6 @@ const SummaryPanel = (props: Props) => {
         try {
             //TODO dynamically change the prompt based on the dropdown
             setIsLoading(true);
-            //! fix this, it seems to be one button press behind
-            //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
                 true,
                 prompts.Bullets,
@@ -47,7 +45,7 @@ const SummaryPanel = (props: Props) => {
     };
     //This is a placeholder for testing purposes
     const [summary, setSummary] =
-        React.useState(``);
+        React.useState(`- The argument is about giving to charities as a moral obligation - Absolute poverty is bad, meaning suffering and death from lack of food and medical care - Some people don't have access to clean drinking water and will die from dehydration or diseases - Some people don't have enough food to eat and will die from starvation - It doesn't matter what causes absolute poverty - The author is not saying anything controversial or trying to sneak anything past the reader`);
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
     const [response, setResponse] = React.useState({ results: [] });
     return (
