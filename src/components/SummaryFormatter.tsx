@@ -31,7 +31,7 @@ function formatText(text: string, isList: boolean) {
     }
     //make into a list
     if (isList) {
-        const splitText = text.split("-");
+        const splitText = text.split("- ");
         splitText.forEach((line, index) => {
             jsxArray.push(<li key={index}>{line}</li>);
         });
@@ -57,7 +57,7 @@ function formatText(text: string, isList: boolean) {
             }
             //join the children back together
             updatedChildren = updatedChildren.join(" ");
-
+            console.log("updated children 0:" + updatedChildren[0])
             // const updatedChildren = element.props.children.split(" ");
             // const updatedChildren = element.props.children.replaceAll(
             //     "__latex__",
