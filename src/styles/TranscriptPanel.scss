@@ -8,6 +8,22 @@
     bottom: 50px;
     border-right: 1px solid #000;
     overflow-y: scroll;
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.5;
+        z-index: 1;
+        display: none;
+    }  
+
+    .dragging-over {
+        display: block;
+    }
     
     #transcript-content {
         padding: 0 20px;
