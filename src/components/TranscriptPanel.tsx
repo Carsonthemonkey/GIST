@@ -84,7 +84,7 @@ const TranscriptPanel = (props: Props) => {
                 }
             );
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
     }
 
