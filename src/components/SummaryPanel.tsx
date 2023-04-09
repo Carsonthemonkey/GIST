@@ -29,6 +29,7 @@ const SummaryPanel = (props: Props) => {
     const [summary, setSummary] = React.useState(`This is a test summary of Bullet points. - here is another bulley point. - And another!`);
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
     const [activePrompt, setActivePrompt] = React.useState("Bullets");
+    const [isList, setIsList] = React.useState(true);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -36,6 +37,13 @@ const SummaryPanel = (props: Props) => {
 
     const handleItemClick = (e: any) => {
         setActivePrompt(e.target.innerText);
+        //* This is kind of messy, But it basically checks if the active prompt is one that should be in list format.
+        //TODO: make this so that it only changes when the button is pressed
+        if(e.target.innerText === "Bullets"){
+            setIsList(true);
+        }else{
+            setIsList(false);
+        }
         setIsOpen(false);
     };
 
@@ -95,7 +103,7 @@ const SummaryPanel = (props: Props) => {
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
                 {/* Todo also, format summary with proper newlines and bullet points */}
-                {!isLoading && (<SummaryFormatter isList={true} text={summary}/>)}
+                {!isLoading && (<SummaryFormatter isList={isList} text={summary}/>)}
             </p>
         </div>
     );
