@@ -30,6 +30,8 @@ const TranscriptPanel = (props: Props) => {
             onDragOver={handleDragOver}
         >
             <h2 id="transcript-title">Transcript</h2>
+            {/* TODO make this button more in the style of the generate notes button*/}
+            <button>Transcribe</button>
             <p id="transcript-content">
                 <br />
                 {/* Add a nice style to this */}
