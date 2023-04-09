@@ -40,8 +40,7 @@ const TranscriptPanel = (props: Props) => {
         >
           <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>File is not a valid filetype. Please use mp3, mp4, mpeg, mpga, m4a, wav, or webm.</Modal>
             <h2 id="transcript-title">Transcript</h2>
-            {/* TODO make this button more in the style of the generate notes button*/}
-            <button>Transcribe</button>
+            <button className="non-icon-button">Transcribe</button>
             <p id="transcript-content">
                 <br />
                 {/* Add a nice style to this */}

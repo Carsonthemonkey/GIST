@@ -1,0 +1,21 @@
+h2 {
+    font-size: 30px;
+}
+
+button {
+    color: #000;
+    background: none;
+}
+
+.non-icon-button {
+    border-radius: 50px;
+    border: 2px solid #000;
+    
+    transition: background-color 0.3s ease-in-out, 0.3s ease-in-out;
+    font-weight: 700;
+
+    &:hover {
+        background-color: #000;
+        color: #fff1bb;
+    }
+}

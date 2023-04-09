@@ -6,21 +6,6 @@
   bottom: 50px;
   overflow-y: scroll;
 }
-#summary-panel button {
-  border-radius: 50px;
-  border: 2px solid #000;
-  background-color: #fff1bb;
-  color: #000;
-  transition: background-color 0.3s ease-in-out, 0.3s ease-in-out;
-  font-weight: 700;
-}
-#summary-panel button:hover {
-  background-color: #000;
-  color: #fff1bb;
-}
-#summary-panel #summary-title {
-  font-size: 30px;
-}
 #summary-panel #notes-button {
   border-right: none;
   border-top-right-radius: 0;
