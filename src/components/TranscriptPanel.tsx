@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/TranscriptPanel.css";
 import Modal from "react-modal";
-import transcribeWhisper from "../utils/transcibe";
+import {transcribeWhisper, translateWhisper} from "../utils/transcibe";
 
 interface Props {
     APIKeyProp: string;
