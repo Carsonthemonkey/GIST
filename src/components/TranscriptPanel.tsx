@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/TranscriptPanel.css";
 import Modal from "react-modal";
+import transcribeWhisper from "../utils/transcibe";
 
 interface Props {
     APIKeyProp: string;
     transcriptProp: string;
+    setTranscriptProp: (transcript: string) => void;
 }
 
 const TranscriptPanel = (props: Props) => {
@@ -67,6 +69,24 @@ const TranscriptPanel = (props: Props) => {
         //TODO Check if file is compatible file type
         setFileUploaded(true);
     };
+
+    async function transcribeAudio() {
+        if (!fileUploaded || !audioFile) {
+            console.error("No file uploaded");
+            return;
+        }
+        try {
+            await transcribeWhisper(audioFile, "en", props.APIKeyProp).then(
+                (transcript) => {
+                    console.log(transcript);
+                    props.setTranscriptProp(transcript);
+                }
+            );
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div
             id="transcript-panel"
@@ -84,7 +104,9 @@ const TranscriptPanel = (props: Props) => {
                 m4a, wav, or webm.
             </Modal>
             <h2 id="transcript-title">Transcript</h2>
-            <button className="non-icon-button">Transcribe</button>
+            <button className="non-icon-button" onClick={transcribeAudio}>
+                Transcribe
+            </button>
             <p id="transcript-content">
                 <br />
                 {/* Add a nice style to this */}
