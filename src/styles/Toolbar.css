@@ -12,8 +12,7 @@
   height: 50px;
 }
 #toolbar button {
-  background: none;
-  color: #000;
+  border: none;
 }
 #toolbar #api-button {
   order: 1;

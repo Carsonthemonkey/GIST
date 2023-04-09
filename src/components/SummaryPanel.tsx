@@ -65,8 +65,8 @@ const SummaryPanel = (props: Props) => {
         <div id="summary-panel">
             <h2 id="summary-title">Summarize</h2>
             {/* //TODO dynamically change the prompt based on the dropdown */}
-            <button id="notes-button" onClick={generateSummary}>Generate {activePrompt}</button>
-            <button id="summary-drop-down-button" onClick={toggleDropdown}>
+            <button id="notes-button" className="non-icon-button" onClick={generateSummary}>Generate {activePrompt}</button>
+            <button id="summary-drop-down-button" className="non-icon-button" onClick={toggleDropdown}>
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
             {isOpen && (

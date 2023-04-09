@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react'
+import './styles/global.css'
 import './styles/App.css'
 import Toolbar from './components/Toolbar'
 import TranscriptPanel from './components/TranscriptPanel'
