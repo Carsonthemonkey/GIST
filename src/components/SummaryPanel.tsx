@@ -13,32 +13,36 @@ interface Props {
 const SummaryPanel = (props: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const prompts = {
+        "Bullets":
+            "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points",
+        "Summarize":
+            "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lecture. Respond to any input with the summary only, no extra explanation text",
+    };
+
     //This is a placeholder for testing purposes
     const [summary, setSummary] = React.useState(``);
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
-    const [response, setResponse] = React.useState({ results: [] });
-
-    const prompts = {
-        Bullets:
-            "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points",
-        Summarize:
-            "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lecture. Respond to any input with the summary only, no extra explanation text",
-    };
+    const [activePrompt, setActivePrompt] = React.useState(prompts.Bullets);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleItemClick = (e: any) => {
+        setActivePrompt(prompts[e.target.innerText]); // TODO: fix this, it still works though
+        setIsOpen(false);
+    }
+
     async function generateSummary() {
         
         try {
-            //TODO dynamically change the prompt based on the dropdown
             setIsLoading(true);
             //! fix this, it seems to be one button press behind
             //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
                 true,
-                prompts.Bullets,
+                activePrompt,
                 props.transcriptProp,
                 props.APIKeyProp,
             ).then((r) => {
@@ -48,7 +52,7 @@ const SummaryPanel = (props: Props) => {
                     console.log(r.results[0]);
                 }
             });
-        } catch (e) {
+        } catch(e) {
             console.log(e);
         }
     }
@@ -56,14 +60,16 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
             <h2 id="summary-title">Summarize</h2>
-            <button id="notes-button" onClick={generateSummary}>Generate Notes</button>
+            {/* //TODO dynamically change the prompt based on the dropdown */}
+            <button id="notes-button" onClick={generateSummary}>Generate Summary</button>
             <button id="summary-drop-down-button" onClick={toggleDropdown}>
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
             {isOpen && (
                 <ul id="summary-drop-down">
-                    <li className="summary-drop-down-item">Bullets</li>
-                    <li className="summary-drop-down-item">Summary</li>
+                    {Object.keys(prompts).map((title) => (
+                        <li key={title} onClick={handleItemClick}>{title}</li>
+                    ))}
                 </ul>
             )}
             <p id="summary-content">
