@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
     APIKeyProp: string;
@@ -56,7 +58,7 @@ const SummaryPanel = (props: Props) => {
             <h2 id="summary-title">Summarize</h2>
             <button id="notes-button" onClick={generateSummary}>Generate Notes</button>
             <button id="summary-drop-down-button" onClick={toggleDropdown}>
-                v
+                <FontAwesomeIcon icon={faChevronDown} />
             </button>
             {isOpen && (
                 <ul id="summary-drop-down">
