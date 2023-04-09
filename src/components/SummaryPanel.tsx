@@ -4,6 +4,7 @@ import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import SummaryFormatter from "./SummaryFormatter";
 
 interface Props {
     APIKeyProp: string;
@@ -25,7 +26,7 @@ const SummaryPanel = (props: Props) => {
     };
 
     //This is a placeholder for testing purposes
-    const [summary, setSummary] = React.useState(``);
+    const [summary, setSummary] = React.useState(`This is a test summary of Bullet points. - here is another bulley point. - And another!`);
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
     const [activePrompt, setActivePrompt] = React.useState("Bullets");
 
@@ -94,7 +95,7 @@ const SummaryPanel = (props: Props) => {
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
                 {/* Todo also, format summary with proper newlines and bullet points */}
-                {!isLoading && summary}
+                {!isLoading && (<SummaryFormatter isList={true} text={summary}/>)}
             </p>
         </div>
     );
