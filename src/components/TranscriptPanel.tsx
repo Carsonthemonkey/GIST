@@ -180,7 +180,6 @@ const TranscriptPanel = (props: Props) => {
                 id="transcribe-button"
                 className="non-icon-button disabled-button"
                 onClick={transcribeAudio}
-                disabled
             >
                 Transcribe
             </button>
