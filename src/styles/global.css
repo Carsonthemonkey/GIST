@@ -7,6 +7,27 @@ button {
   background: none;
 }
 
+input {
+  box-sizing: border-box;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: rgba(70, 70, 70, 0.25);
+  color: #000;
+}
+input::-moz-placeholder {
+  color: #555;
+  font-size: 14px;
+}
+input::placeholder {
+  color: #555;
+  font-size: 14px;
+}
+input:focus {
+  outline: none;
+}
+
 .icon {
   border: none;
 }
