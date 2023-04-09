@@ -204,7 +204,9 @@ const TranscriptPanel = (props: Props) => {
                 {isLoading && "Loading..."}
                 {fileUploaded && props.transcriptProp}
             </p>
-            <WordCounter transcriptProp={props.transcriptProp} />
+            <div id="word-counter-bar">
+                <WordCounter transcriptProp={props.transcriptProp} />
+            </div>
         </div>
     );
 };

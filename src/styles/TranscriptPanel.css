@@ -3,7 +3,7 @@
   top: 50px;
   left: 0;
   width: 50%;
-  bottom: 0;
+  bottom: 30px;
   border-right: 1px solid #000;
   overflow-y: scroll;
 }
@@ -46,4 +46,21 @@
 }
 #transcript-panel #transcript-content {
   padding: 0 20px;
+}
+#transcript-panel #word-counter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 30px;
+  border: 1px solid #000;
+  border-left: none;
+  border-bottom: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+#transcript-panel #word-counter-bar #word-count {
+  margin: 0 10px;
 }/*# sourceMappingURL=TranscriptPanel.css.map */
