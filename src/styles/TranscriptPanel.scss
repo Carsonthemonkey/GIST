@@ -7,6 +7,7 @@
     width: 50%;
     bottom: vars.$word-counter-bar-height;
     border-right: 1px solid #000;
+    border-bottom: none;
     overflow-y: scroll;
 
     .overlay {
@@ -61,9 +62,8 @@
         left: 0;
         width: 50%;
         height: vars.$word-counter-bar-height;
-        border: 1px solid #000;
-        border-left: none;
-        border-bottom: none;
+        border-top: 1px solid vars.$grayed-out-color;
+        border-right: 1px solid #000;
         // arrange elements to far left
         display: flex;
         flex-direction: row;
@@ -71,7 +71,9 @@
         align-items: center;
 
         #word-count {
-            margin: 0 10px;
+            margin: 0 8px;
+            font-style: italic;
+            color: vars.$grayed-out-color;
         }
     }
 }
