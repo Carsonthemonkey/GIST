@@ -4,7 +4,6 @@ import "./styles/App.css";
 import Toolbar from "./components/Toolbar";
 import TranscriptPanel from "./components/TranscriptPanel";
 import SummaryPanel from "./components/SummaryPanel";
-import AudioPanel from "./components/AudioPanel";
 
 export const Context = createContext<
     [string, React.Dispatch<React.SetStateAction<string>>]
