@@ -8,6 +8,10 @@
     bottom: 50px;
     border-right: 1px solid #000;
     overflow-y: scroll;
+
+    #transcript-title {
+        font-size: 30px;
+    }
     
     #transcript-content {
         padding: 0 20px;
