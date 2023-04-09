@@ -10,4 +10,14 @@
     padding: 0;
     border-top: 1px solid #000;
     height: vars.$audio-panel-height;
+    // aligns elements in a row
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        background: none;
+        color: #000;
+    }
 }

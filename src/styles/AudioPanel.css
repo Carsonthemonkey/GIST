@@ -7,4 +7,12 @@
   padding: 0;
   border-top: 1px solid #000;
   height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#audio-panel button {
+  background: none;
+  color: #000;
 }/*# sourceMappingURL=AudioPanel.css.map */
