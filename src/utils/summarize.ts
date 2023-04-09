@@ -6,7 +6,7 @@ export default async function summarizeGPT(
     systemPrompt: string,
     userPrompt: string,
     API_KEY: string,
-    setResponse: (response: any) => void
+    // setResponse: (response: any) => void
 
 ) {
 
@@ -23,8 +23,8 @@ export default async function summarizeGPT(
     if(testReturn){
         response.status = 200;
         response.results[0] = "this is a test of summarizeHTTPS";
-        setResponse(response);
-        return;
+        // setResponse(response);
+        return response;
     }
 
     const requestOptions = {
@@ -55,7 +55,8 @@ export default async function summarizeGPT(
         if(data.choices[0].message?.content){
             console.log("successfully saved data")
             response.results[0] = data.choices[0].message?.content;
-            setResponse(response);
+            // setResponse(response);
+            return response;
         } else{
             console.error("Error. No response from OpenAI API")
         }

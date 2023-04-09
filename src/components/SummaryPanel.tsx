@@ -23,15 +23,16 @@ const SummaryPanel = (props: Props) => {
             //! fix this, it seems to be one button press behind
             //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
-                true,
+                false,
                 prompts.Bullets,
                 props.transcriptProp,
                 props.APIKeyProp,
-                setResponse
             ).then((r) => {
                 setIsLoading(false);
-                setSummary(response.results[0]);
-                console.log(response.results[0]);
+                if(r && r.results[0]){
+                    setSummary(r.results[0]);
+                    console.log(r.results[0]);
+                }
             });
         } catch (e) {
             console.log(e);
