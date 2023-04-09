@@ -50,4 +50,9 @@ button {
 
 .ReactModal__Overlay {
   background: rgba(250, 250, 250, 0.5) !important;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
 }/*# sourceMappingURL=global.css.map */
