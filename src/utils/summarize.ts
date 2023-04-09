@@ -43,7 +43,7 @@ export default async function summarizeGPT(
                 },
                 { role: "user", content: userPrompt },
             ],
-            max_tokens: 100,
+            max_tokens: 1000,
             temperature: 0.6,
         }),
     };
