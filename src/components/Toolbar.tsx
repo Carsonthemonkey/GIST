@@ -18,14 +18,18 @@ const Toolbar = () => {
                 <button id="api-button" className="icon" onClick={togglePopUp}>
                     <FontAwesomeIcon icon={faKey} size="2x" />
                 </button>
+                {isPopUpOpen && (
+                    <APIPopUp
+                        isPopUpOpen={isPopUpOpen}
+                        togglePopUp={togglePopUp}
+                    />
+                )}
+                <div className="filler"></div>
                 <h1 id="app-name">GISTAR</h1>
                 <button id="info-button" className="icon">
                     <FontAwesomeIcon icon={faCircleInfo} size="2x" />
                 </button>
             </div>
-            {isPopUpOpen && (
-                <APIPopUp isPopUpOpen={isPopUpOpen} togglePopUp={togglePopUp} />
-            )}
         </div>
     );
 };

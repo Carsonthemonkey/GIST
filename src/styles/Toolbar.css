@@ -12,13 +12,12 @@
   height: 50px;
 }
 #toolbar #api-button {
-  order: 1;
+  margin-right: auto;
 }
 #toolbar #app-name {
-  order: 2;
+  width: 100%;
   font-size: 24px;
-  margin: 0;
 }
 #toolbar #info-button {
-  order: 3;
+  margin-left: auto;
 }/*# sourceMappingURL=Toolbar.css.map */

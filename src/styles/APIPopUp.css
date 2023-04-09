@@ -1,11 +1,9 @@
 #api-popup {
   position: absolute;
-  top: 50px;
-  left: 0;
-  width: 20%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 10px;
+  left: 60px;
+}
+
+#api-input {
+  height: 20px;
 }/*# sourceMappingURL=APIPopUp.css.map */

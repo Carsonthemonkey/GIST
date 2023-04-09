@@ -1,13 +1,12 @@
-@use 'variables' as vars;
+@use "variables" as vars;
 
 #api-popup {
+    // upper left corner
     position: absolute;
-    top: vars.$toolbar-height;
-    left: 0;
-    width: 20%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: calc(vars.$toolbar-height / 5);
+    left: 60px;
+}
+
+#api-input {
+    height: calc(vars.$toolbar-height / 2.5);
 }

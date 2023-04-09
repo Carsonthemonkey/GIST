@@ -1,4 +1,4 @@
-@use 'variables' as vars;
+@use "variables" as vars;
 
 #toolbar {
     // makes toolbar fixed to top of page
@@ -17,16 +17,15 @@
     height: vars.$toolbar-height;
 
     #api-button {
-        order: 1;
+        margin-right: auto;
     }
 
     #app-name {
-        order: 2;
+        width: 100%;
         font-size: 24px;
-        margin: 0;
     }
 
     #info-button {
-        order: 3;
+        margin-left: auto;
     }
 }
