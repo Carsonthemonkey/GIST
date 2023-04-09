@@ -25,11 +25,26 @@ const TranscriptPanel = (props: Props) => {
         }
     };
 
-    const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
-        // Find the element with the ID 'overlay'
+        // Find the element with the class 'overlay'
         const overlayElement = document.querySelector(".overlay");
         // Remove the 'dragging-over' class to the element
+        // Check if the mouse pointer has moved outside the target element or its child elements
+        const relatedTargetNode = event.relatedTarget as Node; // Explicitly type event.relatedTarget as a Node object
+        if (
+            !event.relatedTarget ||
+            !event.currentTarget.contains(relatedTargetNode)
+        ) {
+            if (overlayElement) {
+                overlayElement.classList.remove("dragging-over");
+            }
+        }
+    };
+
+    const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        const overlayElement = document.querySelector(".overlay");
         if (overlayElement) {
             overlayElement.classList.remove("dragging-over");
         }
@@ -59,6 +74,7 @@ const TranscriptPanel = (props: Props) => {
             className="dropzone"
             onDrop={handleFileDrop}
             onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
         >
             <div className="overlay"></div>
             <Modal
