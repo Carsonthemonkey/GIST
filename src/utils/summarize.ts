@@ -2,7 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 
 export default async function summarizeGPT(
-    testReturn: boolean,
+    debug: boolean,
     systemPrompt: string,
     userPrompt: string,
     API_KEY: string,
@@ -20,9 +20,11 @@ export default async function summarizeGPT(
         results: [],
     };
 
-    if(testReturn){
+    if(debug){
+        // wait 3 seconds to simulate a long request
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         response.status = 200;
-        response.results[0] = "this is a test of summarizeHTTPS";
+        response.results[0] = "Debug Summary Response";
         // setResponse(response);
         return response;
     }
