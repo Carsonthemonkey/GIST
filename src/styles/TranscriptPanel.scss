@@ -5,8 +5,9 @@
     top: vars.$toolbar-height;
     left: 0;
     width: 50%;
-    bottom: 0;
+    bottom: vars.$word-counter-bar-height;
     border-right: 1px solid #000;
+    border-bottom: none;
     overflow-y: scroll;
 
     .overlay {
@@ -53,5 +54,26 @@
 
     #transcript-content {
         padding: 0 20px;
+    }
+
+    #word-counter-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: vars.$word-counter-bar-height;
+        border-top: 1px solid vars.$grayed-out-color;
+        border-right: 1px solid #000;
+        // arrange elements to far left
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        #word-count {
+            margin: 0 8px;
+            font-style: italic;
+            color: vars.$grayed-out-color;
+        }
     }
 }

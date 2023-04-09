@@ -3,8 +3,9 @@
   top: 50px;
   left: 0;
   width: 50%;
-  bottom: 0;
+  bottom: 30px;
   border-right: 1px solid #000;
+  border-bottom: none;
   overflow-y: scroll;
 }
 #transcript-panel .overlay {
@@ -46,4 +47,22 @@
 }
 #transcript-panel #transcript-content {
   padding: 0 20px;
+}
+#transcript-panel #word-counter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 30px;
+  border-top: 1px solid #beb387;
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+#transcript-panel #word-counter-bar #word-count {
+  margin: 0 8px;
+  font-style: italic;
+  color: #beb387;
 }/*# sourceMappingURL=TranscriptPanel.css.map */
