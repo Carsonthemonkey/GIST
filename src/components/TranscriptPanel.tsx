@@ -69,10 +69,16 @@ const TranscriptPanel = (props: Props) => {
             return;
         }
         setAudioFile(file);
-        // console log the file extension
-        console.log(file.name.split(".").pop());
-        //TODO Check if file is compatible file type
         setFileUploaded(true);
+
+        // Enable the transcribe button
+        const transcribeButton = document.querySelector(
+            "#transcribe-button"
+        ) as HTMLButtonElement;
+        if (transcribeButton) {
+            transcribeButton.classList.remove("disabled-button");
+            transcribeButton.disabled = false;
+        }
     };
 
     async function transcribeAudio() {
@@ -110,6 +116,15 @@ const TranscriptPanel = (props: Props) => {
     function removeFile() {
         setFileUploaded(false);
         setAudioFile(null);
+
+        // Disable the transcribe button
+        const transcribeButton = document.querySelector(
+            "#transcribe-button"
+        ) as HTMLButtonElement;
+        if (transcribeButton) {
+            transcribeButton.classList.add("disabled-button");
+            transcribeButton.disabled = true;
+        }
     }
 
     function handleCheckBoxChange() {
@@ -161,7 +176,12 @@ const TranscriptPanel = (props: Props) => {
                     <p id="checkmark-label">Translate Audio</p>
                 </label>
             </div>
-            <button className="non-icon-button" onClick={transcribeAudio}>
+            <button
+                id="transcribe-button"
+                className="non-icon-button disabled-button"
+                onClick={transcribeAudio}
+                disabled
+            >
                 Transcribe
             </button>
             <br />
