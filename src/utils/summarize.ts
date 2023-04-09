@@ -23,7 +23,7 @@ export default async function summarizeGPT(
         // wait 3 seconds to simulate a long request
         await new Promise((resolve) => setTimeout(resolve, 3000));
         response.status = 200;
-        response.results[0] = `Debug Summary Response. Prompt: ${systemPrompt}`;
+        response.results[0] = `Here is the weird latex that wasnt working: $\\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ and also $a + b = c$`;
         // setResponse(response);
         return response;
     }
