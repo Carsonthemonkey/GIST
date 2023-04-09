@@ -15,7 +15,7 @@ const TranscriptPanel = (props: Props) => {
         event.preventDefault();
     };
 
-    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
         setAudioFile(file);
@@ -26,7 +26,7 @@ const TranscriptPanel = (props: Props) => {
         <div
             id="transcript-panel"
             className="dropzone"
-            onDrop={handleDrop}
+            onDrop={handleFileDrop}
             onDragOver={handleDragOver}
         >
             <h2 id="transcript-title">Transcript</h2>
