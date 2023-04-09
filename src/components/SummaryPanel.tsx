@@ -17,7 +17,6 @@ interface Prompts {
 
 const SummaryPanel = (props: Props) => {
     const [isOpen, setIsOpen] = useState(false);
-
     const prompts: Prompts = {
         Bullets:
             "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points",
@@ -26,7 +25,9 @@ const SummaryPanel = (props: Props) => {
     };
 
     //This is a placeholder for testing purposes
-    const [summary, setSummary] = React.useState(`This is a test summary of Bullet points. - here is another bulley point. - And another!`);
+    const [summary, setSummary] = React.useState(``); //fractions need to be escaped somehow but chatGPT keeps lying to me about how to do it and I cant find any documentation on it
+    //write a latex expression for a geometric series
+    // $a = \frac{1}{1-r}$
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
     const [activePrompt, setActivePrompt] = React.useState("Bullets");
     const [isList, setIsList] = React.useState(true);
@@ -99,12 +100,12 @@ const SummaryPanel = (props: Props) => {
                     ))}
                 </ul>
             )}
-            <p id="summary-content">
+            <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
                 {/* Todo also, format summary with proper newlines and bullet points */}
-                {!isLoading && (<SummaryFormatter isList={isList} text={summary}/>)}
-            </p>
+                {!isLoading && summary && (<SummaryFormatter isList={isList} text={summary}/>)}
+            </div>
         </div>
     );
 };
