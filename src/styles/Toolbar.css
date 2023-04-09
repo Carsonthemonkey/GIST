@@ -11,9 +11,6 @@
   border-bottom: 1px solid #000;
   height: 50px;
 }
-#toolbar button {
-  border: none;
-}
 #toolbar #api-button {
   order: 1;
 }

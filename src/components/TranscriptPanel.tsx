@@ -103,11 +103,23 @@ const TranscriptPanel = (props: Props) => {
         >
             <div className="overlay"></div>
             <Modal
+                className="modal"
                 isOpen={modalIsOpen}
                 onRequestClose={() => setModalIsOpen(false)}
             >
-                File is not a valid filetype. Please use mp3, mp4, mpeg, mpga,
-                m4a, wav, or webm.
+                <div className="exit-bar">
+                    <button
+                        className="icon"
+                        onClick={() => setModalIsOpen(false)}
+                    >
+                        {" "}
+                        X{" "}
+                    </button>
+                </div>
+                <p className="modal-content">
+                    File is not a valid filetype. Please use mp3, mp4, mpeg,
+                    mpga, m4a, wav, or webm.
+                </p>
             </Modal>
             <h2 id="transcript-title">Transcript</h2>
             <button className="non-icon-button" onClick={transcribeAudio}>

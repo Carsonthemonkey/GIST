@@ -7,6 +7,10 @@ button {
   background: none;
 }
 
+.icon {
+  border: none;
+}
+
 .non-icon-button {
   border-radius: 50px;
   border: 2px solid #000;
@@ -16,4 +20,22 @@ button {
 .non-icon-button:hover {
   background-color: #000;
   color: #fff1bb;
+}
+
+.modal {
+  transform: translate(50%, 50%);
+  width: 50vw;
+  height: 50vh;
+  z-index: 1;
+  background-color: #fff1bb;
+  border-radius: 20px;
+}
+.modal .exit-bar {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #000;
+}
+.modal .modal-content {
+  padding: 15px;
+  margin: 0;
 }/*# sourceMappingURL=global.css.map */
