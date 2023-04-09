@@ -15,14 +15,22 @@
     // adds a border at the bottom
     border-bottom: 1px solid #000;
     height: vars.$toolbar-height;
+
+    button {
+        background: none;
+        color: #000;
+    }
+
     #api-button {
         order: 1;
     }
+
     #app-name {
         order: 2;
         font-size: 18px;
         margin: 0;
     }
+
     #info-button {
         order: 3;
     }
