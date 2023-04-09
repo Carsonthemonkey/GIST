@@ -13,7 +13,6 @@ const TranscriptPanel = (props: Props) => {
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        //TODO make drag highlight go away if file isn't dropped but drag is done
         event.preventDefault();
 
         // Find the element with the ID 'overlay'
