@@ -43,7 +43,6 @@ function formatText(text: string, isList: boolean) {
         });
     }
     //loop through the jsxArray and replace all __latex__ with the latex
-    //TODO make this work with multiple latex expressions in a single line
     let latexIndex = 0;
     const updatedJsxArray = jsxArray.map((element, index) => {
         if (element.props.children.includes("__latex__")) {
