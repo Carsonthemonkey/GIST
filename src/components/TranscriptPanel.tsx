@@ -91,7 +91,7 @@ const TranscriptPanel = (props: Props) => {
         try {
             setIsLoading(true);
             if (doTranslate) {
-                await translateWhisper(true, audioFile, props.APIKeyProp).then(
+                await translateWhisper(false, audioFile, props.APIKeyProp).then(
                     (transcript) => {
                         console.log(transcript);
                         props.setTranscriptProp(transcript);
@@ -99,7 +99,7 @@ const TranscriptPanel = (props: Props) => {
                 );
             } else {
                 await transcribeWhisper(
-                    true,
+                    false,
                     audioFile,
                     "en",
                     props.APIKeyProp
