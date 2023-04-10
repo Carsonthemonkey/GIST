@@ -17,7 +17,7 @@ interface Prompts {
 
 const SummaryPanel = (props: Props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const LatexPrompt = " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability."
+    const LatexPrompt = " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION."
     const prompts: Prompts = {
         Bullets:
             "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points." + LatexPrompt,
@@ -57,7 +57,7 @@ const SummaryPanel = (props: Props) => {
             //! fix this, it seems to be one button press behind
             //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
-                true,
+                false,
                 prompts[activePrompt],
                 props.transcriptProp,
                 props.APIKeyProp
