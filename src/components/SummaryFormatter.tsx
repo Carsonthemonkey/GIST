@@ -36,7 +36,6 @@ function formatText(text: string, isList: boolean) {
             jsxArray.push(<li key={index}>{line}</li>);
         });
     } else {
-        //split by latex expressions
         const splitText = text.split(" ");
         splitText.forEach((line, index) => {
             jsxArray.push(<span key={index}>{line +" "}</span>);
