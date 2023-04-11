@@ -16,6 +16,7 @@ interface Prompts {
 }
 
 const SummaryPanel = (props: Props) => {
+    const DEBUG = true;
     const [isOpen, setIsOpen] = useState(false);
     const LatexPrompt = " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION."
     const prompts: Prompts = {
@@ -57,7 +58,7 @@ const SummaryPanel = (props: Props) => {
             //! fix this, it seems to be one button press behind
             //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
-                false,
+                DEBUG,
                 prompts[activePrompt],
                 props.transcriptProp,
                 props.APIKeyProp

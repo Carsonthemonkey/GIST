@@ -14,6 +14,8 @@ interface Props {
 }
 
 const TranscriptPanel = (props: Props) => {
+    const DEBUG = true;
+
     const [fileUploaded, setFileUploaded] = React.useState(false);
     const [audioFile, setAudioFile] = React.useState<File | null>(null);
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
@@ -91,7 +93,7 @@ const TranscriptPanel = (props: Props) => {
         try {
             setIsLoading(true);
             if (doTranslate) {
-                await translateWhisper(false, audioFile, props.APIKeyProp).then(
+                await translateWhisper(DEBUG, audioFile, props.APIKeyProp).then(
                     (transcript) => {
                         console.log(transcript);
                         props.setTranscriptProp(transcript);
@@ -99,7 +101,7 @@ const TranscriptPanel = (props: Props) => {
                 );
             } else {
                 await transcribeWhisper(
-                    false,
+                    DEBUG,
                     audioFile,
                     "en",
                     props.APIKeyProp
