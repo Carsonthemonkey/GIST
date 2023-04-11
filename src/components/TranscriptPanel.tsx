@@ -14,7 +14,7 @@ interface Props {
 }
 
 const TranscriptPanel = (props: Props) => {
-    const DEBUG = true;
+    const DEBUG = false;
 
     const [fileUploaded, setFileUploaded] = React.useState(false);
     const [audioFile, setAudioFile] = React.useState<File | null>(null);

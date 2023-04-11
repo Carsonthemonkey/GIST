@@ -16,7 +16,7 @@ interface Prompts {
 }
 
 const SummaryPanel = (props: Props) => {
-    const DEBUG = true;
+    const DEBUG = false;
     const [isOpen, setIsOpen] = useState(false);
     const LatexPrompt = " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION."
     const prompts: Prompts = {

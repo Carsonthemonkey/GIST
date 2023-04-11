@@ -16,9 +16,9 @@ function formatText(text: string, isList: boolean) {
     // let inList = false;
     //replace all Latex with '__latex__'
     //make a regex to find all latex
-    console.log(text);
+    // console.log(text);
     // text = escapeString(text);
-    console.log(text);
+    // console.log(text);
     const jsxArray: JSX.Element[] = [];
     let latexArray: string[] = [];
     const latexRegex = /\$.*?\$/g;
@@ -31,7 +31,15 @@ function formatText(text: string, isList: boolean) {
     }
     //make into a list
     if (isList) {
-        const splitText = text.split("- ");
+        text = ' ' + text;
+        const splitText = text.split("-");
+        const emptyRegex = /^\s*$/;
+        for (const li of splitText) {
+            if(emptyRegex.test(li)){
+                splitText.splice(splitText.indexOf(li), 1);
+            }
+        }
+        console.log(`split text: ${splitText}`)
         splitText.forEach((line, index) => {
             jsxArray.push(<li key={index}>{line}</li>);
         });
