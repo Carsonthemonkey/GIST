@@ -23,7 +23,7 @@ export default async function summarizeGPT(
         // wait 3 seconds to simulate a long request
         await new Promise((resolve) => setTimeout(resolve, 3000));
         response.status = 200;
-        response.results[0] = `- Here is the weird latex that wasnt working: $\\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ and also $a + b = c$ - Also here is another bullet point - We will need a few of these - Hey, how about more LaTeX? Here is a sum: $\\sum_{n=1} ^{\\infty} a_i x^i$`;
+        response.results[0] = `- Here is the weird latex that wasnt working: $\\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ and also $a + b = c$ - Also here is another bullet point - Let's throw in a subtraction equation to be mean: $a - b = oh_{no}$ - We will need a few of these - Hey, how about more LaTeX? Here is a sum: $\\sum_{n=1} ^{\\infty} a_i x^i$`;
         // setResponse(response);
         return response;
     }
