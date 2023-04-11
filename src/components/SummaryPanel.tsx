@@ -5,6 +5,7 @@ import summarizeGPT from "../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import SummaryFormatter from "./SummaryFormatter";
+import SmallDropdown from "./SmallDropdown";
 
 interface Props {
     APIKeyProp: string;
@@ -19,6 +20,9 @@ const SummaryPanel = (props: Props) => {
     const DEBUG = false;
     const [isOpen, setIsOpen] = useState(false);
     const LatexPrompt = " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION."
+
+    const topics = ["Auto", "Math", "Computer Science", "English", "History"];
+
     const prompts: Prompts = {
         Bullets:
             "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points." + LatexPrompt,
@@ -77,6 +81,7 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
             <h2 id="summary-title">Summary</h2>
+            <SmallDropdown options={topics}>Topic</SmallDropdown><br/>
             <button
                 id="notes-button"
                 className="non-icon-button"
