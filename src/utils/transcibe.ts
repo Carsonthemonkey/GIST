@@ -8,6 +8,8 @@ async function transcribeWhisper(
     if (debug) {
         //wait 2 seconds to simulate a network call
         await new Promise((resolve) => setTimeout(resolve, 2000));
+        return "No man can fully grasp how far and how fast we have come, but condense, if you will, the 50,000 years of man's recorded history in a time span of but a half century. Stated in these terms, we know very little about the first 40 years, except at the end of them advanced man had learned to use the skins of animals to cover them. Then about 10 years ago, under this standard, man emerged from his caves to construct other kinds of shelter. Only 5 years ago man learned to write and use a cart with wheels. Christianity began less than 2 years ago. The printing press came this year, and then less than 2 months ago, during this whole 50-year span of human history, the steam engine provided a new source of power."
+        
         return `We're no strangers to love
         You know the rules and so do I (do I)
         A full commitment's what I'm thinking of
