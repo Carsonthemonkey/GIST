@@ -32,7 +32,7 @@ function formatText(text: string, isList: boolean) {
     //make into a list
     if (isList) {
         text = ' ' + text;
-        const splitText = text.split("-");
+        const splitText = text.split(" - ");
         const emptyRegex = /^\s*$/;
         for (const li of splitText) {
             if(emptyRegex.test(li)){
