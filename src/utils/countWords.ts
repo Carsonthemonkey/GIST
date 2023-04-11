@@ -1,4 +1,4 @@
 export default function countWords(text: string) {
-    console.log(text.trim().split(" "))
+    if(!text) return 0;
     return text.trim().split(" ").length;
 }
