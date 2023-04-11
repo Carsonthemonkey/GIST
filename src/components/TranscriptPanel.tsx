@@ -87,7 +87,7 @@ const TranscriptPanel = (props: Props) => {
     async function transcribeAudio() {
         console.log(doTranslate);
         if (!fileUploaded || !audioFile) {
-            console.error("No file uploaded");
+            console.warn("No file uploaded");
             return;
         }
         try {
