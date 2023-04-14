@@ -12,15 +12,29 @@
         border: none;
         // padding: 4px;
     }
+    ul{
+        padding: 0;
+        margin: 0;
+    }
     
-    .small-drop-down-item{
-        padding: 4px;
-        cursor: pointer;
-        border: 1px solid #000;
-        border-radius: 15px;
-        margin-top: 3px;
-        &:hover{
-            background-color: lighten(vars.$main-background-color, 7%);
+    .small-drop-down-content{
+        
+        margin: 0px;
+        // display: none;
+        .small-drop-down-item{
+            font-size: 14px;
+            // margin: none;
+            list-style-type: none;
+            padding: 4px;
+            cursor: pointer;
+            border: 1px solid #000;
+            // border-radius: 15px;
+            border-radius: 0%;
+            // margin-top: 3px;
+
+            &:hover{
+                background-color: lighten(vars.$main-background-color, 7%);
+            }
         }
     }
 }

@@ -10,13 +10,21 @@
 .small-drop-down button {
   border: none;
 }
-.small-drop-down .small-drop-down-item {
+.small-drop-down ul {
+  padding: 0;
+  margin: 0;
+}
+.small-drop-down .small-drop-down-content {
+  margin: 0px;
+}
+.small-drop-down .small-drop-down-content .small-drop-down-item {
+  font-size: 14px;
+  list-style-type: none;
   padding: 4px;
   cursor: pointer;
   border: 1px solid #000;
-  border-radius: 15px;
-  margin-top: 3px;
+  border-radius: 0%;
 }
-.small-drop-down .small-drop-down-item:hover {
+.small-drop-down .small-drop-down-content .small-drop-down-item:hover {
   background-color: #fff8df;
 }/*# sourceMappingURL=SmallDropdown.css.map */
