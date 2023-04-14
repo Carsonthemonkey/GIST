@@ -18,6 +18,7 @@
   margin: 0px;
 }
 .small-drop-down .small-drop-down-content .small-drop-down-item {
+  background-color: #fff1bb;
   font-size: 14px;
   list-style-type: none;
   padding: 4px;
