@@ -23,7 +23,7 @@ const SummaryPanel = (props: Props) => {
     const LatexPrompt =
         " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION.";
 
-    const topics = ["Auto", "Math", "Computer Science", "English", "History"];
+    const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
 
     const prompts: Prompts = {
         Bullets:
@@ -43,6 +43,7 @@ const SummaryPanel = (props: Props) => {
     // $a = \frac{1}{1-r}$
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
     const [activePrompt, setActivePrompt] = React.useState("Bullets");
+    const [activeSubject, setActiveSubject] = React.useState("Auto");
     const [isList, setIsList] = React.useState(true);
 
     const toggleDropdown = () => {
@@ -86,7 +87,7 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
             <PanelAnchor position="top-left">
-                <SmallDropdown options={topics}>
+                <SmallDropdown options={topics} setSelected={setActiveSubject}>
                     Topic
                 </SmallDropdown>
             </PanelAnchor>

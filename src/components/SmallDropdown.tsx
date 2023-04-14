@@ -6,10 +6,16 @@ import "../styles/SmallDropdown.css";
 interface Props {
     children: React.ReactNode;
     options: string[];
+    setSelected: (selected: string) => void;
 }
 
-const SmallDropdown = ({ children, options}: Props) => {
+const SmallDropdown = ({ children, options, setSelected}: Props) => {
     const [isOpen, setIsOpen] = React.useState(false);
+
+    function handleClick(e: any) {
+        setSelected(e.target.innerText);
+        setIsOpen(false);
+    }
 
     function toggleDropdown() {
         setIsOpen(!isOpen);
@@ -30,7 +36,9 @@ const SmallDropdown = ({ children, options}: Props) => {
             {isOpen && (
                 <ul className="small-drop-down-content">
                     {options.map((option) => (
-                        <li className="small-drop-down-item">{option}</li>
+                        <li className="small-drop-down-item"
+                        key={option}
+                        onClick={handleClick}>{option}</li>
                     ))}
                 </ul>
             )}
