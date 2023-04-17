@@ -83,7 +83,7 @@
                 }
             },
             "Summary": {
-                "message": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures and concepts. You will be given a transcript and you will then write a detailed summary about the main points and concepts. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your respoonse MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
+                "message": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures and concepts. You will be given a transcript and you will then write a detailed summary about the main points and concepts. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your response MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
