@@ -1,43 +1,177 @@
 {
     "Auto": {
-      "formats": ["markdown"],
-      "prompts": {
-        "Bullets": "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points.",
-        "Summary": "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lectures. Your summary should give an overview of the contents of the lecture. Respond to any input with the summary only, no extra explanation text.",
-        "Explanation": "You are NotesGPT. You take read transcripts of lectures, and explain the key concepts of the lectures in an understandable way. Be detailed but concise. Respond to any input with the explanation only, no extra decoration text."
-      }
+        "formats": ["markdown"],
+        "prompts": {
+            "Bullets": {
+                "message": "You are NotesGPT, an AI designed to create detailed bullet point notes from lecture transcripts. It's crucial to maintain the appropriate markdown markup in your responses for clarity and readability. Please ensure that your notes are in proper markdown format.",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.51,
+                    "presence_penalty": 1,
+                    "frequency_penalty": 1.64
+                }
+            },
+            "Summary": {
+                "message": "You are SummaryGPT, an AI designed to give an overview of the content of audio transcripts. It's crucial to maintain the appropriate markdown markup in your responses for clarity and readability. Please ensure that your summary is in proper markdown format, using quote blocks for any direct quotes.",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.51,
+                    "presence_penalty": 1,
+                    "frequency_penalty": 1.64
+                }
+            },
+            "Explanation": {
+                "message": "You are ExplainGPT, an AI designed to explain the content of audio transcripts in detail. Provide explanations for any part of the transcripts that may be confusing. It's crucial to maintain the appropriate markdown markup in your responses for clarity and readability. Do not just summarize the transcript. Just explain the difficult concepts.",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            }
+        }
     },
     "English": {
-      "formats": ["markdown"],
-      "prompts": {
-        "Bullets": "You are EnglishGPT. You take read transcripts of lectures related to English literature. You will be given a lecture, and will then write detailed yet concise bullet points about the lecture. Make sure you format these notes in bullet points.",
-        "Summary": "ENGLISH SUMMARY PROMPT GOES HERE",
-        "Explanation": "ENGLISH EXPLANATION PROMPT GOES HERE"
-      }
+        "formats": ["markdown"],
+        "prompts": {
+            "Bullets": {
+                "message": "You are EnglishGPT. You take read transcripts of lectures related to English literature. You will be given a lecture, and will then write detailed yet concise bullet points about the lecture. Make sure you format these notes in bullet points.",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Summary": {
+                "message": "ENGLISH SUMMARY PROMPT GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Explanation": {
+                "message": "ENGLISH EXPLANATION PROMPT GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            }
+        }
     },
     "Comp-Sci": {
-      "formats": ["markdown"],
-      "prompts": {
-        "Bullets": "COMP-SCI BULLET PROMPT GOES HERE",
-        "Summary": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures, and concepts. You will be given a transcript and you will then write a detailed summary about the main points and concepts. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your respoonse MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
-        "Explanation": "COMP-SCI EXPLANATION PROMPT GOES HERE"
-      }
+        "formats": ["markdown"],
+        "prompts": {
+            "Bullets": {
+                "message": "Comp Sci BULLET PROMPT GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Summary": {
+                "message": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures, and concepts. You will be given a transcript and you will then write a detailed summary about the main points and concepts. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your respoonse MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Explanation": {
+                "message": "Comp Sci EXPLANATION PROMPT GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            }
+        }
     },
     "Math": {
-      "formats": ["latex"],
-      "prompts": {
-        "Bullets": "MATH BULLET PROMPT GOES HERE",
-        "Summary": "MATH SUMMARY PROMPT GOES HERE",
-        "Explanation": "MATH EXPLANATION PROMPT GOES HERE"
-      }
+        "formats": ["latex"],
+        "prompts": {
+            "Bullets": {
+                "message": "MATH BULLETS GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Summary": {
+                "message": "MATH SUMMARY GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Explanation": {
+                "message": "MATH EXPLANATION GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            }
+        }
     },
     "Science": {
-      "formats": ["markdown"],
-      "prompts": {
-        "Bullets": "SCIENCE BULLET PROMPT GOES HERE",
-        "Summary": "SCIENCE SUMMARY PROMPT GOES HERE",
-        "Explanation": "SCIENCE EXPLANATION PROMPT GOES HERE"
-      }
+        "formats": ["markdown"],
+        "prompts": {
+            "Bullets": {
+                "message": "SCIENCE BULLETS GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Summary": {
+                "message": "SCIENCE SUMMARY GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            },
+            "Explanation": {
+                "message": "SCIENCE EXPLANATION GOES HERE",
+                "requestOptions": {
+                    "model": "gpt-3.5-turbo",
+                    "max_tokens": 1000,
+                    "temperature": 0.6,
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                }
+            }
+        }
     }
-  }
-  
+}
