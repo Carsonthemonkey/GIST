@@ -18,7 +18,16 @@ interface Prompts {
     [key: string]: {
       formats: string[];
       prompts: {
-        [key: string]: string;
+        [key: string]: {
+            message: string;
+            requestOptions: {
+                model: string;
+                max_tokens: number;
+                temperature: number;
+                presence_penalty: number;
+                frequency_penalty: number;
+            }
+        };
       };
     };
   }
