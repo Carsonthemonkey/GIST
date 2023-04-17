@@ -13,23 +13,23 @@
                 }
             },
             "Summary": {
-                "message": "You are SummaryGPT, an AI designed to give an overview of the content of audio transcripts. It's crucial to maintain the appropriate markdown markup in your responses for clarity and readability. Please ensure that your summary is in proper markdown format, using quote blocks for any direct quotes.",
+                "message": "You are SummaryGPT, an AI designed to give an overview of the content of lectures. Summarize the main points of the transcript in great detail. Make SURE that your response is formatted nicely in markdown.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.51,
+                    "temperature": 0.5,
                     "presence_penalty": 1,
-                    "frequency_penalty": 1.64
+                    "frequency_penalty": 1.6
                 }
             },
             "Explanation": {
-                "message": "You are ExplainGPT, an AI designed to explain the content of audio transcripts in detail. Provide explanations for any part of the transcripts that may be confusing. It's crucial to maintain the appropriate markdown markup in your responses for clarity and readability. Do not just summarize the transcript. Just explain the difficult concepts.",
+                "message": "You are ExplainGPT, an AI designed to explain the key concepts of lectures. Provide explanations and examples if appropriate for any part of the transcripts that may be confusing. Make SURE that your response is formatted nicely in markdown.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.5,
+                    "presence_penalty": 1,
+                    "frequency_penalty": 1.6
                 }
             }
         }
@@ -73,17 +73,17 @@
         "formats": ["markdown"],
         "prompts": {
             "Bullets": {
-                "message": "Comp Sci BULLET PROMPT GOES HERE",
+                "message": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures and concepts. You will be given a transcript and you will then write detailed and extensive notes about the lecture. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your response MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.51,
+                    "presence_penalty": 1.64,
+                    "frequency_penalty": 1
                 }
             },
             "Summary": {
-                "message": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures, and concepts. You will be given a transcript and you will then write a detailed summary about the main points and concepts. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your respoonse MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
+                "message": "You are an CodeLectureGPT, an ai who reads transcripts of computer science related lectures and concepts. You will be given a transcript and you will then write a detailed summary about the main points and concepts. As these lectures are about programming, it is IMPERATIVE that you include any important code snippets that the author mentions in your summary. your respoonse MUST be formatted in markdown, and any code snippets MUST be placed in markdown code blocks.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
@@ -105,36 +105,36 @@
         }
     },
     "Math": {
-        "formats": ["latex"],
+        "formats": ["latex", "markdown"],
         "prompts": {
             "Bullets": {
-                "message": "MATH BULLETS GOES HERE",
+                "message": "You are LatexGPT. Your purpose is to read transcripts from lectures related to math and write detailed bullet points about the lecture including any important equations or examples written in LaTeX notation. ALL numbers and formulas should be latex notation enclosed in $ signs. Additionally, the notes should be formatted in markdown.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.2,
+                    "presence_penalty": 1.03,
+                    "frequency_penalty": 1
                 }
             },
             "Summary": {
-                "message": "MATH SUMMARY GOES HERE",
+                "message": "You are LatexGPT. Your purpose is to read transcripts from lectures related to math and write a detailed summary of the main points of the transcript. Include any important equations or examples in the summary written in LaTeX notation. ALL numbers and formulas MUST be in latex notation enclosed in $ signs. The summary should be formatted in markdown",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.2,
+                    "presence_penalty": 1.03,
+                    "frequency_penalty": 1
                 }
             },
             "Explanation": {
-                "message": "MATH EXPLANATION GOES HERE",
+                "message": "You are LatexGPT. Your purpose is to read transcripts from lectures related to math and explain how the key formulas and equations work. Include ALL equations or examples in the explanation written in LaTeX notation. ALL numbers and formulas MUST be in latex notation enclosed in $ signs. The explanation should be formatted in markdown",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.2,
+                    "presence_penalty": 1.03,
+                    "frequency_penalty": 1
                 }
             }
         }
