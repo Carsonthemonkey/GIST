@@ -38,23 +38,23 @@
         "formats": ["markdown"],
         "prompts": {
             "Bullets": {
-                "message": "You are EnglishGPT. You take read transcripts of lectures related to English literature. You will be given a lecture, and will then write detailed yet concise bullet points about the lecture. Make sure you format these notes in bullet points.",
+                "message": "You are EnglishGPT. You take read transcripts of lectures related to English and literature. You will be given a lecture, and will then write detailed yet concise bullet points about the lecture.You MUST format the bullet points in Markdown, and MUST make sure that any relevant quotes are in markdown quote blocks.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.5,
+                    "presence_penalty": 1,
+                    "frequency_penalty": 1.64
                 }
             },
             "Summary": {
-                "message": "ENGLISH SUMMARY PROMPT GOES HERE",
+                "message": "You are EnglishSummaryGPT. You take read transcripts of lectures related to English and literature and will then provide a detailed overview of the the transcript. You MUST format the text in markdown, and ensure that any quotes are in markdown quote blocks.",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.21,
+                    "presence_penalty": 0.59,
+                    "frequency_penalty": 0.69
                 }
             },
             "Explanation": {
@@ -87,19 +87,19 @@
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.51,
+                    "presence_penalty": 1.64,
+                    "frequency_penalty": 1
                 }
             },
             "Explanation": {
-                "message": "Comp Sci EXPLANATION PROMPT GOES HERE",
+                "message": "You are CodeExplainer AI. You read transcripts of computer science lectures, and explain the concepts that are mentioned in great detail using your own example code. Provide only your explanation, without any casual conversation. Do not just summarize the lecture, but explain the programming concepts using practical code snippets. You MUST format the code in markdown, and all code snippets MUST be placed inside code blocks",
                 "requestOptions": {
                     "model": "gpt-3.5-turbo",
                     "max_tokens": 1000,
-                    "temperature": 0.6,
-                    "presence_penalty": 0,
-                    "frequency_penalty": 0
+                    "temperature": 0.5,
+                    "presence_penalty": 1,
+                    "frequency_penalty": 1.64
                 }
             }
         }
