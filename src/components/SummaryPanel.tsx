@@ -8,6 +8,7 @@ import SummaryFormatter from "./SummaryFormatter";
 import SmallDropdown from "./SmallDropdown";
 import PanelAnchor from "./PanelAnchor";
 import promptsOBJ from "../assets/prompts.json";
+import MarkdownFormatter from "./MarkdownFormatter";
 
 interface Props {
     APIKeyProp: string;
@@ -34,7 +35,7 @@ interface Prompts {
   
 
 const SummaryPanel = (props: Props) => {
-    const DEBUG = true;
+    const DEBUG = false;
     const [isOpen, setIsOpen] = useState(false);
     // const LatexPrompt =
     //     " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION.";
@@ -150,7 +151,8 @@ const SummaryPanel = (props: Props) => {
                 {isLoading && <p>Loading...</p>}
                 {/* Todo also, format summary with proper newlines and bullet points */}
                 {!isLoading && summary && (
-                    <SummaryFormatter isList={isList} text={summary} />
+                    // <SummaryFormatter isList={isList} text={summary} />
+                    <MarkdownFormatter text={summary}/>
                 )}
             </div>
         </div>
