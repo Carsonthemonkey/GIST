@@ -1,0 +1,41 @@
+@use "variables" as vars;
+
+.small-drop-down{
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0;
+    .fa-icon{
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    button{
+        border: none;
+        // padding: 4px;
+    }
+    ul{
+        padding: 0;
+        margin: 0;
+    }
+    
+    .small-drop-down-content{
+        
+        margin: 0px;
+        // display: none;
+        .small-drop-down-item{
+            background-color: vars.$main-background-color;            
+            font-size: 14px;
+            // margin: none;
+            list-style-type: none;
+            padding: 4px;
+            cursor: pointer;
+            border: 1px solid #000;
+            // border-radius: 15px;
+            border-radius: 0%;
+            // margin-top: 3px;
+
+            &:hover{
+                background-color: lighten(vars.$main-background-color, 7%);
+            }
+        }
+    }
+}

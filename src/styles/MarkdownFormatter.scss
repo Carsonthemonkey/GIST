@@ -1,0 +1,101 @@
+@use "variables" as vars;
+
+@mixin divider-line($color: #ccc) {
+    //add some margin to the bottom of the element
+
+    &:after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 100%;
+        background-color: $color;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+.markdown-body {
+    text-align: left;
+    li {
+        //left justify the text
+        text-align: left;
+    }
+    //include the divider-line mixin for all headings
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        //TODO: make this less messy. It also gets very messed up when you apply it to h1s for some reason
+        text-align: left;
+        @include divider-line(vars.$grayed-out-color);
+    }
+
+    h1 {
+        //make the h1 the size of an h3
+        &:after {
+            content: "";
+            display: block;
+            height: 1.2px;
+            width: 100%;
+            background-color: vars.$grayed-out-color;
+            bottom: 0;
+            left: 0;
+        }
+        font-size: 1.3em;
+    }
+    h2 {
+        // @include divider-line(vars.$grayed-out-color);
+
+        //make the h2 the size of an h4
+        font-size: 1.12em;
+    }
+    h3 {
+        //make the h3 the size of an h5
+        font-size: 1.07em;
+        // @include divider-line(vars.$grayed-out-color);
+    }
+    h4 {
+        //make the h4 the size of an h6
+        font-size: 1.02em;
+    }
+    h5 {
+        //make the h5 the size of an h7
+        font-size: 1.01em;
+    }
+    h6 {
+        //make the h6 the size of an h8
+        font-size: 1em;
+    }
+    pre {
+        //round the corners of the pre
+        border-radius: 10px;
+        //increase padding
+        padding: 0.8em;
+        //align the pre to the left
+        text-align: left;
+        background-color: saturate(lighten(vars.$grayed-out-color, 15%), 30%);
+        code{
+            background-color: saturate(lighten(vars.$grayed-out-color, 15%), 30%);
+        }
+        //TODO: Code should probably appear in a darker box, though that may require a change to the markdown renderer so that code blocks display in divs. We might also be able to do some display: block or flex or whatever css magic that I don't understand in order to achieve the same effect
+    }
+    code {
+        //align the code to the left
+        text-align: left;
+    }
+    // Define the variable for the indent block color
+
+    blockquote {
+        // Add a margin and padding to the blockquote to create space for the indent block
+        margin: 1em 0;
+        padding-left: 1em;
+
+        // Add a background color to the indent block using the variable
+        border-left: 3px solid vars.$grayed-out-color;
+
+        // Adjust the text alignment and font style of the blockquote
+        text-align: justify;
+        font-style: italic;
+    }
+}

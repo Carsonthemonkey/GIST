@@ -8,62 +8,7 @@ async function transcribeWhisper(
     if (debug) {
         //wait 2 seconds to simulate a network call
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        return "No man can fully grasp how far and how fast we have come, but condense, if you will, the 50,000 years of man's recorded history in a time span of but a half century. Stated in these terms, we know very little about the first 40 years, except at the end of them advanced man had learned to use the skins of animals to cover them. Then about 10 years ago, under this standard, man emerged from his caves to construct other kinds of shelter. Only 5 years ago man learned to write and use a cart with wheels. Christianity began less than 2 years ago. The printing press came this year, and then less than 2 months ago, during this whole 50-year span of human history, the steam engine provided a new source of power."
-        
-        return `We're no strangers to love
-        You know the rules and so do I (do I)
-        A full commitment's what I'm thinking of
-        You wouldn't get this from any other guy
-        I just wanna tell you how I'm feeling
-        Gotta make you understand
-        Never gonna give you up
-        Never gonna let you down
-        Never gonna run around and desert you
-        Never gonna make you cry
-        Never gonna say goodbye
-        Never gonna tell a lie and hurt you
-        We've known each other for so long
-        Your heart's been aching, but you're too shy to say it (say it)
-        Inside, we both know what's been going on (going on)
-        We know the game and we're gonna play it
-        And if you ask me how I'm feeling
-        Don't tell me you're too blind to see
-        Never gonna give you up
-        Never gonna let you down
-        Never gonna run around and desert you
-        Never gonna make you cry
-        Never gonna say goodbye
-        Never gonna tell a lie and hurt you
-        Never gonna give you up
-        Never gonna let you down
-        Never gonna run around and desert you
-        Never gonna make you cry
-        Never gonna say goodbye
-        Never gonna tell a lie and hurt you
-        We've known each other for so long
-        Your heart's been aching, but you're too shy to say it (to say it)
-        Inside, we both know what's been going on (going on)
-        We know the game and we're gonna play it
-        I just wanna tell you how I'm feeling
-        Gotta make you understand
-        Never gonna give you up
-        Never gonna let you down
-        Never gonna run around and desert you
-        Never gonna make you cry
-        Never gonna say goodbye
-        Never gonna tell a lie and hurt you
-        Never gonna give you up
-        Never gonna let you down
-        Never gonna run around and desert you
-        Never gonna make you cry
-        Never gonna say goodbye
-        Never gonna tell a lie and hurt you
-        Never gonna give you up
-        Never gonna let you down
-        Never gonna run around and desert you
-        Never gonna make you cry
-        Never gonna say goodbye
-        Never gonna tell a lie and hurt you`;
+        return `Hello everyone. Today we're going to talk about a crucial concept in calculus: derivatives. So, what is a derivative? In simple terms, it's a way of measuring how fast a function changes at a specific point. It gives us the slope of the curve at that point. Derivatives are essential in solving many real-world problems, such as finding rates of change or maximum and minimum values of functions. Now, let's talk about some of the methods we use to find derivatives. There are several rules we can apply, such as the power rule and the chain rule. The power rule tells us that if we have a function of the form f of x equals x raised to the power of n, then its derivative is n times x raised to the power of n minus 1. For instance, if we have the function f of x equals x cubed, its derivative is 3 times x squared. The chain rule, on the other hand, helps us find the derivative of composite functions. If we have a function g of x inside of another function f of x, we can use the chain rule to find the derivative. The chain rule can be expressed as follows: The derivative of f of g of x is equal to the derivative of f of g of x multiplied by the derivative of g of x. To better understand the chain rule, let's consider an example. Suppose we have the function f of x equals the quantity x squared plus 1 raised to the power of 3. We can think of this as a composite function where the inner function is g of x equals x squared plus 1. Using the chain rule, we can find the derivative: The derivative of f of x equals 3 times the quantity x squared plus 1 raised to the power of 2 multiplied by 2x. So, in summary, derivatives are a way to measure how fast a function changes at a specific point. They're crucial for solving many real-world problems, and we can find them using different methods, such as the power rule and the chain rule.`;
     }
     console.log("transcribing with transcribeWhisperForm");
     const data = new FormData();
