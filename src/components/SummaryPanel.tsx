@@ -4,7 +4,6 @@ import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import SummaryFormatter from "./SummaryFormatter";
 import SmallDropdown from "./SmallDropdown";
 import PanelAnchor from "./PanelAnchor";
 import promptsOBJ from "../assets/prompts.json";
@@ -48,29 +47,10 @@ const SummaryPanel = (props: Props) => {
     const subjects = Object.keys(prompts).filter(key => key !== "default");
     console.log("subjects" + subjects);
     const promptTypes = Object.keys(prompts[subjects[0]].prompts); 
-    //load prompts from ../assets/prompts.json
-    
-
-    // const prompts: Prompts = {
-    //     Bullets:
-    //         "You are NotesGPT. You take read transcripts of lectures, and create detailed and extensive bullet point notes about it. Respond to any input with the notes only, no extra explanation text and make sure the notes are in bullet points." +
-    //         LatexPrompt,
-    //     Summary:
-    //         "You are NotesGPT. You take read transcripts of lectures, and create a summary of the lectures. Respond to any input with the summary only, no extra explanation text." +
-    //         LatexPrompt,
-    //     Explanation:
-    //         "You are NotesGPT. You take read transcripts of lectures, and explain the key concepts of the lectures in an understandable way. Be detailed but concise. Respond to any input with the explanation only, no extra decoration text." +
-    //         LatexPrompt,
-    // };
-
-    //This is a placeholder for testing purposes
-    const [summary, setSummary] = React.useState(``); //fractions need to be escaped somehow but chatGPT keeps lying to me about how to do it and I cant find any documentation on it
-    //write a latex expression for a geometric series
-    // $a = \frac{1}{1-r}$
+    const [summary, setSummary] = React.useState(``);
     const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
     const [activePromptType, setActivePromptType] = React.useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
-    const [isList, setIsList] = React.useState(true);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -78,21 +58,12 @@ const SummaryPanel = (props: Props) => {
 
     const handleItemClick = (e: any) => {
         setActivePromptType(e.target.innerText);
-        //* This is kind of messy, But it basically checks if the active prompt is one that should be in list format.
-        //TODO: make this so that it only changes when the button is pressed
-        if (e.target.innerText === "Bullets") {
-            setIsList(true);
-        } else {
-            setIsList(false);
-        }
         setIsOpen(false);
     };
 
     async function generateSummary() {
         try {
             setIsLoading(true);
-            //! fix this, it seems to be one button press behind
-            //* I think a possible solution is to actually just return the response object from summarizeGPT and then set the state of the response object to the returned object
             await summarizeGPT(
                 DEBUG,
                 prompts[activeSubject].prompts[activePromptType],
@@ -151,7 +122,6 @@ const SummaryPanel = (props: Props) => {
                 {isLoading && <p>Loading...</p>}
                 {/* Todo also, format summary with proper newlines and bullet points */}
                 {!isLoading && summary && (
-                    // <SummaryFormatter isList={isList} text={summary} />
                     <MarkdownFormatter text={summary}/>
                 )}
             </div>
