@@ -1,0 +1,68 @@
+#transcript-panel {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 50%;
+  bottom: 30px;
+  border-right: 1px solid #000;
+  border-bottom: none;
+  overflow-y: scroll;
+}
+#transcript-panel .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 1;
+  display: none;
+}
+#transcript-panel .dragging-over {
+  display: block;
+}
+#transcript-panel #checkmark,
+#transcript-panel #checkmark-label {
+  display: inline-block;
+  padding: 5px;
+}
+#transcript-panel #file-drop-dialog {
+  margin: 20px;
+}
+#transcript-panel #file-preview {
+  margin: 20px;
+  border: 2px solid black;
+  border-radius: 7px;
+  display: inline-block;
+}
+#transcript-panel #file-preview #file-name {
+  padding: 0 10px;
+}
+#transcript-panel #file-preview #x-button {
+  margin: 0;
+  padding: 10px 15px;
+  border: none;
+  border-left: 2px solid black;
+}
+#transcript-panel #transcript-content {
+  padding: 0 20px;
+}
+#transcript-panel #word-counter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 30px;
+  border-top: 1px solid #beb387;
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+#transcript-panel #word-counter-bar #word-count {
+  margin: 0 8px;
+  font-style: italic;
+  color: #beb387;
+}/*# sourceMappingURL=TranscriptPanel.css.map */

@@ -1,0 +1,12 @@
+@use "variables" as vars;
+
+#api-popup {
+    // upper left corner
+    position: absolute;
+    top: calc(vars.$toolbar-height / 4);
+    left: 60px;
+}
+
+#api-input {
+    height: calc(vars.$toolbar-height / 2.5);
+}
