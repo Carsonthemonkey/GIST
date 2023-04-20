@@ -1,5 +1,5 @@
 {
-  "name": "gist",
+  "name": "GIST",
   "private": false,
   "version": "1.0.0",
   "main": "dist-electron/main/index.js",
