@@ -26,9 +26,12 @@ const Toolbar = () => {
                 )}
                 <div className="filler"></div>
                 <h1 id="app-name">GIST</h1>
+                {/* This will link to the github README for now */}
+                <a href="https://github.com/Carsonthemonkey/GIST/blob/main/README.md" target="blank">
                 <button id="info-button" className="icon">
                     <FontAwesomeIcon icon={faCircleInfo} size="2x" />
                 </button>
+                </a>
             </div>
         </div>
     );
