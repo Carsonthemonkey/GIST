@@ -1,4 +1,5 @@
 #toolbar {
+  -webkit-app-region: drag;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,6 +14,7 @@
 }
 #toolbar #api-button {
   margin-right: auto;
+  -webkit-app-region: no-drag;
 }
 #toolbar #app-name {
   width: 100%;

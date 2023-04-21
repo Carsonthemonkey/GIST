@@ -5,8 +5,11 @@
     position: absolute;
     top: calc(vars.$toolbar-height / 4);
     left: 60px;
+    // -webkit-app-region: no-drag;
+
 }
 
 #api-input {
     height: calc(vars.$toolbar-height / 2.5);
+    -webkit-app-region: no-drag;
 }

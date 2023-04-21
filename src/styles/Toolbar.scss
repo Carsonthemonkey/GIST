@@ -1,6 +1,7 @@
 @use "variables" as vars;
 
 #toolbar {
+    -webkit-app-region: drag;
     // makes toolbar fixed to top of page
     position: fixed;
     top: 0;
@@ -18,6 +19,7 @@
 
     #api-button {
         margin-right: auto;
+        -webkit-app-region: no-drag;
     }
 
     #app-name {

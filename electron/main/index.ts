@@ -57,7 +57,7 @@ async function createWindow() {
         titleBarOverlay: {
             color: "#fff1bb",
             symbolColor: "#beb387",
-            height: 60,
+            height: 50,
         },
     });
 
