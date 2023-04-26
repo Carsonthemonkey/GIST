@@ -55,9 +55,9 @@ async function createWindow() {
         },
         titleBarStyle: "hidden",
         titleBarOverlay: {
+            height: 24,
             color: "#fff1bb",
             symbolColor: "#beb387",
-            height: 50,
         },
     });
 

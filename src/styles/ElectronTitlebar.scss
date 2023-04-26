@@ -3,7 +3,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 32px; /* adjust the height as needed */
+    height: 24px; /* adjust the height as needed */
     background-color: #2f3241; /* set your desired background color */
+    // background-color: #fff1bb;
     -webkit-app-region: drag; /* make the titlebar draggable in Electron */
   }
