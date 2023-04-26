@@ -1,0 +1,9 @@
+#electron-titlebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 32px; /* adjust the height as needed */
+  background-color: #2f3241; /* set your desired background color */
+  -webkit-app-region: drag; /* make the titlebar draggable in Electron */
+}/*# sourceMappingURL=ElectronTitlebar.css.map */
