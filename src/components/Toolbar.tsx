@@ -3,6 +3,8 @@ import "../styles/Toolbar.css";
 import APIPopUp from "./APIPopUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
+import { SlKey } from "react-icons/sl";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const Toolbar = () => {
@@ -16,7 +18,8 @@ const Toolbar = () => {
         <div>
             <div id="toolbar">
                 <button id="api-button" className="icon" onClick={togglePopUp}>
-                    <FontAwesomeIcon icon={faKey} size="2x" />
+                    <SlKey size="2.2em" />
+                    {/* <FontAwesomeIcon icon={faKey} size="2x" /> */}
                 </button>
                 {isPopUpOpen && (
                     <APIPopUp
@@ -29,7 +32,8 @@ const Toolbar = () => {
                 {/* This will link to the github README for now */}
                 <a href="https://github.com/Carsonthemonkey/GIST/blob/main/README.md" target="blank">
                 <button id="info-button" className="icon">
-                    <FontAwesomeIcon icon={faCircleInfo} size="2x" />
+                    {/* <FontAwesomeIcon icon={faCircleInfo} size="2x" /> */}
+                    <AiOutlineInfoCircle size="2.2em" />
                 </button>
                 </a>
             </div>
