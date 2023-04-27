@@ -6,6 +6,8 @@ import { faKey } from "@fortawesome/free-solid-svg-icons";
 import { SlKey } from "react-icons/sl";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { RiKey2Line } from "react-icons/ri";
+import {ImInfo} from "react-icons/im";
 
 const Toolbar = () => {
     const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -18,7 +20,7 @@ const Toolbar = () => {
         <div>
             <div id="toolbar">
                 <button id="api-button" className="icon" onClick={togglePopUp}>
-                    <SlKey size="2.2em" />
+                    <RiKey2Line size="2.5em" />
                     {/* <FontAwesomeIcon icon={faKey} size="2x" /> */}
                 </button>
                 {isPopUpOpen && (
@@ -30,11 +32,14 @@ const Toolbar = () => {
                 <div className="filler"></div>
                 <h1 id="app-name">GIST</h1>
                 {/* This will link to the github README for now */}
-                <a href="https://github.com/Carsonthemonkey/GIST/blob/main/README.md" target="blank">
-                <button id="info-button" className="icon">
-                    {/* <FontAwesomeIcon icon={faCircleInfo} size="2x" /> */}
-                    <AiOutlineInfoCircle size="2.2em" />
-                </button>
+                <a
+                    href="https://github.com/Carsonthemonkey/GIST/blob/main/README.md"
+                    target="blank"
+                >
+                    <button id="info-button" className="icon">
+                        {/* <FontAwesomeIcon icon={faCircleInfo} size="2x" /> */}
+                        <ImInfo size="2.05em" />
+                    </button>
                 </a>
             </div>
         </div>
