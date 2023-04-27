@@ -6,7 +6,11 @@
     left: 0;
     width: 100%;
     height: vars.$electron-titlebar-height; /* adjust the height as needed */
-    background-color: #2f3241; /* set your desired background color */
+    // background-color: saturate(vars.$grayed-out-color, 10%);
+    background-color: desaturate(
+        darken(vars.$grayed-out-color, 7%),
+        4%
+    ); /* set your desired background color */
     // background-color: #fff1bb;
     -webkit-app-region: drag; /* make the titlebar draggable in Electron */
 }
