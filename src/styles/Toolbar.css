@@ -8,11 +8,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #000;
+  border-bottom: 2px solid #000;
   height: 50px;
 }
 #toolbar #api-button {
   margin-right: auto;
+  height: 100%;
 }
 #toolbar #app-name {
   width: 100%;
