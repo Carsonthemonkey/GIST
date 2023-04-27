@@ -4,7 +4,7 @@
     -webkit-app-region: drag;
     // makes toolbar fixed to top of page
     position: fixed;
-    top: 0;
+    top: vars.$electron-titlebar-height;
     left: 0;
     right: 0;
     z-index: 100;

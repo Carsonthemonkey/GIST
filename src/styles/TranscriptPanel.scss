@@ -2,7 +2,7 @@
 
 #transcript-panel {
     position: absolute;
-    top: vars.$toolbar-height;
+    top: vars.$toolbar-height + vars.$electron-titlebar-height;
     left: 0;
     width: 50%;
     bottom: vars.$word-counter-bar-height;

@@ -1,1 +1,1 @@
-{"version":3,"sources":["ElectronTitlebar.scss","ElectronTitlebar.css"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,MAAA;EACA,OAAA;EACA,WAAA;EACA,YAAA,EAAA,gCAAA;EACA,yBAAA,EAAA,sCAAA;EAEA,wBAAA,EAAA,4CAAA;ACAJ","file":"ElectronTitlebar.css"}
+{"version":3,"sources":["ElectronTitlebar.scss","variables.scss","ElectronTitlebar.css"],"names":[],"mappings":"AAEA;EACI,kBAAA;EACA,MAAA;EACA,OAAA;EACA,WAAA;EACA,YCLuB,EDKiB,gCAAA;EACxC,yBAAA,EAAA,sCAAA;EAEA,wBAAA,EAAA,4CAAA;AEFJ","file":"ElectronTitlebar.css"}

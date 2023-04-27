@@ -2,7 +2,7 @@
 
 #summary-panel {
     position: absolute;
-    top: vars.$toolbar-height;
+    top: vars.$toolbar-height + vars.$electron-titlebar-height;
     right: 0;
     width: 50%;
     bottom: 0;

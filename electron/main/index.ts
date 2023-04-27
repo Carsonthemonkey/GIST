@@ -55,7 +55,7 @@ async function createWindow() {
         },
         titleBarStyle: "hidden",
         titleBarOverlay: {
-            height: 24,
+            height: 28,  // should match the height of electron titlebar
             color: "#fff1bb",
             symbolColor: "#beb387",
         },
