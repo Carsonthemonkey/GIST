@@ -16,6 +16,7 @@ const Toolbar = () => {
         <div>
             <div id="toolbar">
                 <button id="api-button" className="icon" onClick={togglePopUp}>
+                    {/* Remix Icons, licensed under MIT attribution */}
                     <RiKey2Fill size="2.7em" />
                 </button>
                 {isPopUpOpen && (
