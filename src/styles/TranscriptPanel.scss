@@ -6,7 +6,7 @@
     left: 0;
     width: 50%;
     bottom: vars.$word-counter-bar-height;
-    border-right: 1px solid #000;
+    border-right: vars.$border-width solid #000;
     border-bottom: none;
     overflow-y: scroll;
 
@@ -62,8 +62,8 @@
         left: 0;
         width: 50%;
         height: vars.$word-counter-bar-height;
-        border-top: 1px solid vars.$grayed-out-color;
-        border-right: 1px solid #000;
+        border-top: vars.$border-width solid vars.$grayed-out-color;
+        border-right: vars.$border-width solid #000;
         // arrange elements to far left
         display: flex;
         flex-direction: row;
