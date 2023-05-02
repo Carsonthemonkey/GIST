@@ -25,7 +25,7 @@
   padding: 0;
   margin-top: 0;
   width: 35%;
-  background-color: #fff1bb;
+  background-color: var(--background-color) -background-color;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -35,11 +35,11 @@
   margin-top: 3px;
   padding: 10px;
   cursor: pointer;
-  border: 1px solid #000;
+  border: 1px solid var(--accent-color);
   border-radius: 15px;
 }
 #summary-panel #summary-drop-down .summary-drop-down-item:hover {
-  background-color: #fff8df;
+  background-color: var(--highlight-color);
 }
 #summary-panel #summary-content {
   padding: 0 20px;

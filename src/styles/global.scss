@@ -5,18 +5,18 @@ h2 {
 }
 
 button {
-    color: #000;
+    color: var(--accent-color);
     background: none;
 }
 
 input {
     box-sizing: border-box;
-    border: 2px solid #000;
+    border: 2px solid var(--accent-color);
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
     background-color: rgba(rgb(70, 70, 70), 0.25);
-    color: #000;
+    color: var(--accent-color);
 
     &::placeholder {
         color: #555;
@@ -34,25 +34,25 @@ input {
 
 .non-icon-button {
     border-radius: 50px;
-    border: 2px solid #000;
+    border: 2px solid var(--accent-color);
 
     transition: background-color 0.3s ease-in-out, 0.3s ease-in-out;
     font-weight: 700;
 
     &:hover {
-        background-color: #000;
-        color: vars.$main-background-color;
+        background-color: var(--accent-color);
+        color: var(--background-color);
     }
 }
 
 .disabled-button {
-    color: vars.$grayed-out-color;
-    border-color: vars.$grayed-out-color;
+    color: var(--grayed-out-color);
+    border-color: var(--grayed-out-color);
     transition: none;
     cursor: default;
     &:hover {
         background-color: transparent;
-        color: vars.$grayed-out-color;
+        color: var(--grayed-out-color);
     }
 }
 
@@ -61,17 +61,17 @@ input {
     width: 50vw;
     height: 50vh;
     z-index: 1;
-    background-color: vars.$main-background-color;
+    background-color: var(--background-color);
     border-radius: 20px;
-    border: 2px solid #000;
-    border-left: 10px solid #000;
-    border-bottom: 10px solid #000;
+    border: 2px solid var(--accent-color);
+    border-left: 10px solid var(--accent-color);
+    border-bottom: 10px solid var(--accent-color);
     font-size: 26px;
 
     .exit-bar {
         display: flex;
         justify-content: flex-end;
-        border-bottom: 2px solid #000;
+        border-bottom: 2px solid var(--accent-color);
         font-weight: bolder;
 
         button {

@@ -3,18 +3,18 @@ h2 {
 }
 
 button {
-  color: #000;
+  color: var(--accent-color);
   background: none;
 }
 
 input {
   box-sizing: border-box;
-  border: 2px solid #000;
+  border: 2px solid var(--accent-color);
   border-radius: 5px;
   padding: 10px;
   font-size: 16px;
   background-color: rgba(70, 70, 70, 0.25);
-  color: #000;
+  color: var(--accent-color);
 }
 input::-moz-placeholder {
   color: #555;
@@ -34,24 +34,24 @@ input:focus {
 
 .non-icon-button {
   border-radius: 50px;
-  border: 2px solid #000;
+  border: 2px solid var(--accent-color);
   transition: background-color 0.3s ease-in-out, 0.3s ease-in-out;
   font-weight: 700;
 }
 .non-icon-button:hover {
-  background-color: #000;
-  color: #fff1bb;
+  background-color: var(--accent-color);
+  color: var(--background-color);
 }
 
 .disabled-button {
-  color: #beb387;
-  border-color: #beb387;
+  color: var(--grayed-out-color);
+  border-color: var(--grayed-out-color);
   transition: none;
   cursor: default;
 }
 .disabled-button:hover {
   background-color: transparent;
-  color: #beb387;
+  color: var(--grayed-out-color);
 }
 
 .modal {
@@ -59,17 +59,17 @@ input:focus {
   width: 50vw;
   height: 50vh;
   z-index: 1;
-  background-color: #fff1bb;
+  background-color: var(--background-color);
   border-radius: 20px;
-  border: 2px solid #000;
-  border-left: 10px solid #000;
-  border-bottom: 10px solid #000;
+  border: 2px solid var(--accent-color);
+  border-left: 10px solid var(--accent-color);
+  border-bottom: 10px solid var(--accent-color);
   font-size: 26px;
 }
 .modal .exit-bar {
   display: flex;
   justify-content: flex-end;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--accent-color);
   font-weight: bolder;
 }
 .modal .exit-bar button {

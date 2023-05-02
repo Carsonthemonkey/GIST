@@ -20,7 +20,7 @@
   display: block;
   height: 1px;
   width: 100%;
-  background-color: #beb387;
+  background-color: var(--grayed-out-color);
   bottom: 0;
   left: 0;
 }
@@ -32,7 +32,7 @@
   display: block;
   height: 1.2px;
   width: 100%;
-  background-color: #beb387;
+  background-color: var(--grayed-out-color);
   bottom: 0;
   left: 0;
 }
@@ -66,7 +66,7 @@
 .markdown-body blockquote {
   margin: 1em 0;
   padding-left: 1em;
-  border-left: 3px solid #beb387;
+  border-left: 3px solid var(--grayed-out-color);
   text-align: justify;
   font-style: italic;
 }/*# sourceMappingURL=MarkdownFormatter.css.map */
