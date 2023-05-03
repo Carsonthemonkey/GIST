@@ -14,7 +14,8 @@
     "start": "electron .",
     "dev": "vite",
     "dev-electron" : "vite --config vite.config.electron.ts",
-    "build": "tsc && vite build && electron-builder",
+    "build": "tsc && vite build",
+    "build-electron" : "tsc && vite build --config vite.config.electron.ts && electron-builder",
     "preview": "vite preview",
     "predeploy": "node build_tools/confirmDeploy.js && npm run build",
     "deploy": "gh-pages -d dist"
