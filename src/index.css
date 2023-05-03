@@ -1,10 +1,12 @@
 :root {
   /* color variables for default theme (light mode usually, but dark mode for testing) */
-  --background-color: #0e1829;
-  --grayed-out-color: #868068;
-  --accent-color: #beb387;
-  --highlight-color: #334564;
+  --background-color: #fff1bb;
+  --accent-color: #000;
+  --grayed-out-color: #00000080;
+  --highlight-color:#fff;
 
+
+  transition: all 0.3s ease-in-out;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
