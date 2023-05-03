@@ -13,6 +13,7 @@
 }
 #toolbar #api-button {
   margin-right: auto;
+  height: 100%;
 }
 #toolbar #app-name {
   width: 100%;
