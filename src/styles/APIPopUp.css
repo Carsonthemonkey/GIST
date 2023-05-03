@@ -6,4 +6,10 @@
 
 #api-input {
   height: 20px;
+}
+#api-input::-moz-placeholder {
+  color: var(--grayed-out-color);
+}
+#api-input::placeholder {
+  color: var(--grayed-out-color);
 }/*# sourceMappingURL=APIPopUp.css.map */

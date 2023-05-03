@@ -32,7 +32,7 @@
 }
 #transcript-panel #file-preview {
   margin: 20px;
-  border: 2px solid black;
+  border: 2px solid var(--accent-color);
   border-radius: 7px;
   display: inline-block;
 }
@@ -43,7 +43,7 @@
   margin: 0;
   padding: 10px 15px;
   border: none;
-  border-left: 2px solid black;
+  border-left: 2px solid var(--accent-color);
 }
 #transcript-panel #transcript-content {
   padding: 0 20px;

@@ -38,7 +38,7 @@
 
     #file-preview {
         margin: 20px;
-        border: 2px solid black;
+        border: 2px solid var(--accent-color);
         border-radius: 7px;
         display: inline-block;
         #file-name {
@@ -48,7 +48,7 @@
             margin: 0;
             padding: 10px 15px;
             border: none;
-            border-left: 2px solid black;
+            border-left: 2px solid var(--accent-color);
         }
     }
 
