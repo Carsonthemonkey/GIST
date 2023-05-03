@@ -22,6 +22,11 @@ function App() {
     }, []);
 
     function handleKeyDown(event: KeyboardEvent) {
+        let modifierKey;
+        if (navigator.appVersion.indexOf("Mac") != -1) modifierKey = event.metaKey;
+        else modifierKey = event.ctrlKey;
+
+        
         if (event.ctrlKey && event.key === "l") {
             event.preventDefault();
             if(colorTheme === "dark"){
