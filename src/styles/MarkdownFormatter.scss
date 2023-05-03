@@ -28,7 +28,7 @@
     h6 {
         //TODO: make this less messy. It also gets very messed up when you apply it to h1s for some reason
         text-align: left;
-        @include divider-line(vars.$grayed-out-color);
+        @include divider-line(var(--grayed-out-color));
     }
 
     h1 {
@@ -38,14 +38,14 @@
             display: block;
             height: 1.2px;
             width: 100%;
-            background-color: vars.$grayed-out-color;
+            background-color: var(--grayed-out-color);
             bottom: 0;
             left: 0;
         }
         font-size: 1.3em;
     }
     h2 {
-        // @include divider-line(vars.$grayed-out-color);
+        // @include divider-line(var(--grayed-out-color));
 
         //make the h2 the size of an h4
         font-size: 1.12em;
@@ -53,7 +53,7 @@
     h3 {
         //make the h3 the size of an h5
         font-size: 1.07em;
-        // @include divider-line(vars.$grayed-out-color);
+        // @include divider-line(var(--grayed-out-color));
     }
     h4 {
         //make the h4 the size of an h6
@@ -92,7 +92,7 @@
         padding-left: 1em;
 
         // Add a background color to the indent block using the variable
-        border-left: 3px solid vars.$grayed-out-color;
+        border-left: 3px solid var(--grayed-out-color);
 
         // Adjust the text alignment and font style of the blockquote
         text-align: justify;

@@ -6,7 +6,7 @@
     left: 0;
     width: 50%;
     bottom: vars.$word-counter-bar-height;
-    border-right: vars.$border-width solid #000;
+    border-right: 1px solid var(--accent-color);
     border-bottom: none;
     overflow-y: scroll;
 
@@ -16,7 +16,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #000;
+        background-color: var(--accent-color);
         opacity: 0.5;
         z-index: 1;
         display: none;
@@ -38,7 +38,7 @@
 
     #file-preview {
         margin: 20px;
-        border: 2px solid black;
+        border: 2px solid var(--accent-color);
         border-radius: 7px;
         display: inline-block;
         #file-name {
@@ -48,7 +48,7 @@
             margin: 0;
             padding: 10px 15px;
             border: none;
-            border-left: 2px solid black;
+            border-left: 2px solid var(--accent-color);
         }
     }
 
@@ -62,8 +62,8 @@
         left: 0;
         width: 50%;
         height: vars.$word-counter-bar-height;
-        border-top: vars.$border-width solid vars.$grayed-out-color;
-        border-right: vars.$border-width solid #000;
+        border-top: 1px solid var(--grayed-out-color);
+        border-right: 1px solid var(--accent-color);
         // arrange elements to far left
         display: flex;
         flex-direction: row;
@@ -73,7 +73,7 @@
         #word-count {
             margin: 0 8px;
             font-style: italic;
-            color: vars.$grayed-out-color;
+            color: var(--grayed-out-color);
         }
     }
 }

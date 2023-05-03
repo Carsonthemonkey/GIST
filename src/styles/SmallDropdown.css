@@ -18,14 +18,14 @@
   margin: 0px;
 }
 .small-drop-down .small-drop-down-content .small-drop-down-item {
-  background-color: #fff1bb;
+  background-color: var(--background-color);
   font-size: 14px;
   list-style-type: none;
   padding: 4px;
   cursor: pointer;
-  border: 1px solid #000;
+  border: 1px solid var(--accent-color);
   border-radius: 0%;
 }
 .small-drop-down .small-drop-down-content .small-drop-down-item:hover {
-  background-color: #fff8df;
+  background-color: var(--highlight-color);
 }/*# sourceMappingURL=SmallDropdown.css.map */
