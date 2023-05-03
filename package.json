@@ -13,6 +13,7 @@
   "scripts": {
     "start": "electron .",
     "dev": "vite",
+    "dev-electron" : "vite --config vite.config.electron.ts",
     "build": "tsc && vite build && electron-builder",
     "preview": "vite preview",
     "predeploy": "node build_tools/confirmDeploy.js && npm run build",
