@@ -89,6 +89,24 @@ function App() {
                     setTranscriptProp={setTranscriptText}
                 />
                 <SummaryPanel APIKeyProp={APIKey} transcriptProp={transcript} />
+                {modalIsOpen && (
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={() => setModalIsOpen(false)}
+                        className="modal"
+                    >
+                        <div className="exit-bar">
+                            <button
+                                className="icon"
+                                onClick={() => setModalIsOpen(false)}
+                            >
+                                {" "}
+                                X{" "}
+                            </button>
+                        </div>
+                        <p className="modal-content">{modalText}</p>
+                    </Modal>
+                )}
             </div>
         </Context.Provider>
     );
