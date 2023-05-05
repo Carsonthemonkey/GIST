@@ -2,7 +2,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  /* ----------------------- Variables --------------------- */
+  /* colors shceme variables. These are changed by the TS code when the user toggles to and from dark mode */
   color-scheme: light dark;
   color: #000000;
   background-color: #fff1bb;

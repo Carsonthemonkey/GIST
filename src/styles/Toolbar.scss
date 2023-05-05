@@ -1,10 +1,12 @@
 @use "variables" as vars;
 
+
 #toolbar {
     -webkit-app-region: drag;
     // makes toolbar fixed to top of page
     position: fixed;
-    top: vars.$electron-titlebar-height;
+    // top: vars.$electron-titlebar-height;
+    top: var(--electron-titlebar-height);
     left: 0;
     right: 0;
     z-index: 100;

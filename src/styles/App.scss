@@ -1,4 +1,8 @@
-#root {
+.App {
+    &.electron {
+        --electron-titlebar-height: 28px;
+    }
+    --electron-titlebar-height: 0px;
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;

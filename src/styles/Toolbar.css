@@ -1,7 +1,7 @@
 #toolbar {
   -webkit-app-region: drag;
   position: fixed;
-  top: 28px;
+  top: var(--electron-titlebar-height);
   left: 0;
   right: 0;
   z-index: 100;

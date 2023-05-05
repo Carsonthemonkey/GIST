@@ -22,7 +22,7 @@ function App() {
     return (
         <Context.Provider value={[APIKey, setAPIKey]}>
             {isElectron && <ElectronTitlebar />}
-            <div className="App">
+            <div className={isElectron? "App electron" : "App"}>
                 <Toolbar />
                 <TranscriptPanel
                     APIKeyProp={APIKey}

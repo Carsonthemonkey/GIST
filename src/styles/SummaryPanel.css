@@ -1,6 +1,6 @@
 #summary-panel {
   position: absolute;
-  top: 78px;
+  top: calc(50px + var(--electron-titlebar-height));
   right: 0;
   width: 50%;
   bottom: 0;

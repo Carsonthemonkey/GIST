@@ -5,6 +5,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    //TODO: clean this up. Right now this needs to be manually set to the same value as the --electron-titlebar-height css runtime variable. We should make an overall more organizes system for managing css runtime variables, and this one should not be static.
     height: vars.$electron-titlebar-height; /* adjust the height as needed */
     // background-color: saturate(vars.$grayed-out-color, 10%);
     background-color: desaturate(

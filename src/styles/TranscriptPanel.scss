@@ -2,7 +2,9 @@
 
 #transcript-panel {
     position: absolute;
-    top: vars.$toolbar-height + vars.$electron-titlebar-height;
+    // top: vars.$toolbar-height + vars.$electron-titlebar-height;
+    // calc must be used here since we are adding a css runtime variable
+    top: calc(vars.$toolbar-height + var(--electron-titlebar-height));
     left: 0;
     width: 50%;
     bottom: vars.$word-counter-bar-height;
