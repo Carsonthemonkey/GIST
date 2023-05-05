@@ -16,12 +16,13 @@
     align-items: center;
     justify-content: space-between;
     // adds a border at the bottom
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--accent-color);
     height: vars.$toolbar-height;
 
     #api-button {
         margin-right: auto;
         -webkit-app-region: no-drag;
+        height: 100%;
     }
 
     #app-name {

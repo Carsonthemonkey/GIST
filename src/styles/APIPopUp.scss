@@ -10,6 +10,10 @@
 }
 
 #api-input {
+    // change the input placeholder text color
+    &::placeholder {
+        color: var(--grayed-out-color);
+    }
     height: calc(vars.$toolbar-height / 2.5);
     -webkit-app-region: no-drag;
 }

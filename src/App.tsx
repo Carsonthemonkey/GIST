@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import "./styles/global.css";
 import "./styles/App.css";
 import Toolbar from "./components/Toolbar";
@@ -8,6 +8,7 @@ import ElectronTitlebar from "./components/ElectronTitlebar";
 
 const isElectron = typeof process !== 'undefined' && process.versions && process.versions.electron;
 
+import { setColorScheme } from "./utils/colorSchemeChanger";
 
 export const Context = createContext<
     [string, React.Dispatch<React.SetStateAction<string>>]
@@ -15,9 +16,35 @@ export const Context = createContext<
 
 function App() {
     const [APIKey, setAPIKey] = useState("");
-
+    let colorTheme = "light";
     //This will need to be changed later
     const [transcript, setTranscriptText] = useState(``);
+
+    useEffect(() => {
+        //handles keyboard shortcuts
+        document.addEventListener("keydown", handleKeyDown);
+    }, []);
+
+    function handleKeyDown(event: KeyboardEvent) {
+        let modifierKey;
+        if (navigator.appVersion.indexOf("Mac") != -1) modifierKey = event.metaKey;
+        else modifierKey = event.ctrlKey;
+
+        
+        if (event.ctrlKey && event.key === "l") {
+            event.preventDefault();
+            if(colorTheme === "dark"){
+                console.log(colorTheme)
+                setColorScheme("light");
+                colorTheme = "light";
+            }
+            else if (colorTheme === "light"){
+                setColorScheme("dark");
+                colorTheme = "dark";
+                console.log(colorTheme)
+            }
+        }
+    }
 
     return (
         <Context.Provider value={[APIKey, setAPIKey]}>

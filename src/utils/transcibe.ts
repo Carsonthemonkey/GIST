@@ -14,7 +14,7 @@ async function transcribeWhisper(
     const data = new FormData();
     data.append("file", audioFile);
     data.append("model", "whisper-1");
-    data.append("language", language);
+    // data.append("language", language);
     let formData = data;
     const requestOptions = {
         method: "POST",
