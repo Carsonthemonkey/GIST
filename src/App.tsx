@@ -5,17 +5,41 @@ import Toolbar from "./components/Toolbar";
 import TranscriptPanel from "./components/TranscriptPanel";
 import SummaryPanel from "./components/SummaryPanel";
 import ElectronTitlebar from "./components/ElectronTitlebar";
+import Modal from "react-modal";
 
-const isElectron = typeof process !== 'undefined' && process.versions && process.versions.electron;
+const isElectron =
+    typeof process !== "undefined" &&
+    process.versions &&
+    process.versions.electron;
 
 import { setColorScheme } from "./utils/colorSchemeChanger";
 
-export const Context = createContext<
-    [string, React.Dispatch<React.SetStateAction<string>>]
->(["", () => {}]);
+// export const Context = createContext<
+//     [string, React.Dispatch<React.SetStateAction<string>>]
+// >(["", () => {}]);
+
+interface GlobalContext {
+    APIKey: string;
+    setAPIKey: React.Dispatch<React.SetStateAction<string>>;
+    modalIsOpen: boolean;
+    setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    modalText: string;
+    setModalText: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Context = createContext<GlobalContext>({
+    APIKey: "",
+    setAPIKey: () => {},
+    modalIsOpen: false,
+    setModalIsOpen: () => {},
+    modalText: "",
+    setModalText: () => {},
+});
 
 function App() {
     const [APIKey, setAPIKey] = useState("");
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalText, setModalText] = useState("");
     let colorTheme = "light";
     //This will need to be changed later
     const [transcript, setTranscriptText] = useState(``);
@@ -27,29 +51,37 @@ function App() {
 
     function handleKeyDown(event: KeyboardEvent) {
         let modifierKey;
-        if (navigator.appVersion.indexOf("Mac") != -1) modifierKey = event.metaKey;
+        if (navigator.appVersion.indexOf("Mac") != -1)
+            modifierKey = event.metaKey;
         else modifierKey = event.ctrlKey;
 
-        
         if (event.ctrlKey && event.key === "l") {
             event.preventDefault();
-            if(colorTheme === "dark"){
-                console.log(colorTheme)
+            if (colorTheme === "dark") {
+                console.log(colorTheme);
                 setColorScheme("light");
                 colorTheme = "light";
-            }
-            else if (colorTheme === "light"){
+            } else if (colorTheme === "light") {
                 setColorScheme("dark");
                 colorTheme = "dark";
-                console.log(colorTheme)
+                console.log(colorTheme);
             }
         }
     }
 
     return (
-        <Context.Provider value={[APIKey, setAPIKey]}>
+        <Context.Provider
+            value={{
+                APIKey,
+                setAPIKey,
+                modalIsOpen,
+                setModalIsOpen,
+                modalText,
+                setModalText,
+            }}
+        >
             {isElectron && <ElectronTitlebar />}
-            <div className={isElectron? "App electron" : "App"}>
+            <div className={isElectron ? "App electron" : "App"}>
                 <Toolbar />
                 <TranscriptPanel
                     APIKeyProp={APIKey}
