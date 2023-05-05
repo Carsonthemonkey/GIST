@@ -1,6 +1,6 @@
 #transcript-panel {
   position: absolute;
-  top: 50px;
+  top: calc(50px + var(--electron-titlebar-height));
   left: 0;
   width: 50%;
   bottom: 30px;

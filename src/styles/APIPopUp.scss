@@ -5,6 +5,8 @@
     position: absolute;
     top: calc(vars.$toolbar-height / 4);
     left: 60px;
+    // -webkit-app-region: no-drag;
+
 }
 
 #api-input {
@@ -13,4 +15,5 @@
         color: var(--grayed-out-color);
     }
     height: calc(vars.$toolbar-height / 2.5);
+    -webkit-app-region: no-drag;
 }

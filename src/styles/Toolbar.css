@@ -1,6 +1,7 @@
 #toolbar {
+  -webkit-app-region: drag;
   position: fixed;
-  top: 0;
+  top: var(--electron-titlebar-height);
   left: 0;
   right: 0;
   z-index: 100;
@@ -13,6 +14,7 @@
 }
 #toolbar #api-button {
   margin-right: auto;
+  -webkit-app-region: no-drag;
   height: 100%;
 }
 #toolbar #app-name {

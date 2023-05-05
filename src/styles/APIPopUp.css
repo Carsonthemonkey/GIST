@@ -6,6 +6,7 @@
 
 #api-input {
   height: 20px;
+  -webkit-app-region: no-drag;
 }
 #api-input::-moz-placeholder {
   color: var(--grayed-out-color);
