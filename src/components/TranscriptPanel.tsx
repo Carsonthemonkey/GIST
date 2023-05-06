@@ -3,7 +3,6 @@ import "../styles/TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
-import Modal from "react-modal";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 import WordCounter from "./WordCounter";
 import { Context } from "../App";
@@ -91,10 +90,25 @@ const TranscriptPanel = (props: Props) => {
     };
 
     async function transcribeAudio() {
-        console.log(doTranslate);
-        if (!fileUploaded || !audioFile) {
-            console.warn("No file uploaded");
+        //check if user is connected to the internet
+        if (!navigator.onLine) {
+            setModalIsOpen(true);
+            setModalText(`Transcription currently requires an internet connection. Please connect to the internet and try again.`);
             return;
+        }
+
+        if (!fileUploaded || !audioFile) {
+            setModalIsOpen(true);
+
+            // I don't thinkt this error can ever be reached because the transcribe button is disabled but just in case
+            setModalText(`No file uploaded. Please upload mp3, mp4, mpeg,
+            mpga, m4a, wav, or webm`)
+            return;
+        }
+        //check if an api key has not been inputted
+        if(!props.APIKeyProp){
+            setModalIsOpen(true);
+            setModalText("An API key is currently required to transcribe audio. Please enter a valid OpenAI API key and try again.")
         }
         try {
             setIsLoading(true);

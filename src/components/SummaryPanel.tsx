@@ -1,5 +1,5 @@
 //import react and useState
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,8 @@ import SmallDropdown from "./SmallDropdown";
 import PanelAnchor from "./PanelAnchor";
 import promptsOBJ from "../assets/prompts.json";
 import MarkdownFormatter from "./MarkdownFormatter";
+import { Context } from "../App";
+
 
 interface Props {
     APIKeyProp: string;
@@ -34,6 +36,7 @@ interface Prompts {
   
 
 const SummaryPanel = (props: Props) => {
+    const { modalIsOpen, setModalIsOpen, modalText, setModalText } = useContext(Context)
     const DEBUG = false;
     const [isOpen, setIsOpen] = useState(false);
     // const LatexPrompt =
@@ -62,6 +65,22 @@ const SummaryPanel = (props: Props) => {
     };
 
     async function generateSummary() {
+        //We shoudl grey out the button when there is no transcript probably anyways, but this should stay in just in case
+        if(!props.transcriptProp){
+            setModalIsOpen(true)
+            setModalText("A transcript is required to generate notes. Please transcribe an audio file and try again.")
+            return;
+        }
+        if(!navigator.onLine){
+            setModalIsOpen(true)
+            setModalText("An internet connection is required to generate notes. Please connect to the internet and try again")
+            return;
+        }
+        if(!props.APIKeyProp){
+            setModalIsOpen(true)
+            setModalText("An API key is required to generate notes. Please enter a valid API key and try again")
+            return;
+        }
         try {
             setIsLoading(true);
             await summarizeGPT(
