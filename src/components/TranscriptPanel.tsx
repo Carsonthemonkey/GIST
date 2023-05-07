@@ -115,9 +115,31 @@ const TranscriptPanel = (props: Props) => {
             setIsLoading(true);
             if (doTranslate) {
                 await translateWhisper(DEBUG, audioFile, props.APIKeyProp).then(
-                    (transcript) => {
-                        console.log(transcript);
-                        props.setTranscriptProp(transcript);
+                    (data) => {
+                        //TODO: merge these if statements with the ones below
+                        if(data.status === 200){
+                            props.setTranscriptProp(data.transcript);
+                        }else if(data.status === 401){
+                            setModalIsOpen(true);
+                            setModalText("Error: API key not accepted. Make sure that you are using a valid API key.")
+                        }
+                        else if(data.status === 500){
+                            setModalIsOpen(true);
+                            setModalText("Error: OpenAI servers encountered an error. Check the [OpenAI server status](https://status.openai.com/)")
+                        }
+                        else if(data.status === 400){
+                            setModalIsOpen(true);
+                            setModalText("Error: bad request. Your audio file may have been too long.")
+                        }
+                        else if(data.status === 413){
+                            setModalIsOpen(true);
+                            setModalText("Error: audio file too large. Please use a smaller audio file.")
+                        }
+                        else{
+                            setModalIsOpen(true);
+                            setModalText("Error: unknown error.")
+                        }
+                        
                     }
                 );
             } else {

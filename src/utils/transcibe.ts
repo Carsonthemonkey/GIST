@@ -39,15 +39,6 @@ async function transcribeWhisper(
         status: response.status,
         transcript: data.text,
     };
-    // if (response.status === 200) {
-    //     console.log("success");
-    //     const data = await response.json();
-    //     if (data.text) {
-    //         return data.text;
-    //     } else {
-    //         console.error("Error. No response from OpenAI API");
-    //     }
-    // }
 }
 
 async function translateWhisper(
@@ -58,13 +49,16 @@ async function translateWhisper(
     if (debug) {
         //wait 2 seconds to simulate a network call
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        return "This is some translated debug text from the transcription script. It's not actually translated, it's just a placeholder.";
+        return {
+            status: 200,
+            transcript:
+                "This is some translated debug text from the transcription script. It's not actually translated, it's just a placeholder.",
+        };
     }
     console.log("translating with translateWhisper");
-    const data = new FormData();
-    data.append("file", audioFile);
-    data.append("model", "whisper-1");
-    let formData = data;
+    const formData = new FormData();
+    formData.append("file", audioFile);
+    formData.append("model", "whisper-1");
     const requestOptions = {
         method: "POST",
         headers: {
@@ -78,15 +72,20 @@ async function translateWhisper(
         requestOptions
     );
     console.log("fetched");
-    if (response.status === 200) {
-        console.log("success");
-        const data = await response.json();
-        if (data.text) {
-            return data.text;
-        } else {
-            console.error("Error. No response from OpenAI API");
-        }
-    }
+    const data = await response.json();
+    return {
+        status: response.status,
+        transcript: data.text,
+    };
+    // if (response.status === 200) {
+    //     console.log("success");
+    //     const data = await response.json();
+    //     if (data.text) {
+    //         return data.text;
+    //     } else {
+    //         console.error("Error. No response from OpenAI API");
+    //     }
+    // }
 }
 
 export { transcribeWhisper, translateWhisper };
