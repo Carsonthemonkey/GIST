@@ -89,9 +89,12 @@ const SummaryPanel = (props: Props) => {
                 props.APIKeyProp
             ).then((r) => {
                 setIsLoading(false);
-                if (r && r.results[0]) {
-                    setSummary(r.results[0]);
-                    console.log(r.results[0]);
+                if (r.status === 200) {
+                    setSummary(r.text);
+                }
+                else{
+                    setModalIsOpen(true);
+                    setModalText(r.statustext)
                 }
             });
         } catch (e) {

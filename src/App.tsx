@@ -48,6 +48,8 @@ function App() {
     useEffect(() => {
         //handles keyboard shortcuts
         document.addEventListener("keydown", handleKeyDown);
+        
+        Modal.setAppElement(document.body);
     }, []);
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -105,7 +107,9 @@ function App() {
                                 X{" "}
                             </button>
                         </div>
-                        <MarkdownFormatter text={modalText}/>
+                        <div className="modal-content">
+                            <MarkdownFormatter text={modalText}/>
+                        </div>
                     </Modal>
                 )}
             </div>
