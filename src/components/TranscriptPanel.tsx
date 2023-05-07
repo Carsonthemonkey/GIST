@@ -125,7 +125,7 @@ const TranscriptPanel = (props: Props) => {
                         }
                         else if(data.status === 500){
                             setModalIsOpen(true);
-                            setModalText("Error: OpenAI servers encountered an error. Check the [OpenAI server status](https://status.openai.com/)")
+                            setModalText("Error: OpenAI servers encountered an error. Check the OpenAI server status at https://status.openai.com/")
                         }
                         else if(data.status === 400){
                             setModalIsOpen(true);
@@ -158,7 +158,7 @@ const TranscriptPanel = (props: Props) => {
                     }
                     else if(data.status === 500){
                         setModalIsOpen(true);
-                        setModalText("Error: OpenAI servers encountered an error. Check the [OpenAI server status](https://status.openai.com/)")
+                        setModalText("Error: OpenAI servers encountered an error. Check the [OpenAI server status at https://status.openai.com/")
                     }
                     else if(data.status === 400){
                         setModalIsOpen(true);

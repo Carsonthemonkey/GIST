@@ -108,7 +108,8 @@ function App() {
                             </button>
                         </div>
                         <div className="modal-content">
-                            <MarkdownFormatter text={modalText}/>
+                            {/* <MarkdownFormatter text={modalText}/> */}
+                            {modalText}
                         </div>
                     </Modal>
                 )}
