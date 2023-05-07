@@ -6,6 +6,7 @@ import TranscriptPanel from "./components/TranscriptPanel";
 import SummaryPanel from "./components/SummaryPanel";
 import ElectronTitlebar from "./components/ElectronTitlebar";
 import Modal from "react-modal";
+import MarkdownFormatter from "./components/MarkdownFormatter";
 
 const isElectron =
     typeof process !== "undefined" &&
@@ -104,7 +105,7 @@ function App() {
                                 X{" "}
                             </button>
                         </div>
-                        <p className="modal-content">{modalText}</p>
+                        <MarkdownFormatter text={modalText}/>
                     </Modal>
                 )}
             </div>

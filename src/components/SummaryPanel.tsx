@@ -1,4 +1,3 @@
-//import react and useState
 import React, { useState, useContext } from "react";
 import "../styles/SummaryPanel.css";
 import summarizeGPT from "../utils/summarize";

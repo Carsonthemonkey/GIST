@@ -102,13 +102,14 @@ const TranscriptPanel = (props: Props) => {
 
             // I don't thinkt this error can ever be reached because the transcribe button is disabled but just in case
             setModalText(`No file uploaded. Please upload mp3, mp4, mpeg,
-            mpga, m4a, wav, or webm`)
+            mpga, m4a, wav, or webm.`);
             return;
         }
         //check if an api key has not been inputted
         if(!props.APIKeyProp){
             setModalIsOpen(true);
             setModalText("An API key is currently required to transcribe audio. Please enter a valid OpenAI API key and try again.")
+            return;
         }
         try {
             setIsLoading(true);
@@ -125,14 +126,37 @@ const TranscriptPanel = (props: Props) => {
                     audioFile,
                     "en",
                     props.APIKeyProp
-                ).then((transcript) => {
-                    console.log(transcript);
-                    props.setTranscriptProp(transcript);
+                ).then((data) => {
+                    if(data.status === 200){
+                        props.setTranscriptProp(data.transcript);
+                    }
+                    else if(data.status === 401){
+                        setModalIsOpen(true);
+                        setModalText("Error: API key not accepted. Make sure that you are using a valid API key.")
+                    }
+                    else if(data.status === 500){
+                        setModalIsOpen(true);
+                        setModalText("Error: OpenAI servers encountered an error. Check the [OpenAI server status](https://status.openai.com/)")
+                    }
+                    else if(data.status === 400){
+                        setModalIsOpen(true);
+                        setModalText("Error: bad request. Your audio file may have been too long.")
+                    }
+                    else if(data.status === 413){
+                        setModalIsOpen(true);
+                        setModalText("Error: audio file too large. Please use a smaller audio file.")
+                    }
+                    else{
+                        setModalIsOpen(true);
+                        setModalText("Error: unknown error.")
+                    }
                 });
             }
             setIsLoading(false);
         } catch (e) {
             console.error(e);
+            setModalIsOpen(true);
+            setModalText("Transcription failed.")
         }
     }
 
