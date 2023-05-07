@@ -120,7 +120,6 @@ const SummaryPanel = (props: Props) => {
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
-                {/* Todo also, format summary with proper newlines and bullet points */}
                 {!isLoading && summary && (
                     <MarkdownFormatter text={summary}/>
                 )}
