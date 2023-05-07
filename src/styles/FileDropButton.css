@@ -1,0 +1,18 @@
+.file-drop-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.file-drop-button .icon {
+  font-size: 40px;
+}
+.file-drop-button button {
+  transition: 0.3s ease-out all;
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+}
+.file-drop-button button:hover {
+  color: var(--background-color);
+  background-color: var(--accent-color);
+}/*# sourceMappingURL=FileDropButton.css.map */

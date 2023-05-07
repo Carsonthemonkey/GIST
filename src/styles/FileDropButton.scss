@@ -1,0 +1,22 @@
+.file-drop-button{
+    position: absolute; // Set position to absolute
+    top: 50%; // Center the button vertically
+    left: 50%; // Center the button horizontally
+    transform: translate(-50%, -50%); // Adjust for half the button's width and height
+    .icon{
+        //make the icon bigger
+        font-size: 40px;
+    }
+    button{
+
+        transition: 0.3s ease-out all;
+        //remove the button border
+        border: 2px solid var(--accent-color);
+        border-radius: 12px;
+        //make the button square
+        &:hover{
+            color: var(--background-color);
+            background-color: var(--accent-color);
+        }
+    }
+}  

@@ -6,6 +6,7 @@ import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 import WordCounter from "./WordCounter";
 import { Context } from "../App";
+import FileDropButton from "./FileDropButton";
 
 interface Props {
     APIKeyProp: string;
@@ -244,9 +245,10 @@ const TranscriptPanel = (props: Props) => {
                     </button>
                 </div>
             )}
-            <div id="file-drop-dialog">
+            {/* <div id="file-drop-dialog">
                 {!fileUploaded && "Drag and drop your audio file here"}
-            </div>
+            </div> */}
+            <FileDropButton setFile={setAudioFile}></FileDropButton>
             <p id="transcript-content">
                 <br />
                 {/* TODO Add a nice style to this */}
