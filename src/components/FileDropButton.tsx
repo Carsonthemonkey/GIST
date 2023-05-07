@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../styles/FileDropButton.css";
 import { AiOutlineFileAdd } from "react-icons/ai";
 
@@ -6,11 +6,17 @@ interface FileDropButtonProps {
     setFile: (file: File) => void;
 }
 
-function handleClick(){
-    console.log("Clicked choose file")
-}
 
 const FileDropButton = ({ setFile }: FileDropButtonProps) => {
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    
+    function handleClick(){
+        console.log("Clicked choose file")
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    }
+
     return (
         <div className="file-drop-button">
             <button className="file-select-button" onClick={handleClick}>
@@ -18,6 +24,17 @@ const FileDropButton = ({ setFile }: FileDropButtonProps) => {
                 <br />
                 Choose File
             </button>
+            <input
+                type="file"
+                id="file-input"
+                ref={fileInputRef}
+                onChange={(e) => {
+                    if (e.target.files) {
+                        setFile(e.target.files[0]);
+                    }
+                }}
+                style={{ display: "none" }}
+            />
         </div>
     );
 };

@@ -182,7 +182,6 @@ const TranscriptPanel = (props: Props) => {
             setModalText("Transcription failed.")
         }
     }
-
     function removeFile() {
         setFileUploaded(false);
         setAudioFile(null);
