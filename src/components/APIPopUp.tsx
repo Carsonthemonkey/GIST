@@ -8,7 +8,7 @@ interface Props {
 }
 
 const APIPopUp = (props: Props) => {
-    const [APIKey, setAPIKey] = useContext(Context);
+    const {APIKey, setAPIKey} = useContext(Context);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAPIKey(event.target.value);

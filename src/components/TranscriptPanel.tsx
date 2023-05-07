@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import "../styles/TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
-import Modal from "react-modal";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 import WordCounter from "./WordCounter";
+import { Context } from "../App";
 
 interface Props {
     APIKeyProp: string;
@@ -13,12 +13,15 @@ interface Props {
     setTranscriptProp: (transcript: string) => void;
 }
 
+
+
 const TranscriptPanel = (props: Props) => {
     const DEBUG = false;
-
+    const { modalIsOpen, setModalIsOpen } = useContext(Context);
+    const { modalText, setModalText } = useContext(Context);
     const [fileUploaded, setFileUploaded] = React.useState(false);
     const [audioFile, setAudioFile] = React.useState<File | null>(null);
-    const [modalIsOpen, setModalIsOpen] = React.useState(false);
+    // const [modalIsOpen, setModalIsOpen] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
     const [doTranslate, setDoTranslate] = React.useState(false);
 
@@ -69,6 +72,8 @@ const TranscriptPanel = (props: Props) => {
         ];
         if (!validFileTypes.includes(file.name.split(".").pop()!)) {
             setModalIsOpen(true);
+            setModalText(` File is not a valid filetype. Please use mp3, mp4, mpeg,
+            mpga, m4a, wav, or webm.`);
             return;
         }
         setAudioFile(file);
@@ -85,18 +90,56 @@ const TranscriptPanel = (props: Props) => {
     };
 
     async function transcribeAudio() {
-        console.log(doTranslate);
+        //check if user is connected to the internet
+        if (!navigator.onLine) {
+            setModalIsOpen(true);
+            setModalText(`Transcription currently requires an internet connection. Please connect to the internet and try again.`);
+            return;
+        }
+
         if (!fileUploaded || !audioFile) {
-            console.warn("No file uploaded");
+            setModalIsOpen(true);
+
+            // I don't thinkt this error can ever be reached because the transcribe button is disabled but just in case
+            setModalText(`No file uploaded. Please upload mp3, mp4, mpeg,
+            mpga, m4a, wav, or webm.`);
+            return;
+        }
+        //check if an api key has not been inputted
+        if(!props.APIKeyProp){
+            setModalIsOpen(true);
+            setModalText("An API key is currently required to transcribe audio. Please enter a valid OpenAI API key and try again.")
             return;
         }
         try {
             setIsLoading(true);
             if (doTranslate) {
                 await translateWhisper(DEBUG, audioFile, props.APIKeyProp).then(
-                    (transcript) => {
-                        console.log(transcript);
-                        props.setTranscriptProp(transcript);
+                    (data) => {
+                        //TODO: merge these if statements with the ones below
+                        if(data.status === 200){
+                            props.setTranscriptProp(data.transcript);
+                        }else if(data.status === 401){
+                            setModalIsOpen(true);
+                            setModalText("Error: API key not accepted. Make sure that you are using a valid API key.")
+                        }
+                        else if(data.status === 500){
+                            setModalIsOpen(true);
+                            setModalText("Error: OpenAI servers encountered an error. Check the OpenAI server status at https://status.openai.com/")
+                        }
+                        else if(data.status === 400){
+                            setModalIsOpen(true);
+                            setModalText("Error: bad request. Your audio file may have been too long.")
+                        }
+                        else if(data.status === 413){
+                            setModalIsOpen(true);
+                            setModalText("Error: audio file too large. Please use a smaller audio file.")
+                        }
+                        else{
+                            setModalIsOpen(true);
+                            setModalText("Error: unknown error.")
+                        }
+                        
                     }
                 );
             } else {
@@ -105,14 +148,37 @@ const TranscriptPanel = (props: Props) => {
                     audioFile,
                     "en",
                     props.APIKeyProp
-                ).then((transcript) => {
-                    console.log(transcript);
-                    props.setTranscriptProp(transcript);
+                ).then((data) => {
+                    if(data.status === 200){
+                        props.setTranscriptProp(data.transcript);
+                    }
+                    else if(data.status === 401){
+                        setModalIsOpen(true);
+                        setModalText("Error: API key not accepted. Make sure that you are using a valid API key.")
+                    }
+                    else if(data.status === 500){
+                        setModalIsOpen(true);
+                        setModalText("Error: OpenAI servers encountered an error. Check the [OpenAI server status at https://status.openai.com/")
+                    }
+                    else if(data.status === 400){
+                        setModalIsOpen(true);
+                        setModalText("Error: bad request. Your audio file may have been too long.")
+                    }
+                    else if(data.status === 413){
+                        setModalIsOpen(true);
+                        setModalText("Error: audio file too large. Please use a smaller audio file.")
+                    }
+                    else{
+                        setModalIsOpen(true);
+                        setModalText("Error: unknown error.")
+                    }
                 });
             }
             setIsLoading(false);
         } catch (e) {
             console.error(e);
+            setModalIsOpen(true);
+            setModalText("Transcription failed.")
         }
     }
 
@@ -143,25 +209,6 @@ const TranscriptPanel = (props: Props) => {
             onDragLeave={handleDragLeave}
         >
             <div className="overlay"></div>
-            <Modal
-                className="modal"
-                isOpen={modalIsOpen}
-                onRequestClose={() => setModalIsOpen(false)}
-            >
-                <div className="exit-bar">
-                    <button
-                        className="icon"
-                        onClick={() => setModalIsOpen(false)}
-                    >
-                        {" "}
-                        X{" "}
-                    </button>
-                </div>
-                <p className="modal-content">
-                    File is not a valid filetype. Please use mp3, mp4, mpeg,
-                    mpga, m4a, wav, or webm.
-                </p>
-            </Modal>
             <h2 id="transcript-title">Transcript</h2>
             <div>
                 <label id="translate-section">

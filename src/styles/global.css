@@ -66,6 +66,7 @@ input:focus {
   border-left: 10px solid var(--accent-color);
   border-bottom: 10px solid var(--accent-color);
   font-size: 26px;
+  outline: none;
 }
 .modal .exit-bar {
   display: flex;
