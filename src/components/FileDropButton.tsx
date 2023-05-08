@@ -59,7 +59,7 @@ const FileDropButton = ({ setFile, setFileUploaded }: FileDropButtonProps) => {
             <div className="overlay"></div>
             <br />
             <div className="file-drop-button">
-                <p>Drag and drop your audio file or</p>
+                <p>Drag and drop your audio file <br/>or</p>
                 <button className="file-select-button" onClick={handleClick}>
                     <AiOutlineFileAdd className="icon" />
                     <br />
