@@ -44,7 +44,8 @@ const indexHtml = join(process.env.DIST, "index.html");
 async function createWindow() {
     win = new BrowserWindow({
         title: "Main window",
-        icon: join(process.env.PUBLIC, "favicon.ico"),
+        //*Disables default icon for electron app until we make a logo of our own.
+        // icon: join(process.env.PUBLIC, "favicon.ico"),
         webPreferences: {
             preload,
             // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
