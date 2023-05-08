@@ -106,7 +106,7 @@ const TranscriptPanel = (props: Props) => {
             mpga, m4a, wav, or webm.`);
             return;
         }
-        //check if an api key has not been inputted
+        //check if an api key has not been inputed
         if(!props.APIKeyProp){
             setModalIsOpen(true);
             setModalText("An API key is currently required to transcribe audio. Please enter a valid OpenAI API key and try again.")
