@@ -26,69 +26,69 @@ const TranscriptPanel = (props: Props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [doTranslate, setDoTranslate] = React.useState(false);
 
-    const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
+    // const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    //     event.preventDefault();
 
-        // Find the element with the class 'overlay'
-        const overlayElement = document.querySelector(".overlay");
-        // Add the 'dragging-over' class to the element
-        if (overlayElement) {
-            // console.log("overlay element found");
-            overlayElement.classList.add("dragging-over");
-        }
-    };
+    //     // Find the element with the class 'overlay'
+    //     const overlayElement = document.querySelector(".overlay");
+    //     // Add the 'dragging-over' class to the element
+    //     if (overlayElement) {
+    //         // console.log("overlay element found");
+    //         overlayElement.classList.add("dragging-over");
+    //     }
+    // };
 
-    const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        // Find the element with the class 'overlay'
-        const overlayElement = document.querySelector(".overlay");
-        // Remove the 'dragging-over' class to the element
-        // Check if the mouse pointer has moved outside the target element or its child elements
-        const relatedTargetNode = event.relatedTarget as Node; // Explicitly type event.relatedTarget as a Node object
-        if (
-            !event.relatedTarget ||
-            !event.currentTarget.contains(relatedTargetNode)
-        ) {
-            if (overlayElement) {
-                overlayElement.classList.remove("dragging-over");
-            }
-        }
-    };
+    // const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    //     event.preventDefault();
+    //     // Find the element with the class 'overlay'
+    //     const overlayElement = document.querySelector(".overlay");
+    //     // Remove the 'dragging-over' class to the element
+    //     // Check if the mouse pointer has moved outside the target element or its child elements
+    //     const relatedTargetNode = event.relatedTarget as Node; // Explicitly type event.relatedTarget as a Node object
+    //     if (
+    //         !event.relatedTarget ||
+    //         !event.currentTarget.contains(relatedTargetNode)
+    //     ) {
+    //         if (overlayElement) {
+    //             overlayElement.classList.remove("dragging-over");
+    //         }
+    //     }
+    // };
 
-    const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        const overlayElement = document.querySelector(".overlay");
-        if (overlayElement) {
-            overlayElement.classList.remove("dragging-over");
-        }
-        const file = event.dataTransfer.files[0];
-        const validFileTypes = [
-            "mp3",
-            "mp4",
-            "mpeg",
-            "mpga",
-            "m4a",
-            "wav",
-            "webm",
-        ];
-        if (!validFileTypes.includes(file.name.split(".").pop()!)) {
-            setModalIsOpen(true);
-            setModalText(` File is not a valid filetype. Please use mp3, mp4, mpeg,
-            mpga, m4a, wav, or webm.`);
-            return;
-        }
-        setAudioFile(file);
-        setFileUploaded(true);
+    // const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    //     event.preventDefault();
+    //     const overlayElement = document.querySelector(".overlay");
+    //     if (overlayElement) {
+    //         overlayElement.classList.remove("dragging-over");
+    //     }
+    //     const file = event.dataTransfer.files[0];
+    //     const validFileTypes = [
+    //         "mp3",
+    //         "mp4",
+    //         "mpeg",
+    //         "mpga",
+    //         "m4a",
+    //         "wav",
+    //         "webm",
+    //     ];
+    //     if (!validFileTypes.includes(file.name.split(".").pop()!)) {
+    //         setModalIsOpen(true);
+    //         setModalText(` File is not a valid filetype. Please use mp3, mp4, mpeg,
+    //         mpga, m4a, wav, or webm.`);
+    //         return;
+    //     }
+    //     setAudioFile(file);
+    //     setFileUploaded(true);
 
-        // Enable the transcribe button
-        const transcribeButton = document.querySelector(
-            "#transcribe-button"
-        ) as HTMLButtonElement;
-        if (transcribeButton) {
-            transcribeButton.classList.remove("disabled-button");
-            transcribeButton.disabled = false;
-        }
-    };
+    //     // Enable the transcribe button
+    //     const transcribeButton = document.querySelector(
+    //         "#transcribe-button"
+    //     ) as HTMLButtonElement;
+    //     if (transcribeButton) {
+    //         transcribeButton.classList.remove("disabled-button");
+    //         transcribeButton.disabled = false;
+    //     }
+    // };
 
     async function transcribeAudio() {
         //check if user is connected to the internet
@@ -227,8 +227,7 @@ const TranscriptPanel = (props: Props) => {
                 </label>
             </div>
             <button
-                id={fileUploaded ? "transcribe-button" : "transcribe-button disabled-button"}
-                className="non-icon-button disabled-button"
+                className={fileUploaded? "non-icon-button" : "non-icon-button disabled-button"}
                 onClick={transcribeAudio}
             >
                 Transcribe
