@@ -1,4 +1,6 @@
-import readlineSync from 'readline-sync';
+//* This script is used to confirm that the user wants to continue with the deployment sequence
+
+readlineSync = require('readline-sync');
 
 // Prompt the user to continue or cancel the deployment sequence
 const continueSequence = readlineSync.keyInYN('Do you want to continue with the deployment sequence? (This version will be pushed to the live site)');
