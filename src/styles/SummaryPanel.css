@@ -32,6 +32,7 @@
   width: 231px;
 }
 #summary-panel #summary-drop-down .summary-drop-down-item {
+  background-color: var(--background-color);
   margin-top: 3px;
   padding: 10px;
   cursor: pointer;
