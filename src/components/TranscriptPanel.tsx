@@ -90,6 +90,10 @@ const TranscriptPanel = (props: Props) => {
     };
 
     async function transcribeAudio() {
+        if (!fileUploaded || !audioFile) {
+            return;
+        }
+        
         //check if user is connected to the internet
         if (!navigator.onLine) {
             setModalIsOpen(true);
@@ -97,14 +101,6 @@ const TranscriptPanel = (props: Props) => {
             return;
         }
 
-        if (!fileUploaded || !audioFile) {
-            setModalIsOpen(true);
-
-            // I don't thinkt this error can ever be reached because the transcribe button is disabled but just in case
-            setModalText(`No file uploaded. Please upload mp3, mp4, mpeg,
-            mpga, m4a, wav, or webm.`);
-            return;
-        }
         //check if an api key has not been inputted
         if(!props.APIKeyProp){
             setModalIsOpen(true);
