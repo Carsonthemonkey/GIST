@@ -26,6 +26,40 @@ const TranscriptPanel = (props: Props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [doTranslate, setDoTranslate] = React.useState(false);
 
+    function handleFileUpload(file: File) {
+        const validAudioFileType = ["mp3",
+            "mp4",
+            "mpeg",
+            "mpga",
+            "m4a",
+            "wav",
+            "webm",]
+
+        const validTextFileType = ["txt", "md"]
+        //TODO: add "docx", "doc", "pdf" 
+
+        if (validAudioFileType.includes(file.name.split(".").pop() as string)) {
+            console.log("audio file uploaded")
+            setAudioFile(file);
+            setFileUploaded(true);
+        } else if (validTextFileType.includes(file.name.split(".").pop() as string)) {
+            console.log("text file uploaded")
+            // setFileUploaded(true);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (e.target) {   
+                    props.setTranscriptProp(e.target.result as string);
+                }
+            }
+            reader.readAsText(file);
+        }
+        else{
+            console.error("invalid file type")
+            setModalText("Invalid file type. Please upload an audio file with one of the following extensions: " + validAudioFileType.join(", ") + " or a text file with one of the following extensions: " + validTextFileType.join(", "))
+            setModalIsOpen(true);
+        }
+    }
+
     // const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     //     event.preventDefault();
 
@@ -246,12 +280,12 @@ const TranscriptPanel = (props: Props) => {
             {/* <div id="file-drop-dialog">
                 {!fileUploaded && "Drag and drop your audio file here"}
             </div> */}
-            {!fileUploaded && <FileDropButton setFile={setAudioFile} setFileUploaded={setFileUploaded}></FileDropButton>}
+            {!fileUploaded && !props.transcriptProp && <FileDropButton setFile={handleFileUpload}></FileDropButton>}
             <p id="transcript-content">
                 <br />
                 {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
-                {fileUploaded && props.transcriptProp}
+                {!!props.transcriptProp && props.transcriptProp}
             </p>
             <div id="word-counter-bar">
                 <WordCounter transcriptProp={props.transcriptProp} />

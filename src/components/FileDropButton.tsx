@@ -4,10 +4,9 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 
 interface FileDropButtonProps {
     setFile: (file: File) => void;
-    setFileUploaded: (fileUploaded: boolean) => void;
 }
 
-const FileDropButton = ({ setFile, setFileUploaded }: FileDropButtonProps) => {
+const FileDropButton = ({ setFile }: FileDropButtonProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     function handleClick() {
@@ -22,7 +21,7 @@ const FileDropButton = ({ setFile, setFileUploaded }: FileDropButtonProps) => {
         e.stopPropagation();
 
         if (e.dataTransfer.files) {
-            setFileUploaded(true);
+            // setFileUploaded(true);
             setFile(e.dataTransfer.files[0]);
         }
     }
@@ -71,7 +70,6 @@ const FileDropButton = ({ setFile, setFileUploaded }: FileDropButtonProps) => {
                     ref={fileInputRef}
                     onChange={(e) => {
                         if (e.target.files) {
-                            setFileUploaded(true);
                             setFile(e.target.files[0]);
                         }
                     }}
