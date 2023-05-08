@@ -237,10 +237,6 @@ const TranscriptPanel = (props: Props) => {
     return (
         <div
             id="transcript-panel"
-            // className="dropzone"
-            // onDrop={handleFileDrop}
-            // onDragOver={handleDragOver}
-            // onDragLeave={handleDragLeave}
         >
             <div className="overlay"></div>
             <h2 id="transcript-title">Transcript</h2>
