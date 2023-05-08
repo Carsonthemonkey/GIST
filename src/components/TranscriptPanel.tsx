@@ -203,10 +203,10 @@ const TranscriptPanel = (props: Props) => {
     return (
         <div
             id="transcript-panel"
-            className="dropzone"
-            onDrop={handleFileDrop}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
+            // className="dropzone"
+            // onDrop={handleFileDrop}
+            // onDragOver={handleDragOver}
+            // onDragLeave={handleDragLeave}
         >
             <div className="overlay"></div>
             <h2 id="transcript-title">Transcript</h2>
@@ -227,7 +227,7 @@ const TranscriptPanel = (props: Props) => {
                 </label>
             </div>
             <button
-                id="transcribe-button"
+                id={fileUploaded ? "transcribe-button" : "transcribe-button disabled-button"}
                 className="non-icon-button disabled-button"
                 onClick={transcribeAudio}
             >
@@ -247,7 +247,7 @@ const TranscriptPanel = (props: Props) => {
             {/* <div id="file-drop-dialog">
                 {!fileUploaded && "Drag and drop your audio file here"}
             </div> */}
-            <FileDropButton setFile={setAudioFile}></FileDropButton>
+            {!fileUploaded && <FileDropButton setFile={setAudioFile} setFileUploaded={setFileUploaded}></FileDropButton>}
             <p id="transcript-content">
                 <br />
                 {/* TODO Add a nice style to this */}

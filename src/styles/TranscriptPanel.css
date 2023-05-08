@@ -8,20 +8,6 @@
   border-bottom: none;
   overflow-y: scroll;
 }
-#transcript-panel .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent-color);
-  opacity: 0.5;
-  z-index: 1;
-  display: none;
-}
-#transcript-panel .dragging-over {
-  display: block;
-}
 #transcript-panel #checkmark,
 #transcript-panel #checkmark-label {
   display: inline-block;

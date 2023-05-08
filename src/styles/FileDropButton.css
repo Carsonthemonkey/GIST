@@ -1,9 +1,3 @@
-.file-drop-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 .file-drop-button .icon {
   font-size: 40px;
 }
@@ -15,4 +9,26 @@
 .file-drop-button button:hover {
   color: var(--background-color);
   background-color: var(--accent-color);
+}
+
+.dropzone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--accent-color);
+  border-radius: 30px;
+  height: 100%;
+  margin: 20px;
+}
+.dropzone .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: none;
+}
+.dropzone.dragging-over {
+  background-color: rgba(var(--accent-color));
 }/*# sourceMappingURL=FileDropButton.css.map */
