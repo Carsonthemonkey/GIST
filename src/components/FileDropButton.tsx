@@ -28,29 +28,29 @@ const FileDropButton = ({ setFile }: FileDropButtonProps) => {
 
     function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
         event.preventDefault();
-        const overlayElement = document.querySelector(".overlay");
-        if (overlayElement) {
-            overlayElement.classList.add("dragging-over");
+        const dropzone = document.querySelector(".dropzone");
+        if (dropzone) {
+            dropzone.classList.add("dragging-over");
         }
     }
 
     function handleDragLeave(event: React.DragEvent<HTMLDivElement>) {
         event.preventDefault();
-        const overlayElement = document.querySelector(".overlay");
+        const dropzone = document.querySelector(".dropzone");
         const relatedTargetNode = event.relatedTarget as Node;
         if (
             !event.relatedTarget ||
             !event.currentTarget.contains(relatedTargetNode)
         ) {
-            if (overlayElement) {
-                overlayElement.classList.remove("dragging-over");
+            if (dropzone) {
+                dropzone.classList.remove("dragging-over");
             }
         }
     }
 
     return (
         <div
-            className="dropzone dragging-over"
+            className="dropzone"
             onDrop={handleFileDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}

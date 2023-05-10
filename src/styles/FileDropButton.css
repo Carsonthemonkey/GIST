@@ -30,5 +30,5 @@
   display: none;
 }
 .dropzone.dragging-over {
-  background-color: rgba(var(--accent-color));
+  background-color: var(--grayed-out-color);
 }/*# sourceMappingURL=FileDropButton.css.map */
