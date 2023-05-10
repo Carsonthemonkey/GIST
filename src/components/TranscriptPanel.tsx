@@ -57,6 +57,12 @@ const TranscriptPanel = (props: Props) => {
             console.error("invalid file type")
             setModalText("Invalid file type. Please upload an audio file with one of the following extensions: " + validAudioFileType.join(", ") + " or a text file with one of the following extensions: " + validTextFileType.join(", "))
             setModalIsOpen(true);
+
+            // remove the dragging over class
+            const dropzone = document.querySelector(".dropzone");
+            if (dropzone) {
+                dropzone.classList.remove("dragging-over");
+            }
         }
     }
 
