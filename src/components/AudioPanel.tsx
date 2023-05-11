@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import { GrPlayFill, GrPauseFill } from "react-icons/gr";
 
 interface AudioPanelProps {
     audioFile: string;
@@ -16,7 +17,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     audio?.addEventListener("loadedmetadata", (event) => {
         setAudioDuration(audio?.duration);
     });
-    
+
     useEffect(() => {
         if(audioFile && fileIsUploaded) {
             const audioObject = new Audio(audioFile);
@@ -54,11 +55,11 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             </button>
             {audioIsPlaying ? (
                 <button id="pause-btn" onClick={pauseAudio}>
-                    Pause
+                    <GrPauseFill />
                 </button>
             ) : (
                 <button id="play-btn" onClick={playAudio}>
-                    Play
+                    <GrPlayFill />
                 </button>
             )}
         <div id="timeline"></div>

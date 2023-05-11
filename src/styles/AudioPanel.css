@@ -15,4 +15,7 @@
 }
 #audio-panel #timeline {
   flex-grow: 1;
+}
+#audio-panel button {
+  border: none;
 }/*# sourceMappingURL=AudioPanel.css.map */
