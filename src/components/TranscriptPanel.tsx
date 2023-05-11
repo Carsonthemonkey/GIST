@@ -6,6 +6,7 @@ import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 import WordCounter from "./WordCounter";
 import { Context } from "../App";
+import AudioPanel from "./AudioPanel";
 
 interface Props {
     APIKey: string;
@@ -252,6 +253,7 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
             <div id="word-counter-bar">
                 <WordCounter transcriptProp={transcript} />
             </div>
+            <AudioPanel audioFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"/>
         </div>
     );
 };

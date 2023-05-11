@@ -93,7 +93,6 @@ function App() {
                     setTranscript={setTranscriptText}
                 />
                 <SummaryPanel APIKeyProp={APIKey} transcriptProp={transcript} />
-                <AudioPanel audioFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"/>
                 {modalIsOpen && (
                     <Modal
                         isOpen={modalIsOpen}
