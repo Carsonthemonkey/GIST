@@ -3,6 +3,7 @@ import "../styles/AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { GrPlayFill, GrPauseFill } from "react-icons/gr";
+import formatTimestamp from "../utils/formatTimestamp";
 
 interface AudioPanelProps {
     audioFile: string;
@@ -12,6 +13,7 @@ interface AudioPanelProps {
 const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [audioDuration, setAudioDuration] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0); 
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
 
     audio?.addEventListener("loadedmetadata", (event) => {
@@ -23,6 +25,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             const audioObject = new Audio(audioFile);
             setAudio(audioObject);
             console.log("Set audio object");
+            audioObject.addEventListener("timeupdate", (event) => {
+                setCurrentTime(audioObject.currentTime);
+            })
         }
         else{
             setAudio(null);
@@ -63,7 +68,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline"></div>
-        {fileIsUploaded? <div>0:00/{audioDuration}</div> : <div>--/--</div>}
+        {fileIsUploaded? <div>{formatTimestamp(currentTime)}/{formatTimestamp(audioDuration)}</div> : <div>--/--</div>}
         </div>
     );
 };
