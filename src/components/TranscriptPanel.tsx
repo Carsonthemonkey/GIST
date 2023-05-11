@@ -253,7 +253,7 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
             <div id="word-counter-bar">
                 <WordCounter transcriptProp={transcript} />
             </div>
-            <AudioPanel audioFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"/>
+            <AudioPanel audioFile={!!audioFile ? URL.createObjectURL(audioFile) : ""} fileIsUploaded={fileUploaded}/>
         </div>
     );
 };

@@ -1,35 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
 interface AudioPanelProps {
     audioFile: string;
+    fileIsUploaded: boolean;
 }
 
-const AudioPanel = ({ audioFile }: AudioPanelProps) => {
-    const [audio] = useState(new Audio(audioFile));
-    const [audioFileUploaded, setAudioFileUploaded] = useState(false);
+const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
+    const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
     
+    useEffect(() => {
+        if(audioFile && fileIsUploaded) {
+            const audioObject = new Audio(audioFile);
+            setAudio(audioObject);
+            console.log("Set audio object");
+        }
+        else{
+            setAudio(null);
+            console.log("Set audio object to null");
+        }
+    }, [audioFile, fileIsUploaded]);
 
     function playAudio() {
         //This function will play the audio file
-        audio.play();
-        setAudioIsPlaying(true);
+        if(audio){
+            audio.play();
+            setAudioIsPlaying(true);
+        }
     }
 
     function pauseAudio() {
         //This function will pause the audio file
-        audio.pause();
-        setAudioIsPlaying(false);
+        if(audio){
+            audio.pause();
+            setAudioIsPlaying(false);
+        }
     }
+
+
 
     return (
         <div id="audio-panel">
             <button className="icon">
-                {/* This audio is just for testing */}
-                <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />
                 <FontAwesomeIcon icon={faMicrophone} size="2x" />
             </button>
             {audioIsPlaying ? (
