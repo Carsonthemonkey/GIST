@@ -2,6 +2,10 @@ h2 {
   font-size: 30px;
 }
 
+svg path {
+  stroke: var(--accent-color);
+}
+
 button {
   color: var(--accent-color);
   background: none;

@@ -22,16 +22,20 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     useEffect(() => {
         if(audioFile && fileIsUploaded) {
+            setCurrentTime(0);
             const audioObject = new Audio(audioFile);
             setAudio(audioObject);
-            console.log("Set audio object");
+            if (audio){
+                audio.currentTime = 0;
+            }
             audioObject.addEventListener("timeupdate", (event) => {
                 setCurrentTime(audioObject.currentTime);
             })
         }
         else{
+            pauseAudio();
             setAudio(null);
-            console.log("Set audio object to null");
+            setCurrentTime(0);
         }
     }, [audioFile, fileIsUploaded]);
 
@@ -58,7 +62,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             <button className="icon">
                 <FontAwesomeIcon icon={faMicrophone} size="2x" />
             </button>
-            {audioIsPlaying ? (
+            {audioIsPlaying && fileIsUploaded? (
                 <button id="pause-btn" onClick={pauseAudio}>
                     <GrPauseFill />
                 </button>
