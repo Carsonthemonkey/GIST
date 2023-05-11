@@ -18,4 +18,7 @@
 }
 #audio-panel button {
   border: none;
+}
+#audio-panel .disabled-button svg path {
+  stroke: var(--grayed-out-color);
 }/*# sourceMappingURL=AudioPanel.css.map */

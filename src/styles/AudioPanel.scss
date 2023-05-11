@@ -22,4 +22,16 @@
     button{
         border: none;
     }
+    // svg{
+    //     path
+    //     height: 100%;
+    //     width: auto;
+    // }
+    .disabled-button{
+        svg{
+            path{
+                stroke: var(--grayed-out-color);
+            }
+        }
+    }
 }

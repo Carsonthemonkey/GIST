@@ -63,7 +63,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                     <GrPauseFill />
                 </button>
             ) : (
-                <button id="play-btn" onClick={playAudio}>
+                <button id="play-btn" className={!fileIsUploaded ? "disabled-button" : ""} onClick={playAudio}>
                     <GrPlayFill />
                 </button>
             )}
