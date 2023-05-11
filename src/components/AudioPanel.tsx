@@ -72,7 +72,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline"></div>
-        {fileIsUploaded? <div>{formatTimestamp(currentTime)}/{formatTimestamp(audioDuration)}</div> : <div>--/--</div>}
+        {fileIsUploaded? <div id="timestamp">{formatTimestamp(currentTime)}/{formatTimestamp(audioDuration)}</div> : <div id="timestamp">--/--</div>}
         </div>
     );
 };

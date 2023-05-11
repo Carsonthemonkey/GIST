@@ -18,6 +18,12 @@
     justify-content: space-between;
     #timeline{
         flex-grow: 1;
+        background-color: var(--accent-color);
+        height: 2px;
+        margin: 15px;
+    }
+    #timestamp{
+        margin: 15px;
     }
     button{
         border: none;

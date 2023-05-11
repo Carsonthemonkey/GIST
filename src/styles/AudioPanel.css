@@ -15,6 +15,12 @@
 }
 #audio-panel #timeline {
   flex-grow: 1;
+  background-color: var(--accent-color);
+  height: 2px;
+  margin: 15px;
+}
+#audio-panel #timestamp {
+  margin: 15px;
 }
 #audio-panel button {
   border: none;
