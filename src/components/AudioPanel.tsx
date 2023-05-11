@@ -10,7 +10,12 @@ interface AudioPanelProps {
 
 const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+    const [audioDuration, setAudioDuration] = useState(0);
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
+
+    audio?.addEventListener("loadedmetadata", (event) => {
+        setAudioDuration(audio?.duration);
+    });
     
     useEffect(() => {
         if(audioFile && fileIsUploaded) {
@@ -57,7 +62,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline"></div>
-        <div>0:00/0:00</div>
+        {fileIsUploaded? <div>0:00/{audioDuration}</div> : <div>--/--</div>}
         </div>
     );
 };
