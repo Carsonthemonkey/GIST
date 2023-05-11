@@ -9,6 +9,7 @@ interface AudioPanelProps {
 
 const AudioPanel = ({ audioFile }: AudioPanelProps) => {
     const [audio] = useState(new Audio(audioFile));
+    const [audioFileUploaded, setAudioFileUploaded] = useState(false);
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
     
 
