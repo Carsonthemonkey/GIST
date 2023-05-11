@@ -14,6 +14,7 @@ const isElectron =
     process.versions.electron;
 
 import { setColorScheme } from "./utils/colorSchemeChanger";
+import AudioPanel from "./components/AudioPanel";
 
 // export const Context = createContext<
 //     [string, React.Dispatch<React.SetStateAction<string>>]
@@ -92,6 +93,7 @@ function App() {
                     setTranscriptProp={setTranscriptText}
                 />
                 <SummaryPanel APIKeyProp={APIKey} transcriptProp={transcript} />
+                <AudioPanel audioFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"/>
                 {modalIsOpen && (
                     <Modal
                         isOpen={modalIsOpen}

@@ -2,6 +2,7 @@
 
 #audio-panel {
     // makes audio panel fixed to bottom of page
+    background-color: var(--background-color);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -15,4 +16,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    #timeline{
+        flex-grow: 1;
+    }
 }
