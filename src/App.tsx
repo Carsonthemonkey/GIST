@@ -88,9 +88,9 @@ function App() {
             <div className={isElectron ? "App electron" : "App"}>
                 <Toolbar />
                 <TranscriptPanel
-                    APIKeyProp={APIKey}
-                    transcriptProp={transcript}
-                    setTranscriptProp={setTranscriptText}
+                    APIKey={APIKey}
+                    transcript={transcript}
+                    setTranscript={setTranscriptText}
                 />
                 <SummaryPanel APIKeyProp={APIKey} transcriptProp={transcript} />
                 <AudioPanel audioFile="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"/>

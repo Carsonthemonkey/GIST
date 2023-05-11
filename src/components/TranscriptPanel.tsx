@@ -8,14 +8,14 @@ import WordCounter from "./WordCounter";
 import { Context } from "../App";
 
 interface Props {
-    APIKeyProp: string;
-    transcriptProp: string;
-    setTranscriptProp: (transcript: string) => void;
+    APIKey: string;
+    transcript: string;
+    setTranscript: (transcript: string) => void;
 }
 
 
 
-const TranscriptPanel = (props: Props) => {
+const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
     const DEBUG = false;
     const { modalIsOpen, setModalIsOpen } = useContext(Context);
     const { modalText, setModalText } = useContext(Context);
@@ -102,7 +102,7 @@ const TranscriptPanel = (props: Props) => {
         }
 
         //check if an api key has not been inputted
-        if(!props.APIKeyProp){
+        if(!APIKey){
             setModalIsOpen(true);
             setModalText("An API key is currently required to transcribe audio. Please enter a valid OpenAI API key and try again.")
             return;
@@ -110,11 +110,11 @@ const TranscriptPanel = (props: Props) => {
         try {
             setIsLoading(true);
             if (doTranslate) {
-                await translateWhisper(DEBUG, audioFile, props.APIKeyProp).then(
+                await translateWhisper(DEBUG, audioFile, APIKey).then(
                     (data) => {
                         //TODO: merge these if statements with the ones below
                         if(data.status === 200){
-                            props.setTranscriptProp(data.transcript);
+                            setTranscript(data.transcript);
                         }else if(data.status === 401){
                             setModalIsOpen(true);
                             setModalText("Error: API key not accepted. Make sure that you are using a valid API key.")
@@ -143,10 +143,10 @@ const TranscriptPanel = (props: Props) => {
                     DEBUG,
                     audioFile,
                     "en",
-                    props.APIKeyProp
+                    APIKey
                 ).then((data) => {
                     if(data.status === 200){
-                        props.setTranscriptProp(data.transcript);
+                        setTranscript(data.transcript);
                     }
                     else if(data.status === 401){
                         setModalIsOpen(true);
@@ -230,10 +230,10 @@ const TranscriptPanel = (props: Props) => {
                 Transcribe
             </button>
             <br />
-            {fileUploaded && !isLoading && !props.transcriptProp && (
+            {fileUploaded && !isLoading && !transcript && (
                 <div id="file-preview">
                     <em id="file-name">
-                        {!props.transcriptProp && !isLoading && audioFile?.name}
+                        {!transcript && !isLoading && audioFile?.name}
                     </em>
                     <button id="x-button" onClick={removeFile}>
                         <FontAwesomeIcon icon={faX} />
@@ -247,10 +247,10 @@ const TranscriptPanel = (props: Props) => {
                 <br />
                 {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
-                {fileUploaded && props.transcriptProp}
+                {fileUploaded && transcript}
             </p>
             <div id="word-counter-bar">
-                <WordCounter transcriptProp={props.transcriptProp} />
+                <WordCounter transcriptProp={transcript} />
             </div>
         </div>
     );
