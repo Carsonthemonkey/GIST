@@ -67,11 +67,16 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                     <GrPauseFill />
                 </button>
             ) : (
-                <button id="play-btn" className={!fileIsUploaded ? "disabled-button" : ""} onClick={playAudio}>
+                <button id="play-btn" className={!fileIsUploaded ? "icon disabled-button" : "icon"} onClick={playAudio}>
                     <GrPlayFill />
                 </button>
             )}
-        <div id="timeline"></div>
+        <div id="timeline">
+            <div id="progress"></div>
+            <div id="playhead-padding">
+                <div id="playhead"></div>
+            </div>
+        </div>
         {fileIsUploaded? <div id="timestamp">{formatTimestamp(currentTime)}/{formatTimestamp(audioDuration)}</div> : <div id="timestamp">--/--</div>}
         </div>
     );

@@ -15,9 +15,36 @@
 }
 #audio-panel #timeline {
   flex-grow: 1;
-  background-color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  height: 20px;
+  width: 100%;
+  position: relative;
+}
+#audio-panel #timeline #progress {
+  position: relative;
   height: 2px;
-  margin: 15px;
+  width: 100%;
+  background-color: var(--accent-color);
+  z-index: 1;
+}
+#audio-panel #timeline #playhead-padding {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: var(--background-color);
+  border-radius: 50%;
+  z-index: 3;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#audio-panel #timeline #playhead-padding #playhead {
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
 }
 #audio-panel #timestamp {
   margin: 15px;
