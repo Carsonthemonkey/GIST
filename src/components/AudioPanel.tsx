@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
@@ -8,20 +8,9 @@ interface AudioPanelProps {
 }
 
 const AudioPanel = ({ audioFile }: AudioPanelProps) => {
-    const [audio, setAudio] = useState(new Audio());
+    const [audio] = useState(new Audio(audioFile));
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
-    const [duration, setDuration] = useState(0);
-
-    useEffect(() => {
-        audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-        return () => {
-          audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        };
-      }, [audio]);
-
-    function handleLoadedMetadata(){
-        setDuration(audio.duration)
-    }
+    
 
     function playAudio() {
         //This function will play the audio file
@@ -52,7 +41,7 @@ const AudioPanel = ({ audioFile }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline"></div>
-        <div>0:00/{duration}</div>
+        <div>0:00/0:00</div>
         </div>
     );
 };
