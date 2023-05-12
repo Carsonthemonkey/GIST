@@ -7,6 +7,7 @@ import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
 import WordCounter from "./WordCounter";
 import { Context } from "../App";
 import AudioPanel from "./AudioPanel";
+import FileDropButton from "./FileDropButton";
 
 interface Props {
     APIKey: string;
@@ -26,69 +27,46 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [doTranslate, setDoTranslate] = React.useState(false);
 
-    const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-
-        // Find the element with the class 'overlay'
-        const overlayElement = document.querySelector(".overlay");
-        // Add the 'dragging-over' class to the element
-        if (overlayElement) {
-            // console.log("overlay element found");
-            overlayElement.classList.add("dragging-over");
-        }
-    };
-
-    const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        // Find the element with the class 'overlay'
-        const overlayElement = document.querySelector(".overlay");
-        // Remove the 'dragging-over' class to the element
-        // Check if the mouse pointer has moved outside the target element or its child elements
-        const relatedTargetNode = event.relatedTarget as Node; // Explicitly type event.relatedTarget as a Node object
-        if (
-            !event.relatedTarget ||
-            !event.currentTarget.contains(relatedTargetNode)
-        ) {
-            if (overlayElement) {
-                overlayElement.classList.remove("dragging-over");
-            }
-        }
-    };
-
-    const handleFileDrop = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        const overlayElement = document.querySelector(".overlay");
-        if (overlayElement) {
-            overlayElement.classList.remove("dragging-over");
-        }
-        const file = event.dataTransfer.files[0];
-        const validFileTypes = [
-            "mp3",
+    function handleFileUpload(file: File) {
+        const validAudioFileType = ["mp3",
             "mp4",
             "mpeg",
             "mpga",
             "m4a",
             "wav",
-            "webm",
-        ];
-        if (!validFileTypes.includes(file.name.split(".").pop()!)) {
-            setModalIsOpen(true);
-            setModalText(` File is not a valid filetype. Please use mp3, mp4, mpeg,
-            mpga, m4a, wav, or webm.`);
-            return;
-        }
-        setAudioFile(file);
-        setFileUploaded(true);
+            "webm",]
 
-        // Enable the transcribe button
-        const transcribeButton = document.querySelector(
-            "#transcribe-button"
-        ) as HTMLButtonElement;
-        if (transcribeButton) {
-            transcribeButton.classList.remove("disabled-button");
-            transcribeButton.disabled = false;
+        const validTextFileType = ["txt", "md"]
+        //TODO: add "docx", "doc", "pdf" 
+
+        if (validAudioFileType.includes(file.name.split(".").pop() as string)) {
+            console.log("audio file uploaded")
+            setAudioFile(file);
+            setFileUploaded(true);
+        } else if (validTextFileType.includes(file.name.split(".").pop() as string)) {
+            console.log("text file uploaded")
+            // setFileUploaded(true);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (e.target) {   
+                    props.setTranscriptProp(e.target.result as string);
+                }
+            }
+            reader.readAsText(file);
         }
-    };
+        else{
+            console.error("invalid file type")
+            setModalText("Invalid file type. Please upload an audio file with one of the following extensions: " + validAudioFileType.join(", ") + " or a text file with one of the following extensions: " + validTextFileType.join(", "))
+            setModalIsOpen(true);
+
+            // remove the dragging over class
+            const dropzone = document.querySelector(".dropzone");
+            if (dropzone) {
+                dropzone.classList.remove("dragging-over");
+            }
+        }
+    }
+
 
     async function transcribeAudio() {
         if (!fileUploaded || !audioFile) {
@@ -178,7 +156,6 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
             setModalText("Transcription failed.")
         }
     }
-
     function removeFile() {
         setFileUploaded(false);
         setAudioFile(null);
@@ -200,10 +177,6 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
     return (
         <div
             id="transcript-panel"
-            className="dropzone"
-            onDrop={handleFileDrop}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
         >
             <div className="overlay"></div>
             <h2 id="transcript-title">Transcript</h2>
@@ -224,8 +197,7 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
                 </label>
             </div>
             <button
-                id="transcribe-button"
-                className="non-icon-button disabled-button"
+                className={fileUploaded? "non-icon-button" : "non-icon-button disabled-button"}
                 onClick={transcribeAudio}
             >
                 Transcribe
@@ -241,9 +213,10 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
                     </button>
                 </div>
             )}
-            <div id="file-drop-dialog">
+            {/* <div id="file-drop-dialog">
                 {!fileUploaded && "Drag and drop your audio file here"}
-            </div>
+            </div> */}
+            {!fileUploaded && !props.transcriptProp && <FileDropButton setFile={handleFileUpload}></FileDropButton>}
             <p id="transcript-content">
                 <br />
                 {/* TODO Add a nice style to this */}

@@ -1,0 +1,51 @@
+.file-drop-button{
+    // position: absolute; // Set position to absolute
+    // top: 50%; // Center the button vertically
+    // left: 50%; // Center the button horizontally
+    // transform: translate(-50%, -50%); // Adjust for half the button's width and height
+    .icon{
+        //make the icon bigger
+        font-size: 40px;
+    }
+    button{
+        
+        transition: 0.3s ease-out all;
+        //remove the button border
+        border: 2px solid var(--accent-color);
+        border-radius: 12px;
+        //make the button square
+        &:hover{
+            color: var(--background-color);
+            background-color: var(--accent-color);
+        }
+    }
+}
+
+.dropzone{
+    // flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border : 2px dashed var(--accent-color);
+    border-radius: 30px;
+    height: calc(100% - 250px);
+    // min-height: 700px;
+    margin: 20px;
+    // margin-bottom: 40px;
+    // margin-top: 30px;
+    // padding-bottom: 10px;
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: none;
+    }
+    
+    &.dragging-over {
+        background-color: var(--grayed-out-color);
+    }
+
+}
