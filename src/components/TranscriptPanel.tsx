@@ -49,7 +49,7 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 if (e.target) {   
-                    props.setTranscriptProp(e.target.result as string);
+                    setTranscript(e.target.result as string);
                 }
             }
             reader.readAsText(file);
@@ -216,7 +216,7 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
             {/* <div id="file-drop-dialog">
                 {!fileUploaded && "Drag and drop your audio file here"}
             </div> */}
-            {!fileUploaded && !props.transcriptProp && <FileDropButton setFile={handleFileUpload}></FileDropButton>}
+            {!fileUploaded && !transcript && <FileDropButton setFile={handleFileUpload}></FileDropButton>}
             <p id="transcript-content">
                 <br />
                 {/* TODO Add a nice style to this */}
