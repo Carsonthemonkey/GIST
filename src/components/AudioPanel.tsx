@@ -38,6 +38,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             pauseAudio();
             setAudio(null);
             setCurrentTime(0);
+            setPlayheadPosition(0);
         }
     }, [audioFile, fileIsUploaded]);
 
