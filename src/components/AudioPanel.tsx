@@ -62,9 +62,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     return (
         <div id="audio-panel">
-            <button className="icon">
+            {/* <button className="icon">
                 <FontAwesomeIcon icon={faMicrophone} size="2x" />
-            </button>
+            </button> */}
             {audioIsPlaying && fileIsUploaded? (
                 <button id="pause-btn" onClick={pauseAudio}>
                     <GrPauseFill />
