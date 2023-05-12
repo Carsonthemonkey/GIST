@@ -58,7 +58,7 @@ function App() {
             modifierKey = event.metaKey;
         else modifierKey = event.ctrlKey;
 
-        if (event.ctrlKey && event.key === "l") {
+        if (modifierKey && event.key === "l") {
             event.preventDefault();
             if (colorTheme === "dark") {
                 console.log(colorTheme);

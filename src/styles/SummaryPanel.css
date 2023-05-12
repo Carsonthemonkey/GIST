@@ -25,13 +25,14 @@
   padding: 0;
   margin-top: 0;
   width: 35%;
-  background-color: var(--background-color) -background-color;
+  background-color: var(--background-color);
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 231px;
 }
 #summary-panel #summary-drop-down .summary-drop-down-item {
+  background-color: var(--background-color);
   margin-top: 3px;
   padding: 10px;
   cursor: pointer;

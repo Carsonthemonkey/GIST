@@ -30,7 +30,7 @@
         padding: 0;
         margin-top: 0;
         width: 35%;
-        background-color: var(--background-color)-background-color;
+        background-color: var(--background-color);
         // centers the drop down
         position: absolute;
         left: 50%;
@@ -41,6 +41,7 @@
         );
 
         .summary-drop-down-item {
+            background-color: var(--background-color);
             margin-top: 3px;
             padding: 10px;
             cursor: pointer;
