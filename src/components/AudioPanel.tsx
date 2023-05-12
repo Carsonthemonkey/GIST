@@ -15,6 +15,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     const [audioDuration, setAudioDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0); 
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
+    const [playheadPosition, setPlayheadPosition] = useState(0);
 
     audio?.addEventListener("loadedmetadata", (event) => {
         setAudioDuration(audio?.duration);
@@ -30,6 +31,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             }
             audioObject.addEventListener("timeupdate", (event) => {
                 setCurrentTime(audioObject.currentTime);
+                setPlayheadPosition((audioObject.currentTime / audioDuration) * 100);
             })
         }
         else{
@@ -73,7 +75,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             )}
         <div id="timeline">
             <div id="progress"></div>
-            <div id="playhead-padding">
+            <div id="playhead-padding" style={{ left: `${playheadPosition}%`}}>
                 <div id="playhead"></div>
             </div>
         </div>
