@@ -17,7 +17,7 @@
   align-items: center;
   border: 2px dashed var(--accent-color);
   border-radius: 30px;
-  height: 53vh;
+  height: calc(100% - 250px);
   margin: 20px;
 }
 .dropzone .overlay {
