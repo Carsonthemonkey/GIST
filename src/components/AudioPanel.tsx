@@ -62,9 +62,12 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     return (
         <div id="audio-panel">
-            {/* <button className="icon">
+            {/*//! This appears to be a load-bearing button. When I remove it, the playhead no longer works for some reason ¯\_(ツ)_/¯ Ok It doesnt even work when I set display none?? like it has to be there for some reason??? This may be a weird CSS problem with the playhead or something. Aaaand it is also really buggy in electron. Oh boy.
+            //TODO: FIX THIS */}
+
+            <button className="icon">
                 <FontAwesomeIcon icon={faMicrophone} size="2x" />
-            </button> */}
+            </button>
             {audioIsPlaying && fileIsUploaded? (
                 <button id="pause-btn" onClick={pauseAudio}>
                     <GrPauseFill />
