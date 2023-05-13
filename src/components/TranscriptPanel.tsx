@@ -221,7 +221,7 @@ const TranscriptPanel = ({APIKey, transcript, setTranscript}: Props) => {
                 <br />
                 {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
-                {fileUploaded && transcript}
+                {transcript}    
             </p>
             <div id="word-counter-bar">
                 <WordCounter transcriptProp={transcript} />
