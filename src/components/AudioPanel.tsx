@@ -116,10 +116,10 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline">
-            <div id="progress" ref={timelineRef}></div>
-            <div id="playhead-padding" style={{ left: `${playheadPosition}%` }} onMouseDown={handleDragStart} className={isDragging ? "dragging" : ""}>
+            <div id="progress" ref={timelineRef} className={audio ? "" : "disabled"}></div>
+            {audio && <div id="playhead-padding" style={{ left: `${playheadPosition}%` }} onMouseDown={handleDragStart} className={isDragging ? "dragging" : ""}>
                 <div id="playhead"></div>
-            </div>
+            </div>}
         </div>
         {fileIsUploaded? <div id="timestamp">{formatTimestamp(currentTime)} / {formatTimestamp(audioDuration)}</div> : <div id="timestamp">- - / - -</div>}
         </div>

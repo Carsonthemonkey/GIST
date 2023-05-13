@@ -30,6 +30,9 @@
             width: 100%;
             background-color: var(--accent-color);
             z-index: 1;
+            &.disabled{
+                background-color: var(--grayed-out-color);
+            }
         }
         #playhead-padding{
             cursor: grab;

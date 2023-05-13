@@ -28,6 +28,9 @@
   background-color: var(--accent-color);
   z-index: 1;
 }
+#audio-panel #timeline #progress.disabled {
+  background-color: var(--grayed-out-color);
+}
 #audio-panel #timeline #playhead-padding {
   cursor: grab;
   position: absolute;
