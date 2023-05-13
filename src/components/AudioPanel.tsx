@@ -38,6 +38,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                     setPlayheadPosition((audioObject.currentTime / audioObject.duration) * 100);
                 }
             })
+            audioObject.addEventListener("ended", (event) => {
+                setAudioIsPlaying(false);
+            })
         }
         else{
             pauseAudio();
