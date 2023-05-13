@@ -1,6 +1,7 @@
 @use 'variables' as vars;
 
 #audio-panel {
+    transition: all 0.3s ease-in-out;
     // makes audio panel fixed to bottom of page
     background-color: var(--background-color);
     position: fixed;

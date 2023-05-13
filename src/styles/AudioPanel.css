@@ -1,4 +1,5 @@
 #audio-panel {
+  transition: all 0.3s ease-in-out;
   background-color: var(--background-color);
   position: fixed;
   bottom: 0;
