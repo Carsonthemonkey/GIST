@@ -48,9 +48,14 @@
 }
 #audio-panel #timestamp {
   margin: 15px;
+  white-space: nowrap;
 }
 #audio-panel button {
   border: none;
+  position: relative;
+  padding: 0;
+  width: 50px;
+  height: 50px;
 }
 #audio-panel .disabled-button svg path {
   stroke: var(--grayed-out-color);
