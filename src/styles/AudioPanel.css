@@ -55,7 +55,8 @@
   border-radius: 50%;
 }
 #audio-panel #timestamp {
-  margin: 15px;
+  margin-right: 15px;
+  margin-left: 20px;
   white-space: nowrap;
 }
 #audio-panel button {

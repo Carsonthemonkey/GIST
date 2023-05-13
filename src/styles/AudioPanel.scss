@@ -60,8 +60,11 @@
     }
 
     #timestamp{
-        margin: 15px;
+        // Margin is different because we want to push the timeline a bit further away than the edge of the screen is
+        margin-right: 15px;
+        margin-left: 20px;
         white-space: nowrap;
+
     }
     button{
         border: none;
