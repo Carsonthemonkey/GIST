@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +16,8 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     const [currentTime, setCurrentTime] = useState(0); 
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
     const [playheadPosition, setPlayheadPosition] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const timelineRef = useRef<HTMLDivElement>(null);
 
     audio?.addEventListener("loadedmetadata", (event) => {
         setAudioDuration(audio?.duration);
@@ -41,6 +43,35 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             setPlayheadPosition(0);
         }
     }, [audioFile, fileIsUploaded]);
+
+    function handleDrag(event: MouseEvent) {
+        //This function will update the playhead position and the current audio time
+        const timelineRect = timelineRef.current?.getBoundingClientRect();
+        const timelineLeft = timelineRect?.left ?? 0;
+        const timelineRight = timelineRect?.right ?? 0;
+        const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
+        console.log("dragging", position);
+        setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
+    }
+    
+    function handleDragStart(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        event.preventDefault();
+        console.log("drag start");
+        setIsDragging(true);
+
+        document.body.style.cursor = "grabbing";
+        document.addEventListener("mousemove", handleDrag);
+        document.addEventListener("mouseup", handleDragEnd);
+    }
+
+
+    function handleDragEnd(event: MouseEvent) {
+        console.log("drag end");
+        setIsDragging(false);
+        document.removeEventListener("mousemove", handleDrag);
+        document.removeEventListener("mouseup", handleDragEnd);
+        document.body.style.cursor = "default";
+    }
 
     function playAudio() {
         //This function will play the audio file
@@ -76,8 +107,8 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline">
-            <div id="progress"></div>
-            <div id="playhead-padding" style={{ left: `${playheadPosition}%`}}>
+            <div id="progress" ref={timelineRef}></div>
+            <div id="playhead-padding" style={{ left: `${playheadPosition}%` }} onMouseDown={handleDragStart}>
                 <div id="playhead"></div>
             </div>
         </div>

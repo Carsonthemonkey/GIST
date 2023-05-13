@@ -29,6 +29,7 @@
   z-index: 1;
 }
 #audio-panel #timeline #playhead-padding {
+  cursor: grab;
   position: absolute;
   height: 16px;
   width: 16px;
