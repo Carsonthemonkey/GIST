@@ -187,7 +187,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     }
 
     return (
-        <div id="transcript-panel">
+        <div id="transcript-panel" className={transcript? "transcript-loaded" : ""}>
             <div className="overlay"></div>
             <h2 id="transcript-title">Transcript</h2>
             <div>
@@ -240,8 +240,8 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                 {transcript}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
-            <div id="word-counter-bar">
-                <WordCounter transcriptProp={transcript} />
+            <div id="word-counter-bar" className="hidden">
+                {transcript && <WordCounter transcriptProp={transcript} />}
             </div>
             <AudioPanel
                 audioFile={!!audioFile ? URL.createObjectURL(audioFile) : ""}

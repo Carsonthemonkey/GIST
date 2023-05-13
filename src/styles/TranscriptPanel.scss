@@ -8,7 +8,11 @@
     // height: calc(100% - vars.$audio-panel-height - vars.$toolbar-height);
     left: 0;
     width: 50%;
-    bottom: calc(vars.$word-counter-bar-height + vars.$audio-panel-height);
+    bottom: vars.$audio-panel-height;
+    
+    &.transcript-loaded{
+        bottom: calc(vars.$word-counter-bar-height + vars.$audio-panel-height);
+    }
     border-right: 1px solid var(--accent-color);
     border-bottom: none;
     overflow-y: scroll;
@@ -47,7 +51,6 @@
         position: fixed;
         // bottom: 0;
         bottom: vars.$audio-panel-height;
-        
         left: 0;
         width: 50%;
         height: vars.$word-counter-bar-height;
