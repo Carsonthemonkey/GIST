@@ -239,12 +239,10 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                 {isLoading && "Loading..."}
                 {transcript}
             </p>
-            {transcript && (
-                // Might be good to move this to a separate component (and maybe add like a copy and save/download button?)
-                <div id="word-counter-bar">
-                    <WordCounter transcriptProp={transcript} />
-                </div>
-            )}
+            {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
+            <div id="word-counter-bar">
+                <WordCounter transcriptProp={transcript} />
+            </div>
             <AudioPanel
                 audioFile={!!audioFile ? URL.createObjectURL(audioFile) : ""}
                 fileIsUploaded={fileUploaded}
