@@ -66,6 +66,12 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         setIsDragging(true);
         console.log("drag start", isDragging);
 
+        const timelineRect = timelineRef.current?.getBoundingClientRect();
+        const timelineLeft = timelineRect?.left ?? 0;
+        const timelineRight = timelineRect?.right ?? 0;
+        const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
+        scrubTime = (position / (timelineRight - timelineLeft)) * audioDuration
+
         document.body.style.cursor = "grabbing";
         document.addEventListener("mousemove", handleDrag);
         document.addEventListener("mouseup", handleDragEnd);
