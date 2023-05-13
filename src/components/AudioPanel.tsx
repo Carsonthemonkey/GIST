@@ -80,7 +80,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         document.removeEventListener("mousemove", handleDrag);
         document.removeEventListener("mouseup", handleDragEnd);
         document.body.style.cursor = "default";
-        audio?.play();
+        if(audioIsPlaying) audio?.play();
     }
 
     function playAudio() {
