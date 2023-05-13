@@ -33,7 +33,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             }
             audioObject.addEventListener("timeupdate", (event) => {
                 setCurrentTime(audioObject.currentTime);
-                setPlayheadPosition((audioObject.currentTime / audioObject.duration) * 100);
+                if(!isDragging){
+                    setPlayheadPosition((audioObject.currentTime / audioObject.duration) * 100);
+                }
             })
         }
         else{
@@ -44,20 +46,23 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         }
     }, [audioFile, fileIsUploaded]);
 
+
     function handleDrag(event: MouseEvent) {
         //This function will update the playhead position and the current audio time
         const timelineRect = timelineRef.current?.getBoundingClientRect();
         const timelineLeft = timelineRect?.left ?? 0;
         const timelineRight = timelineRect?.right ?? 0;
         const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
-        console.log("dragging", position);
+        console.log("dragging", isDragging);
         setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
+        setCurrentTime((position / (timelineRight - timelineLeft)) * audioDuration);
     }
     
     function handleDragStart(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        audio?.pause();
         event.preventDefault();
-        console.log("drag start");
         setIsDragging(true);
+        console.log("drag start", isDragging);
 
         document.body.style.cursor = "grabbing";
         document.addEventListener("mousemove", handleDrag);
@@ -66,8 +71,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
 
     function handleDragEnd(event: MouseEvent) {
-        console.log("drag end");
+        audio?.play();
         setIsDragging(false);
+        console.log("drag end", isDragging);
         document.removeEventListener("mousemove", handleDrag);
         document.removeEventListener("mouseup", handleDragEnd);
         document.body.style.cursor = "default";
