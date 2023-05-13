@@ -33,6 +33,9 @@
         }
         #playhead-padding{
             cursor: grab;
+            &.dragging{
+                cursor: grabbing;
+            }
             position: absolute;
             height: 16px;
             width:16px;

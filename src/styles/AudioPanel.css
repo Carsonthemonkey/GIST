@@ -41,6 +41,9 @@
   justify-content: center;
   align-items: center;
 }
+#audio-panel #timeline #playhead-padding.dragging {
+  cursor: grabbing;
+}
 #audio-panel #timeline #playhead-padding #playhead {
   width: 10px;
   height: 10px;
