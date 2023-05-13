@@ -18,7 +18,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     const [playheadPosition, setPlayheadPosition] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const timelineRef = useRef<HTMLDivElement>(null);
-    let scrubTime = 0;
+    let scrubTime: null | number = null;
 
     audio?.addEventListener("loadedmetadata", (event) => {
         setAudioDuration(audio?.duration);
@@ -65,13 +65,6 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         event.preventDefault();
         setIsDragging(true);
         console.log("drag start", isDragging);
-
-        const timelineRect = timelineRef.current?.getBoundingClientRect();
-        const timelineLeft = timelineRect?.left ?? 0;
-        const timelineRight = timelineRect?.right ?? 0;
-        const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
-        scrubTime = (position / (timelineRight - timelineLeft)) * audioDuration
-
         document.body.style.cursor = "grabbing";
         document.addEventListener("mousemove", handleDrag);
         document.addEventListener("mouseup", handleDragEnd);
@@ -80,7 +73,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     function handleDragEnd(event: MouseEvent) {
         console.log("scrubTime",scrubTime)
-        if(audio) audio.currentTime = scrubTime;
+        if(audio && scrubTime !== null) audio.currentTime = scrubTime;
         setIsDragging(false);
         console.log("drag end", isDragging);
         document.removeEventListener("mousemove", handleDrag);
