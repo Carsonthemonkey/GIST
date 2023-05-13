@@ -3,7 +3,7 @@
   top: calc(50px + var(--electron-titlebar-height));
   right: 0;
   width: 50%;
-  bottom: 0;
+  bottom: 50px;
   overflow-y: scroll;
 }
 #summary-panel #notes-button {

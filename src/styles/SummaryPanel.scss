@@ -6,7 +6,7 @@
     top: calc(vars.$toolbar-height + var(--electron-titlebar-height));
     right: 0;
     width: 50%;
-    bottom: 0;
+    bottom: vars.$audio-panel-height;
     overflow-y: scroll;
 
     #notes-button {
