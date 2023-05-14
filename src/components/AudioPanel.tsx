@@ -51,6 +51,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     }, [audioFile, fileIsUploaded]);
 
 
+    
     function handleDrag(event: MouseEvent) {
         //This function will update the playhead position and the current audio time
 
@@ -89,14 +90,15 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     }
 
     function handlePlayheadJump(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        if(audio && !isDragging){
+            audio?.pause();
             const timelineRect = timelineRef.current?.getBoundingClientRect();
             const timelineLeft = timelineRect?.left ?? 0;
             const timelineRight = timelineRect?.right ?? 0;
             const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
             setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
-            audio.currentTime = (position / (timelineRight - timelineLeft)) * audioDuration;
-        }
+            scrubTime = (position / (timelineRight - timelineLeft)) * audioDuration
+            setCurrentTime(scrubTime);
+            handleDragStart(event);
     }
 
     function playAudio() {
@@ -133,7 +135,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline">
-            <div id="progress-hitbox" style={!isDragging && audio? {cursor: "pointer"} : {}} onClick={handlePlayheadJump}>
+            <div id="progress-hitbox" style={!isDragging && audio? {cursor: "pointer"} : {}} onMouseDown={handlePlayheadJump}>
             <div id="progress" ref={timelineRef} className={audio ? "" : "disabled"}></div>
             </div>
             {audio && <div id="playhead-padding" style={{ left: `${playheadPosition}%` }} onMouseDown={handleDragStart} className={isDragging ? "dragging" : ""}>
