@@ -38,9 +38,6 @@ const SummaryPanel = (props: Props) => {
     const { modalIsOpen, setModalIsOpen, modalText, setModalText } = useContext(Context)
     const DEBUG = false;
     const [isOpen, setIsOpen] = useState(false);
-    // const LatexPrompt =
-    //     " If there is any math whatsoever, use LaTeX notation to display it by enclosing it with two $ signs. Even single numbers should be in LaTeX for readability. ALL MATH SHOULD BE IN LATEX NOTATION.";
-
     const prompts: Prompts = promptsOBJ as Prompts;
     
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
@@ -50,7 +47,7 @@ const SummaryPanel = (props: Props) => {
     console.log("subjects" + subjects);
     const promptTypes = Object.keys(prompts[subjects[0]].prompts); 
     const [summary, setSummary] = React.useState(``);
-    const [isLoading, setIsLoading] = React.useState(false); //This might be kind of messy but it probably works
+    const [isLoading, setIsLoading] = React.useState(false);
     const [activePromptType, setActivePromptType] = React.useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
 
