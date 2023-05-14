@@ -22,14 +22,20 @@
   width: 100%;
   position: relative;
 }
-#audio-panel #timeline #progress {
+#audio-panel #timeline #progress-hitbox {
   position: relative;
+  height: 10px;
+  width: 100%;
+}
+#audio-panel #timeline #progress-hitbox #progress {
+  position: relative;
+  top: 40%;
   height: 2px;
   width: 100%;
   background-color: var(--accent-color);
   z-index: 1;
 }
-#audio-panel #timeline #progress.disabled {
+#audio-panel #timeline #progress-hitbox #progress.disabled {
   background-color: var(--grayed-out-color);
 }
 #audio-panel #timeline #playhead-padding {
@@ -61,6 +67,7 @@
 }
 #audio-panel button {
   border: none;
+  top: 2%;
   position: relative;
   padding: 0;
   width: 50px;

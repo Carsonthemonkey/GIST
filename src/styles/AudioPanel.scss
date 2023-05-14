@@ -25,14 +25,22 @@
         height: 20px;
         width:100%;
         position: relative;
-        #progress{
+        #progress-hitbox{
+            // background-color: blue;
+            // cursor: pointer;
             position: relative;
-            height: 2px;
+            height: 10px;
             width: 100%;
-            background-color: var(--accent-color);
-            z-index: 1;
-            &.disabled{
-                background-color: var(--grayed-out-color);
+            #progress{
+                position: relative;
+                top: 40%;
+                height: 2px;
+                width: 100%;
+                background-color: var(--accent-color);
+                z-index: 1;
+                &.disabled{
+                    background-color: var(--grayed-out-color);
+                }
             }
         }
         #playhead-padding{
@@ -68,6 +76,7 @@
     }
     button{
         border: none;
+        top: 2%;
         position: relative;
         padding: 0;
         width: 50px;

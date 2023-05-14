@@ -53,6 +53,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     function handleDrag(event: MouseEvent) {
         //This function will update the playhead position and the current audio time
+
+        if(!isDragging) setIsDragging(true); //This is a little messy, but for some reason it won't always be true for some reason which will cause the cursor type to stay as 'grab' rather than 'grabbing'
+        
         const timelineRect = timelineRef.current?.getBoundingClientRect();
         const timelineLeft = timelineRect?.left ?? 0;
         const timelineRight = timelineRect?.right ?? 0;
@@ -119,7 +122,9 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
                 </button>
             )}
         <div id="timeline">
+            <div id="progress-hitbox">
             <div id="progress" ref={timelineRef} className={audio ? "" : "disabled"}></div>
+            </div>
             {audio && <div id="playhead-padding" style={{ left: `${playheadPosition}%` }} onMouseDown={handleDragStart} className={isDragging ? "dragging" : ""}>
                 <div id="playhead"></div>
             </div>}
