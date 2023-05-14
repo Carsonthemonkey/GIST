@@ -26,6 +26,7 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     useEffect(() => {
         if(audioFile && fileIsUploaded) {
+            setPlayheadPosition(0);
             setCurrentTime(0);
             const audioObject = new Audio(audioFile);
             setAudio(audioObject);
