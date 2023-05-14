@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
-import "../styles/SummaryPanel.css";
-import summarizeGPT from "../utils/summarize";
+import "./SummaryPanel.css";
+import summarizeGPT from "../../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import SmallDropdown from "./SmallDropdown";
-import PanelAnchor from "./PanelAnchor";
-import promptsOBJ from "../assets/prompts.json";
-import MarkdownFormatter from "./MarkdownFormatter";
-import { Context } from "../App";
+import SmallDropdown from "../SmallDropdown/SmallDropdown";
+import PanelAnchor from "../PanelAnchor/PanelAnchor";
+import promptsOBJ from "../../assets/prompts.json";
+import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
+import { Context } from "../../App";
 
 
 interface Props {

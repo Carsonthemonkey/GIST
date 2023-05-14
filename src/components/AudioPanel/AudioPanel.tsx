@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../styles/AudioPanel.css";
+import "./AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { GrPlayFill, GrPauseFill } from "react-icons/gr";
-import formatTimestamp from "../utils/formatTimestamp";
+import formatTimestamp from "../../utils/formatTimestamp";
 
 interface AudioPanelProps {
     audioFile: File | null;

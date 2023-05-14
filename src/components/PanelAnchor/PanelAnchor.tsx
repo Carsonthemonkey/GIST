@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/PanelAnchor.css'
+import './PanelAnchor.css'
 interface Props {
     children: React.ReactNode
     position: | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'

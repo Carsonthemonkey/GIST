@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
-import { Context } from "../App";
-import "../styles/APIPopUp.css";
+import { Context } from "../../App";
+import "./APIPopUp.css";
 
 interface Props {
     isPopUpOpen: boolean;

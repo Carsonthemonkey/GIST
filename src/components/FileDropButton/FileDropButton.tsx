@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../styles/FileDropButton.css";
+import "./FileDropButton.css";
 import { AiOutlineFileAdd } from "react-icons/ai";
 
 interface FileDropButtonProps {

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
-import "../styles/TranscriptPanel.css";
+import "./TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
-import { transcribeWhisper, translateWhisper } from "../utils/transcibe";
-import WordCounter from "./WordCounter";
-import { Context } from "../App";
-import AudioPanel from "./AudioPanel";
-import FileDropButton from "./FileDropButton";
+import { transcribeWhisper, translateWhisper } from "../../utils/transcibe";
+import WordCounter from "../WordCounter/WordCounter";
+import { Context } from "../../App";
+import AudioPanel from "../AudioPanel/AudioPanel";
+import FileDropButton from "../FileDropButton/FileDropButton";
 
 interface Props {
     APIKey: string;

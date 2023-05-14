@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/ElectronTitlebar.css'
+import './ElectronTitlebar.css'
 
 const ElectronTitlebar = () => {
   return (

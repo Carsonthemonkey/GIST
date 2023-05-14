@@ -1,6 +1,6 @@
 import React from "react";
-import wordCount from "../utils/countWords";
-import countWords from "../utils/countWords";
+import wordCount from "../../utils/countWords";
+import countWords from "../../utils/countWords";
 
 interface Props {
     transcriptProp: string;
