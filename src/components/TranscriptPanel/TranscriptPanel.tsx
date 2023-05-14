@@ -188,7 +188,6 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
 
     return (
         <div id="transcript-panel" className={transcript? "transcript-loaded" : ""}>
-            <div className="overlay"></div>
             <h2 id="transcript-title">Transcript</h2>
             <div>
                 <label id="translate-section">

@@ -101,11 +101,11 @@ const SummaryPanel = (props: Props) => {
 
     return (
         <div id="summary-panel">
-            <PanelAnchor position="top-left">
-                <SmallDropdown options={subjects} setSelected={setActiveSubject}>
-                    Topic
-                </SmallDropdown>
-            </PanelAnchor>
+                <PanelAnchor position="top-left">
+                    <SmallDropdown options={subjects} setSelected={setActiveSubject}>
+                        Topic
+                    </SmallDropdown>
+                </PanelAnchor>
             <br />
             <h2 id="summary-title">Summary</h2>
             <button
