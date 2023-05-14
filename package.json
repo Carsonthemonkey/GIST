@@ -1,7 +1,7 @@
 {
   "name": "GIST",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist-electron/main/index.js",
   "type": "commonjs",
   "homepage": "https://carsonthemonkey.github.io/GIST/",
