@@ -1,12 +1,12 @@
 import React, { useState, createContext, useEffect } from "react";
 import "./styles/global.css";
 import "./styles/App.css";
-import Toolbar from "./components/Toolbar";
-import TranscriptPanel from "./components/TranscriptPanel";
-import SummaryPanel from "./components/SummaryPanel";
-import ElectronTitlebar from "./components/ElectronTitlebar";
+import Toolbar from "./components/Toolbar/Toolbar";
+import TranscriptPanel from "./components/TranscriptPanel/TranscriptPanel";
+import SummaryPanel from "./components/SummaryPanel/SummaryPanel";
+import ElectronTitlebar from "./components/ElectronTitlebar/ElectronTitlebar";
 import Modal from "react-modal";
-import MarkdownFormatter from "./components/MarkdownFormatter";
+import MarkdownFormatter from "./components/MarkdownFormatter/MarkdownFormatter";
 
 const isElectron =
     typeof process !== "undefined" &&
@@ -14,7 +14,7 @@ const isElectron =
     process.versions.electron;
 
 import { setColorScheme } from "./utils/colorSchemeChanger";
-import AudioPanel from "./components/AudioPanel";
+import AudioPanel from "./components/AudioPanel/AudioPanel";
 
 // export const Context = createContext<
 //     [string, React.Dispatch<React.SetStateAction<string>>]

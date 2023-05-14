@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/Toolbar.css";
-import APIPopUp from "./APIPopUp";
+import "./Toolbar.css";
+import APIPopUp from "../APIPopUp/APIPopUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { RiKey2Fill } from "react-icons/ri";
