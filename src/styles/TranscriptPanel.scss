@@ -5,9 +5,14 @@
     // top: vars.$toolbar-height + vars.$electron-titlebar-height;
     // calc must be used here since we are adding a css runtime variable
     top: calc(vars.$toolbar-height + var(--electron-titlebar-height));
+    // height: calc(100% - vars.$audio-panel-height - vars.$toolbar-height);
     left: 0;
     width: 50%;
-    bottom: vars.$word-counter-bar-height;
+    bottom: vars.$audio-panel-height;
+    
+    &.transcript-loaded{
+        bottom: calc(vars.$word-counter-bar-height + vars.$audio-panel-height);
+    }
     border-right: 1px solid var(--accent-color);
     border-bottom: none;
     overflow-y: scroll;
@@ -44,11 +49,12 @@
 
     #word-counter-bar {
         position: fixed;
-        bottom: 0;
+        // bottom: 0;
+        bottom: vars.$audio-panel-height;
         left: 0;
         width: 50%;
         height: vars.$word-counter-bar-height;
-        border-top: 1px solid var(--grayed-out-color);
+        // border-top: 1px solid var(--grayed-out-color);
         border-right: 1px solid var(--accent-color);
         // arrange elements to far left
         display: flex;

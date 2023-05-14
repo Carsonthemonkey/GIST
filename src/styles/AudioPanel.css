@@ -1,4 +1,6 @@
 #audio-panel {
+  transition: all 0.3s ease-in-out;
+  background-color: var(--background-color);
   position: fixed;
   bottom: 0;
   left: 0;
@@ -11,4 +13,66 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+#audio-panel #timeline {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  width: 100%;
+  position: relative;
+}
+#audio-panel #timeline #progress-hitbox {
+  position: relative;
+  height: 10px;
+  width: 100%;
+}
+#audio-panel #timeline #progress-hitbox #progress {
+  position: relative;
+  top: 40%;
+  height: 2px;
+  width: 100%;
+  background-color: var(--accent-color);
+  z-index: 1;
+}
+#audio-panel #timeline #progress-hitbox #progress.disabled {
+  background-color: var(--grayed-out-color);
+}
+#audio-panel #timeline #playhead-padding {
+  cursor: grab;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: var(--background-color);
+  border-radius: 50%;
+  z-index: 3;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#audio-panel #timeline #playhead-padding.dragging {
+  cursor: grabbing;
+}
+#audio-panel #timeline #playhead-padding #playhead {
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+}
+#audio-panel #timestamp {
+  margin-right: 15px;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+#audio-panel button {
+  border: none;
+  top: 2%;
+  position: relative;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+}
+#audio-panel .disabled-button svg path {
+  stroke: var(--grayed-out-color);
 }/*# sourceMappingURL=AudioPanel.css.map */

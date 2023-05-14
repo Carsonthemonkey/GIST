@@ -14,6 +14,7 @@ const isElectron =
     process.versions.electron;
 
 import { setColorScheme } from "./utils/colorSchemeChanger";
+import AudioPanel from "./components/AudioPanel";
 
 // export const Context = createContext<
 //     [string, React.Dispatch<React.SetStateAction<string>>]
@@ -87,9 +88,9 @@ function App() {
             <div className={isElectron ? "App electron" : "App"}>
                 <Toolbar />
                 <TranscriptPanel
-                    APIKeyProp={APIKey}
-                    transcriptProp={transcript}
-                    setTranscriptProp={setTranscriptText}
+                    APIKey={APIKey}
+                    transcript={transcript}
+                    setTranscript={setTranscriptText}
                 />
                 <SummaryPanel APIKeyProp={APIKey} transcriptProp={transcript} />
                 {modalIsOpen && (

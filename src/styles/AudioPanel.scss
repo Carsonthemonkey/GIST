@@ -1,7 +1,9 @@
 @use 'variables' as vars;
 
 #audio-panel {
+    transition: all 0.3s ease-in-out;
     // makes audio panel fixed to bottom of page
+    background-color: var(--background-color);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -15,4 +17,81 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    #timeline{
+        // center content vertically
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        height: 20px;
+        width:100%;
+        position: relative;
+        #progress-hitbox{
+            // background-color: blue;
+            // cursor: pointer;
+            position: relative;
+            height: 10px;
+            width: 100%;
+            #progress{
+                position: relative;
+                top: 40%;
+                height: 2px;
+                width: 100%;
+                background-color: var(--accent-color);
+                z-index: 1;
+                &.disabled{
+                    background-color: var(--grayed-out-color);
+                }
+            }
+        }
+        #playhead-padding{
+            cursor: grab;
+            &.dragging{
+                cursor: grabbing;
+            }
+            position: absolute;
+            height: 16px;
+            width:16px;
+            background-color: var(--background-color);
+            border-radius: 50%;
+            z-index: 3;
+            left: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            #playhead{
+                width: 10px;
+                height: 10px;
+                background-color: var(--accent-color);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    #timestamp{
+        // Margin is different because we want to push the timeline a bit further away than the edge of the screen is
+        margin-right: 15px;
+        margin-left: 20px;
+        white-space: nowrap;
+
+    }
+    button{
+        border: none;
+        top: 2%;
+        position: relative;
+        padding: 0;
+        width: 50px;
+        height: 50px;
+    }
+    // svg{
+    //     path
+    //     height: 100%;
+    //     width: auto;
+    // }
+    .disabled-button{
+        svg{
+            path{
+                stroke: var(--grayed-out-color);
+            }
+        }
+    }
 }

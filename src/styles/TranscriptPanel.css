@@ -3,10 +3,13 @@
   top: calc(50px + var(--electron-titlebar-height));
   left: 0;
   width: 50%;
-  bottom: 30px;
+  bottom: 50px;
   border-right: 1px solid var(--accent-color);
   border-bottom: none;
   overflow-y: scroll;
+}
+#transcript-panel.transcript-loaded {
+  bottom: 80px;
 }
 #transcript-panel #checkmark,
 #transcript-panel #checkmark-label {
@@ -36,11 +39,10 @@
 }
 #transcript-panel #word-counter-bar {
   position: fixed;
-  bottom: 0;
+  bottom: 50px;
   left: 0;
   width: 50%;
   height: 30px;
-  border-top: 1px solid var(--grayed-out-color);
   border-right: 1px solid var(--accent-color);
   display: flex;
   flex-direction: row;
