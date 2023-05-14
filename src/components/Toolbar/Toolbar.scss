@@ -2,6 +2,11 @@
 
 
 #toolbar {
+    button{
+        width: 75px;
+        height: 50px;
+
+    }
     -webkit-app-region: drag;
     // makes toolbar fixed to top of page
     position: fixed;

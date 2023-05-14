@@ -25,7 +25,6 @@ const Toolbar = () => {
                         togglePopUp={togglePopUp}
                     />
                 )}
-                <div className="filler"></div>
                 <h1 id="app-name">GIST</h1>
                 {/* This will link to the github README for now */}
                 <a

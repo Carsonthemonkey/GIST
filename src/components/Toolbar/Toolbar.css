@@ -12,6 +12,10 @@
   border-bottom: 1px solid var(--accent-color);
   height: 50px;
 }
+#toolbar button {
+  width: 75px;
+  height: 50px;
+}
 #toolbar #api-button {
   margin-right: auto;
   -webkit-app-region: no-drag;
