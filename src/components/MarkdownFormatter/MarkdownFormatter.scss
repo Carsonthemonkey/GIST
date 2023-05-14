@@ -1,4 +1,4 @@
-@use "variables" as vars;
+@use "../../styles/variables" as vars;
 
 @mixin divider-line($color: #ccc) {
     //add some margin to the bottom of the element
