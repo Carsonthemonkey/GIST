@@ -244,7 +244,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                 {transcript && <WordCounter transcriptProp={transcript} />}
             </div>
             <AudioPanel
-                audioFile={!!audioFile ? URL.createObjectURL(audioFile) : ""}
+                audioFile={audioFile}
                 fileIsUploaded={fileUploaded}
             />
         </div>

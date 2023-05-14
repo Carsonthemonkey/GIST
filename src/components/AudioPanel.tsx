@@ -6,7 +6,7 @@ import { GrPlayFill, GrPauseFill } from "react-icons/gr";
 import formatTimestamp from "../utils/formatTimestamp";
 
 interface AudioPanelProps {
-    audioFile: string;
+    audioFile: File | null;
     fileIsUploaded: boolean;
 }
 
@@ -25,10 +25,11 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
     });
 
     useEffect(() => {
-        if(audioFile && fileIsUploaded) {
+        let audioURL = audioFile ? URL.createObjectURL(audioFile) : null;
+        if(audioURL && fileIsUploaded) {
             setPlayheadPosition(0);
             setCurrentTime(0);
-            const audioObject = new Audio(audioFile);
+            const audioObject = new Audio(audioURL);
             setAudio(audioObject);
             if (audio){
                 audio.currentTime = 0;
