@@ -55,10 +55,11 @@
   border-radius: 10px;
   padding: 0.8em;
   text-align: left;
-  background-color: #e9dca8;
+  background-color: var(--code-block-background);
 }
 .markdown-body pre code {
-  background-color: #e9dca8;
+  background-color: var(--code-block-background);
+  white-space: pre-wrap;
 }
 .markdown-body code {
   text-align: left;

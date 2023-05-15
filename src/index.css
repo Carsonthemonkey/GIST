@@ -4,7 +4,7 @@
   --accent-color: #000;
   --grayed-out-color: #00000080;
   --highlight-color:#fff;
-
+  --code-block-background:#e9dca8;
 
   transition: all 0.3s ease-in-out;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
