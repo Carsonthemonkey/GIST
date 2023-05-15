@@ -11,30 +11,57 @@
 #transcript-panel.transcript-loaded {
   bottom: 80px;
 }
+#transcript-panel #translate-check {
+  padding: 10px 0px;
+}
 #transcript-panel #checkmark,
 #transcript-panel #checkmark-label {
   display: inline-block;
-  padding: 5px;
+  margin: 0px;
+}
+#transcript-panel #checkmark {
+  cursor: pointer;
+  padding-right: 9px;
 }
 #transcript-panel #file-drop-dialog {
   margin: 20px;
 }
+#transcript-panel #file-preview-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
 #transcript-panel #file-preview {
+  justify-content: center;
+  width: 60%;
   margin: 20px;
   border: 2px solid var(--accent-color);
   border-radius: 7px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 #transcript-panel #file-preview #file-name {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 0 10px;
 }
 #transcript-panel #file-preview #x-button {
-  margin: 0;
+  margin-left: auto;
+  align-self: stretch;
   padding: 10px 15px;
   border: none;
   border-left: 2px solid var(--accent-color);
 }
 #transcript-panel #transcript-content {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   padding: 0 20px;
 }
 #transcript-panel #word-counter-bar {

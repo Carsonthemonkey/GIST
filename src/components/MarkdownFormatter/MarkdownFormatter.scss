@@ -1,4 +1,4 @@
-@use "variables" as vars;
+@use "../../styles/variables" as vars;
 
 @mixin divider-line($color: #ccc) {
     //add some margin to the bottom of the element
@@ -74,9 +74,11 @@
         padding: 0.8em;
         //align the pre to the left
         text-align: left;
-        background-color: saturate(lighten(vars.$grayed-out-color, 15%), 30%);
+        background-color: var(--code-block-background);
         code{
-            background-color: saturate(lighten(vars.$grayed-out-color, 15%), 30%);
+            background-color: var(--code-block-background);
+            white-space: pre-wrap;
+            //add ellipsis to the end of the code block if it is too long
         }
         //TODO: Code should probably appear in a darker box, though that may require a change to the markdown renderer so that code blocks display in divs. We might also be able to do some display: block or flex or whatever css magic that I don't understand in order to achieve the same effect
     }

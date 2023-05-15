@@ -62,7 +62,7 @@ input:focus {
 .modal {
   transform: translate(50%, 50%);
   width: 50vw;
-  height: 50vh;
+  height: 50%;
   z-index: 1;
   background-color: var(--background-color);
   border-radius: 20px;
@@ -82,6 +82,8 @@ input:focus {
   padding: 10px 20px;
 }
 .modal .modal-content {
+  max-height: calc(50vh - 85px);
+  overflow-y: scroll;
   padding: 15px;
   text-align: center;
 }

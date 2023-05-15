@@ -1,4 +1,4 @@
-@use "variables" as vars;
+@use "../../styles/variables" as vars;
 
 #summary-panel {
     position: absolute;
@@ -55,6 +55,7 @@
     }
 
     #summary-content {
+        user-select: text;
         padding: 0 20px;
     }
 }

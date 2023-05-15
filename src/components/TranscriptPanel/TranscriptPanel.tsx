@@ -8,6 +8,7 @@ import WordCounter from "../WordCounter/WordCounter";
 import { Context } from "../../App";
 import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
+import PanelAnchor from "../PanelAnchor/PanelAnchor";
 
 interface Props {
     APIKey: string;
@@ -188,9 +189,10 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
 
     return (
         <div id="transcript-panel" className={transcript? "transcript-loaded" : ""}>
-            <div className="overlay"></div>
+            <br />
             <h2 id="transcript-title">Transcript</h2>
-            <div>
+            <PanelAnchor position="top-left">
+            <div id="translate-check">
                 <label id="translate-section">
                     <div
                         id="checkmark"
@@ -206,6 +208,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                     <p id="checkmark-label">Translate Audio</p>
                 </label>
             </div>
+            </PanelAnchor>
             <button
                 className={
                     fileUploaded
@@ -218,13 +221,15 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             </button>
             <br />
             {fileUploaded && !isLoading && !transcript && (
-                <div id="file-preview">
-                    <em id="file-name">
-                        {!transcript && !isLoading && audioFile?.name}
-                    </em>
-                    <button id="x-button" onClick={removeFile}>
-                        <FontAwesomeIcon icon={faX} />
-                    </button>
+                <div id="file-preview-container">
+                    <div id="file-preview">
+                        <em id="file-name">
+                            {!transcript && !isLoading && audioFile?.name}
+                        </em>
+                        <button id="x-button" onClick={removeFile}>
+                            <FontAwesomeIcon icon={faX} />
+                        </button>
+                    </div>
                 </div>
             )}
             {/* <div id="file-drop-dialog">
@@ -237,7 +242,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                 <br />
                 {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
-                {transcript}
+                {!isLoading && transcript}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
             <div id="word-counter-bar" className="hidden">

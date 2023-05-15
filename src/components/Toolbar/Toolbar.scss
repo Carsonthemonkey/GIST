@@ -1,7 +1,12 @@
-@use "variables" as vars;
+@use "../../styles/variables" as vars;
 
 
 #toolbar {
+    button{
+        width: 75px;
+        height: 50px;
+
+    }
     -webkit-app-region: drag;
     // makes toolbar fixed to top of page
     position: fixed;
@@ -14,7 +19,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     // adds a border at the bottom
     border-bottom: 1px solid var(--accent-color);
     height: vars.$toolbar-height;

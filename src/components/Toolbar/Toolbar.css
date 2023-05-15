@@ -8,8 +8,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-bottom: 1px solid var(--accent-color);
+  height: 50px;
+}
+#toolbar button {
+  width: 75px;
   height: 50px;
 }
 #toolbar #api-button {

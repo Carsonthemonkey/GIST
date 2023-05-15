@@ -1,4 +1,4 @@
-@use "variables" as vars;
+@use "../../styles/variables" as vars;
 
 .file-drop-button{
     // position: absolute; // Set position to absolute
@@ -30,7 +30,7 @@
     align-items: center;
     border : 2px dashed var(--accent-color);
     border-radius: 30px;
-    height: calc(100% - 250px );
+    height: calc(100% - 210px );
     // min-height: 700px;
     margin: 20px;
     // margin-bottom: 40px;

@@ -15,16 +15,20 @@
   margin: 0;
 }
 .small-drop-down .small-drop-down-content {
+  border-top: 2px solid var(--accent-color);
+  border-left: 2px solid var(--accent-color);
+  border-right: 2px solid var(--accent-color);
+  padding: 0px;
   margin: 0px;
+  background-color: var(--background-color);
 }
 .small-drop-down .small-drop-down-content .small-drop-down-item {
-  background-color: var(--background-color);
+  margin: 0px;
   font-size: 14px;
   list-style-type: none;
   padding: 4px;
   cursor: pointer;
-  border: 1px solid var(--accent-color);
-  border-radius: 0%;
+  border-bottom: 2px solid var(--accent-color);
 }
 .small-drop-down .small-drop-down-content .small-drop-down-item:hover {
   background-color: var(--highlight-color);
