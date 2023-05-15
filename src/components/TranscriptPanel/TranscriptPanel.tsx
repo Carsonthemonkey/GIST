@@ -242,7 +242,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                 <br />
                 {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
-                {transcript}
+                {!isLoading && transcript}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
             <div id="word-counter-bar" className="hidden">
