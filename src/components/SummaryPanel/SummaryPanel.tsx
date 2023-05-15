@@ -106,7 +106,7 @@ const SummaryPanel = (props: Props) => {
                         Topic
                     </SmallDropdown>
                 </PanelAnchor>
-            <br />
+            {/* <br /> */}
             <h2 id="summary-title">Summary</h2>
             <button
                 id="notes-button"
