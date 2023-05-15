@@ -20,6 +20,7 @@
   margin: 0px;
 }
 #transcript-panel #checkmark {
+  cursor: pointer;
   padding-right: 9px;
 }
 #transcript-panel #file-drop-dialog {
