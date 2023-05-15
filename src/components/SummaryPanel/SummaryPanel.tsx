@@ -136,6 +136,8 @@ const SummaryPanel = (props: Props) => {
                     ))}
                 </ul>
             )}
+            <br />
+            <br />
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
