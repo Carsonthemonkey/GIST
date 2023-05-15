@@ -217,13 +217,15 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             </button>
             <br />
             {fileUploaded && !isLoading && !transcript && (
-                <div id="file-preview">
-                    <em id="file-name">
-                        {!transcript && !isLoading && audioFile?.name}
-                    </em>
-                    <button id="x-button" onClick={removeFile}>
-                        <FontAwesomeIcon icon={faX} />
-                    </button>
+                <div id="file-preview-container">
+                    <div id="file-preview">
+                        <em id="file-name">
+                            {!transcript && !isLoading && audioFile?.name}
+                        </em>
+                        <button id="x-button" onClick={removeFile}>
+                            <FontAwesomeIcon icon={faX} />
+                        </button>
+                    </div>
                 </div>
             )}
             {/* <div id="file-drop-dialog">

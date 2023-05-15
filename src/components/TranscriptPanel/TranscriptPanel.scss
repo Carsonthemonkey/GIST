@@ -26,17 +26,34 @@
     #file-drop-dialog {
         margin: 20px;
     }
-
+    #file-preview-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+    }
     #file-preview {
+        // I don't know if we want to have the preview to be a fixed size or not. I can't decide. It is fixed for now.
+        justify-content: center;
+        width: 60%;
         margin: 20px;
         border: 2px solid var(--accent-color);
         border-radius: 7px;
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
         #file-name {
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             padding: 0 10px;
         }
         #x-button {
-            margin: 0;
+            margin-left: auto;
+            align-self: stretch;
             padding: 10px 15px;
             border: none;
             border-left: 2px solid var(--accent-color);
