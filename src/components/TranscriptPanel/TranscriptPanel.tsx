@@ -8,6 +8,7 @@ import WordCounter from "../WordCounter/WordCounter";
 import { Context } from "../../App";
 import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
+import PanelAnchor from "../PanelAnchor/PanelAnchor";
 
 interface Props {
     APIKey: string;
@@ -188,8 +189,10 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
 
     return (
         <div id="transcript-panel" className={transcript? "transcript-loaded" : ""}>
+            <br />
             <h2 id="transcript-title">Transcript</h2>
-            <div>
+            <PanelAnchor position="top-left">
+            <div id="translate-check">
                 <label id="translate-section">
                     <div
                         id="checkmark"
@@ -205,6 +208,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                     <p id="checkmark-label">Translate Audio</p>
                 </label>
             </div>
+            </PanelAnchor>
             <button
                 className={
                     fileUploaded

@@ -11,10 +11,16 @@
 #transcript-panel.transcript-loaded {
   bottom: 80px;
 }
+#transcript-panel #translate-check {
+  padding: 10px 0px;
+}
 #transcript-panel #checkmark,
 #transcript-panel #checkmark-label {
   display: inline-block;
-  padding: 5px;
+  margin: 0px;
+}
+#transcript-panel #checkmark {
+  padding-right: 9px;
 }
 #transcript-panel #file-drop-dialog {
   margin: 20px;
