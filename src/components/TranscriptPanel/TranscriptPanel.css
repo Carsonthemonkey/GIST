@@ -59,6 +59,9 @@
   border-left: 2px solid var(--accent-color);
 }
 #transcript-panel #transcript-content {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   padding: 0 20px;
 }
 #transcript-panel #word-counter-bar {

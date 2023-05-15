@@ -43,5 +43,8 @@
   background-color: var(--highlight-color);
 }
 #summary-panel #summary-content {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   padding: 0 20px;
 }/*# sourceMappingURL=SummaryPanel.css.map */
