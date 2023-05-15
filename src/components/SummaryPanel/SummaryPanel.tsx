@@ -102,8 +102,8 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
                 <PanelAnchor position="top-left">
-                    <SmallDropdown options={subjects} setSelected={setActiveSubject}>
-                        Topic
+                    <SmallDropdown options={subjects} setSelected={setActiveSubject} selected={activeSubject}>
+                        Select Topic
                     </SmallDropdown>
                 </PanelAnchor>
             {/* <br /> */}
