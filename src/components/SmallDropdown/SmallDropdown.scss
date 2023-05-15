@@ -18,20 +18,20 @@
     }
     
     .small-drop-down-content{
-        
+        border-top: 2px solid var(--accent-color);
+        border-left: 2px solid var(--accent-color);
+        border-right: 2px solid var(--accent-color);
+        padding: 0px;
         margin: 0px;
-        // display: none;
+        background-color: var(--background-color);
+        
         .small-drop-down-item{
-            background-color: var(--background-color);            
+            margin: 0px;
             font-size: 14px;
-            // margin: none;
             list-style-type: none;
             padding: 4px;
             cursor: pointer;
-            border: 1px solid var(--accent-color);
-            // border-radius: 15px;
-            border-radius: 0%;
-            // margin-top: 3px;
+            border-bottom: 2px solid var(--accent-color);
 
             &:hover{
                 background-color: var(--highlight-color);
