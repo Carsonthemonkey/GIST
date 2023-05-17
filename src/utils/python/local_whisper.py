@@ -1,5 +1,8 @@
 import whisper
 import sys
+import warnings
+
+warnings.filterwarnings("ignore")
 
 args = sys.argv[1:]
 audio_path = args[0]
