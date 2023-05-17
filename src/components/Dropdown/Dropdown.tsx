@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./SmallDropdown.css";
@@ -8,7 +8,7 @@ interface Props {
     options: string[];
 }
 
-const SmallDropdown = ({ children, options }: Props) => {
+const Dropdown = ({ children, options }: Props) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [displayString, setDisplayString] = React.useState(
         children as string
@@ -52,4 +52,4 @@ const SmallDropdown = ({ children, options }: Props) => {
     );
 };
 
-export default SmallDropdown;
+export default Dropdown;

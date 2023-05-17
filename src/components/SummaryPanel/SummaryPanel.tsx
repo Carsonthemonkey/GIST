@@ -3,7 +3,7 @@ import "./SummaryPanel.css";
 import summarizeGPT from "../../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import SmallDropdown from "../SmallDropdown/SmallDropdown";
+import Dropdown from "../Dropdown/Dropdown";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import promptsOBJ from "../../assets/prompts.json";
 import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
@@ -108,7 +108,7 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
             <PanelAnchor position="top-left">
-                <SmallDropdown options={subjects}>Select Topic</SmallDropdown>
+                <Dropdown options={subjects}>Select Topic</Dropdown>
             </PanelAnchor>
             {/* <br /> */}
             <br />
@@ -127,9 +127,7 @@ const SummaryPanel = (props: Props) => {
             >
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
-            <SmallDropdown options={promptTypes}>
-                Generate Summary
-            </SmallDropdown>
+            <Dropdown options={promptTypes}>Generate Summary</Dropdown>
             {isOpen && (
                 <ul id="summary-drop-down">
                     {promptTypes.map((title) => (
