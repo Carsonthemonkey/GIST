@@ -4,24 +4,18 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./SmallDropdown.css";
 
 interface Props {
-    children: React.ReactNode;
+    children: React.ReactNode; // TODO: figure out why this is called children
     options: string[];
-    selected: string;
-    setSelected: (selected: string) => void;
 }
 
-const SmallDropdown = ({ children, options, selected, setSelected}: Props) => {
+const SmallDropdown = ({ children, options }: Props) => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [displayString, setDisplayString] = React.useState(children as string);
-
-    // useEffect(() => {
-    //     console.log("useEffect")
-    //     setDisplayString(selected);
-    // }, [selected]);
+    const [displayString, setDisplayString] = React.useState(
+        children as string
+    );
 
     function handleClick(e: any) {
         setDisplayString(e.target.innerText);
-        setSelected(e.target.innerText);
         setIsOpen(false);
     }
 
@@ -44,9 +38,13 @@ const SmallDropdown = ({ children, options, selected, setSelected}: Props) => {
             {isOpen && (
                 <ul className="small-drop-down-content">
                     {options.map((option) => (
-                        <li className="small-drop-down-item"
-                        key={option}
-                        onClick={handleClick}>{option}</li>
+                        <li
+                            className="small-drop-down-item"
+                            key={option}
+                            onClick={handleClick}
+                        >
+                            {option}
+                        </li>
                     ))}
                 </ul>
             )}
