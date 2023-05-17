@@ -6,16 +6,17 @@ import "./SmallDropdown.css";
 interface Props {
     children: React.ReactNode; // TODO: figure out why this is called children
     options: string[];
+    displayKeyword?: string;
 }
 
-const Dropdown = ({ children, options }: Props) => {
+const Dropdown = ({ children, options, displayKeyword = "" }: Props) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [displayString, setDisplayString] = React.useState(
         children as string
     );
 
     function handleClick(e: any) {
-        setDisplayString(e.target.innerText);
+        setDisplayString(displayKeyword + e.target.innerText);
         setIsOpen(false);
     }
 
@@ -26,12 +27,6 @@ const Dropdown = ({ children, options }: Props) => {
     return (
         <span className="small-drop-down">
             <button onClick={toggleDropdown}>
-                {/* <label htmlFor="topics"></label> */}
-                {/* <select name="topics">
-                    {options.map((option) => (
-                        <option value={option}>{option}</option>
-                    ))}
-                </select> */}
                 {displayString}
                 <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
             </button>

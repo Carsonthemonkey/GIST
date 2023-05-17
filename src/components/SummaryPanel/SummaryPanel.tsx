@@ -127,7 +127,9 @@ const SummaryPanel = (props: Props) => {
             >
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
-            <Dropdown options={promptTypes}>Generate Summary</Dropdown>
+            <Dropdown options={promptTypes} displayKeyword="Generate ">
+                Generate Summary
+            </Dropdown>
             {isOpen && (
                 <ul id="summary-drop-down">
                     {promptTypes.map((title) => (
