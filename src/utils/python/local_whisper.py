@@ -18,4 +18,4 @@ audio = whisper.load_audio(audio_path)
 # This will need to include translation via a command line arg
 result = model.transcribe(audio, task=mode)
 
-print(result["segments"])
+print(result)
