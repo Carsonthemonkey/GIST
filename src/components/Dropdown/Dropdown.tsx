@@ -4,7 +4,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./SmallDropdown.css";
 
 interface Props {
-    children: React.ReactNode; // TODO: figure out why this is called children
+    children: React.ReactNode;
     options: string[];
     displayKeyword?: string;
 }
@@ -25,7 +25,19 @@ const Dropdown = ({ children, options, displayKeyword = "" }: Props) => {
     }
 
     return (
-        <span className="small-drop-down">
+        <div className="small-drop-down">
+            {/* TODO need to add statment to change dropdown button, something like this:
+            {buttonType === "simple" ? ( // Render different buttons based on button type prop
+                <button onClick={toggleDropdown}>
+                {displayString}
+                <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
+                </button>
+            ) : (
+                <div>
+                <button onClick={toggleDropdown}>Generate Summary</button>
+                <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
+                </div>
+            )} */}
             <button onClick={toggleDropdown}>
                 {displayString}
                 <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
@@ -43,7 +55,7 @@ const Dropdown = ({ children, options, displayKeyword = "" }: Props) => {
                     ))}
                 </ul>
             )}
-        </span>
+        </div>
     );
 };
 

@@ -1,0 +1,14 @@
+#audio-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0;
+  border-top: 2px solid #000;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}/*# sourceMappingURL=AudioPanel.css.map */

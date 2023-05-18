@@ -40,10 +40,10 @@ const SummaryPanel = (props: Props) => {
     const prompts: Prompts = promptsOBJ as Prompts;
 
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
-    console.log(prompts);
-    console.log(promptsOBJ);
+    // console.log(prompts);
+    // console.log(promptsOBJ);
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
-    console.log("subjects" + subjects);
+    // console.log("subjects" + subjects);
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
     const [summary, setSummary] = React.useState(``);
     const [isLoading, setIsLoading] = React.useState(false);
