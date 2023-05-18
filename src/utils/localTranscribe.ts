@@ -1,11 +1,12 @@
-import { type } from "os";
-
+const dotenv = require('dotenv');
 const path = require('path');
 const child_process = require('child_process');
+
+dotenv.config({ path: path.join(__dirname, '../../.env') });
 let isDevelopment = process.env.APP_ENV === 'development';
 
 export default function localTranscribe(audioPath: string, doTranslate: boolean){
-    isDevelopment = false;
+    console.log(`Running local whisper in ${process.env.APP_ENV} mode`)
     if(isDevelopment){
         // console.log(process.env.NODE_ENV);
         return new Promise((resolve, reject) => {
@@ -30,7 +31,6 @@ export default function localTranscribe(audioPath: string, doTranslate: boolean)
 
 if (require.main === module){
     //This is for testing only. It will only be executed when this file is run directly.
-    console.log("Running local whisper test");
     localTranscribe("C:\\Users\\carso\\Desktop\\Coding\\Spring_2023_hackathon\\GIST\\src\\assets\\audio\\I-have-a-dream.mp4", false).then((data: any) => {
         console.log(data);
         const jsObject = JSON.parse(data.replace(/'/g, '"'));
