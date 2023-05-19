@@ -1,6 +1,7 @@
 import whisper
 import sys
 import warnings
+import json
 
 warnings.filterwarnings("ignore")
 
@@ -17,5 +18,6 @@ audio = whisper.load_audio(audio_path)
 
 # This will need to include translation via a command line arg
 result = model.transcribe(audio, task=mode)
+json_result = json.dumps(result)
 
-print(result)
+print(json_result)

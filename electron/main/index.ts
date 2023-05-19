@@ -2,6 +2,8 @@ import { app, BrowserWindow, shell, ipcMain } from "electron";
 import { release } from "node:os";
 import { join } from "node:path";
 import { update } from "./update";
+import path from "node:path";
+const child_process = require("child_process");
 
 // The built directory structure
 //
@@ -13,6 +15,49 @@ import { update } from "./update";
 // ├─┬ dist
 // │ └── index.html    > Electron-Renderer
 //
+
+ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
+    // const executablePath = getExecutablePath("");
+    // this path will need to be made relative
+    const executablePath =
+        "C:\\Users\\carso\\Desktop\\Coding\\Spring_2023_hackathon\\GIST\\src\\executables\\local_whisper.exe";
+    return new Promise((resolve, reject) => {
+        console.log("running local whisper")
+        const pythonProcess = child_process.spawn(executablePath, [
+            audioPath,
+            doTranslate ? "translate" : "",
+        ]);
+        let stdout = "";
+        let stderr = "";
+        
+        console.log("python process created")
+        pythonProcess.stdout.on("data", (data: any) => {
+            stdout += data.toString();
+        });
+
+        pythonProcess.stderr.on("data", (data: any) => {
+            stderr += data.toString();
+        });
+
+        pythonProcess.on("close", (code: number) => {
+            if (code === 0) {
+                let data = JSON.parse(stdout);
+                resolve(data);
+            } else {
+                reject(new Error(stderr));
+            }
+        });
+    });
+});
+
+function getExecutablePath(executableName: string): string {
+    if (!app.isPackaged) {
+        return path.join(__dirname, "..", "executables", executableName);
+    } else {
+        return path.join(process.resourcesPath, "executables", executableName);
+    }
+}
+
 process.env.DIST_ELECTRON = join(__dirname, "../");
 process.env.DIST = join(process.env.DIST_ELECTRON, "../dist");
 process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL
@@ -56,7 +101,7 @@ async function createWindow() {
         },
         titleBarStyle: "hidden",
         titleBarOverlay: {
-            height: 28,  // should match the height of electron titlebar
+            height: 28, // should match the height of electron titlebar
             color: "#ada174",
             symbolColor: "#000",
         },

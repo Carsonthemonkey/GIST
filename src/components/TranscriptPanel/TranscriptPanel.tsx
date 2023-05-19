@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { IpcRenderer, ipcRenderer } from "electron";
 import "./TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +10,7 @@ import { Context } from "../../App";
 import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
+import { json } from "stream/consumers";
 
 interface Props {
     APIKey: string;
@@ -74,6 +76,20 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         }
     }
 
+    async function runLocalTranscribe(file: File, doTranslate: boolean){
+        const audioPath = file.path;
+        try{
+            console.log("running local transcription from renderer process")
+            const result = await ipcRenderer.invoke('localTranscribe', audioPath, doTranslate);
+            return result;
+        }
+        catch(e){
+            console.error(e);
+            return "";
+        }
+
+    }
+
     async function transcribeAudio() {
         if (!fileUploaded || !audioFile) {
             return;
@@ -131,6 +147,18 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                     }
                 );
             } else {
+                let localTest = true; //for testing.
+                if(localTest){
+                    console.log("local transcription test")
+                    await runLocalTranscribe(audioFile, false).then(
+                        (data: any) => {
+                            console.log(data)
+                            setTranscript(data["text"])
+                        }
+                    );
+                    setIsLoading(false);
+                    return;
+                }
                 await transcribeWhisper(DEBUG, audioFile, "en", APIKey).then(
                     (data) => {
                         if (data.status === 200) {
