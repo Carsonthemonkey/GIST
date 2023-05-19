@@ -17,10 +17,11 @@ const child_process = require("child_process");
 //
 
 ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
-    // const executablePath = getExecutablePath("");
+    const executablePath = getExecutablePath("local_whisper");
     // this path will need to be made relative
-    const executablePath =
-        "C:\\Users\\carso\\Desktop\\Coding\\Spring_2023_hackathon\\GIST\\src\\executables\\local_whisper.exe";
+    console.log(__dirname)
+    // const executablePath =
+    //     "C:\\Users\\carso\\Desktop\\Coding\\Spring_2023_hackathon\\GIST\\src\\executables\\local_whisper.exe";
     return new Promise((resolve, reject) => {
         console.log("running local whisper")
         const pythonProcess = child_process.spawn(executablePath, [
@@ -52,7 +53,7 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
 
 function getExecutablePath(executableName: string): string {
     if (!app.isPackaged) {
-        return path.join(__dirname, "..", "executables", executableName);
+        return path.join(__dirname, "..", "..", "src", "executables", executableName);
     } else {
         return path.join(process.resourcesPath, "executables", executableName);
     }
