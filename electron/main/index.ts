@@ -53,7 +53,7 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
 
 function getExecutablePath(executableName: string): string {
     if (!app.isPackaged) {
-        return path.join(__dirname, "..", "..", "src", "executables", executableName);
+        return path.join(__dirname, "..", "..", "executables", executableName);
     } else {
         return path.join(process.resourcesPath, "executables", executableName);
     }

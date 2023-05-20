@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { IpcRenderer, ipcRenderer } from "electron";
 import "./TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +10,7 @@ import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import { json } from "stream/consumers";
+import { isExternal } from "util/types";
 
 interface Props {
     APIKey: string;
@@ -27,6 +27,11 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     // const [modalIsOpen, setModalIsOpen] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
     const [doTranslate, setDoTranslate] = React.useState(false);
+    const isElectron=
+        typeof process !== "undefined" &&
+        process.versions &&
+        process.versions.electron;
+    // const isElectron = false;
 
     function handleFileUpload(file: File) {
         const validAudioFileType = [
@@ -77,6 +82,8 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     }
 
     async function runLocalTranscribe(file: File, doTranslate: boolean){
+        const {  ipcRenderer } = await import("electron");
+
         const audioPath = file.path;
         try{
             console.log("running local transcription from renderer process")
@@ -88,6 +95,29 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             return "";
         }
 
+    }
+
+    async function localTranscribe(){
+        try{
+        if(!fileUploaded || !audioFile){
+            return;
+        }
+        setIsLoading(true);
+        await runLocalTranscribe(audioFile, false).then(
+            (data: any) => {
+                console.log(data)
+                setTranscript(data["text"])
+            }
+        );
+        setIsLoading(false);
+        return;
+        } catch(e){
+            console.error(e);
+            setIsLoading(false);
+            setModalIsOpen(true);
+            setModalText("Transcription failed.");
+            return;
+        }
     }
 
     async function transcribeAudio() {
@@ -147,18 +177,6 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                     }
                 );
             } else {
-                let localTest = true; //for testing.
-                if(localTest){
-                    console.log("local transcription test")
-                    await runLocalTranscribe(audioFile, false).then(
-                        (data: any) => {
-                            console.log(data)
-                            setTranscript(data["text"])
-                        }
-                    );
-                    setIsLoading(false);
-                    return;
-                }
                 await transcribeWhisper(DEBUG, audioFile, "en", APIKey).then(
                     (data) => {
                         if (data.status === 200) {
@@ -195,6 +213,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             console.error(e);
             setModalIsOpen(true);
             setModalText("Transcription failed.");
+            setIsLoading(false);
         }
     }
     function removeFile() {
@@ -243,7 +262,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                         ? "non-icon-button"
                         : "non-icon-button disabled-button"
                 }
-                onClick={transcribeAudio}
+                onClick={isElectron? localTranscribe : transcribeAudio}
             >
                 Transcribe
             </button>
