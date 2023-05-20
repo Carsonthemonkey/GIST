@@ -22,14 +22,12 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const { modalText, setModalText } = useContext(Context);
     const [fileUploaded, setFileUploaded] = useState(false);
     const [audioFile, setAudioFile] = useState<File | null>(null);
-    // const [modalIsOpen, setModalIsOpen] = React.useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
     const isElectron=
         typeof process !== "undefined" &&
         process.versions &&
         process.versions.electron;
-    // const isElectron = false;
 
     function handleFileUpload(file: File) {
         const validAudioFileType = [
