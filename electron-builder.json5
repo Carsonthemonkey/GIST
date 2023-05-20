@@ -12,7 +12,7 @@
     "dist",
   ],
   "extraResources": [{
-    "from" : "src/executables",
+    "from" : "./executables",
     "to" : "./executables",
     "filter" : [
       "**/*"

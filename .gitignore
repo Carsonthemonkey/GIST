@@ -223,4 +223,4 @@ cython_debug/
 #.idea/
 
 #Executables
-src/executables
+executables

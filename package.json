@@ -16,7 +16,7 @@
     "dev-electron" : "vite --config vite.config.electron.ts",
     "build": "tsc && vite build",
     "build-electron" : "tsc && npm run build-python && vite build --config vite.config.electron.ts && electron-builder",
-    "build-python" : "pyinstaller --onefile --distpath src/executables --collect-all whisper src/utils/python/local_whisper.py",
+    "build-python" : "pyinstaller --onefile --distpath ./executables --collect-all whisper src/utils/python/local_whisper.py",
     "preview": "vite preview",
     "predeploy": "node build_tools/confirmDeploy.js && npm run build",
     "deploy": "gh-pages -d dist"
