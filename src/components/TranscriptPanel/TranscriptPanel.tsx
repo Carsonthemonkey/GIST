@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import "./TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
@@ -9,8 +9,6 @@ import { Context } from "../../App";
 import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
-import { json } from "stream/consumers";
-import { isExternal } from "util/types";
 
 interface Props {
     APIKey: string;
@@ -22,11 +20,11 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const DEBUG = false;
     const { modalIsOpen, setModalIsOpen } = useContext(Context);
     const { modalText, setModalText } = useContext(Context);
-    const [fileUploaded, setFileUploaded] = React.useState(false);
-    const [audioFile, setAudioFile] = React.useState<File | null>(null);
+    const [fileUploaded, setFileUploaded] = useState(false);
+    const [audioFile, setAudioFile] = useState<File | null>(null);
     // const [modalIsOpen, setModalIsOpen] = React.useState(false);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [doTranslate, setDoTranslate] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [doTranslate, setDoTranslate] = useState(false);
     const isElectron=
         typeof process !== "undefined" &&
         process.versions &&
