@@ -78,7 +78,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     }
 
     async function runLocalTranscribe(file: File, doTranslate: boolean){
-        const {  ipcRenderer } = await import("electron");
+        const { ipcRenderer } = await import("electron"); //dynamic import to prevent vite from bundling ipcRenderer in the browser
 
         const audioPath = file.path;
         try{
