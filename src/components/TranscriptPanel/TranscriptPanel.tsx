@@ -301,7 +301,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             {!fileUploaded && !transcript && (
                 <FileDropButton setFile={handleFileUpload}></FileDropButton>
             )}
-            {isLoading && !isElectron && "Loading..."}
+            {isLoading && !isElectron && <p>Loading...</p>}
             {isLoading && isElectron && (
                 <>
                     <br />{" "}
