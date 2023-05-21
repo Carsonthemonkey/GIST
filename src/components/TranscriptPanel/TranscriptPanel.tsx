@@ -9,6 +9,7 @@ import { Context } from "../../App";
 import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 interface Props {
     APIKey: string;
@@ -300,6 +301,8 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                 <br />
                 {/* TODO Add a nice style to this */}
                 {isLoading && "Loading..."}
+                <ProgressBar progressPercent={65}/>
+                {isLoading && isElectron && <><br /> <ProgressBar progressPercent={55}/></>}
                 {!isLoading && transcript}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
