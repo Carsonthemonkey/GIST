@@ -78,21 +78,22 @@ const SummaryPanel = (props: Props) => {
             return;
         }
         try {
-            setIsLoading(true);
+            // setIsLoading(true);
             await summarizeGPT(
                 DEBUG,
                 prompts[activeSubject].prompts[activePromptType],
                 props.transcriptProp,
-                props.APIKeyProp
+                props.APIKeyProp,
+                setSummary,
             ).then((r) => {
-                setIsLoading(false);
-                if (r.status === 200) {
-                    setSummary(r.text);
-                }
-                else{
-                    setModalIsOpen(true);
-                    setModalText(r.statustext)
-                }
+                // setIsLoading(false);
+                // if (r.status === 200) {
+                //     setSummary(r.text);
+                // }
+                // else{
+                //     setModalIsOpen(true);
+                //     setModalText(r.statustext)
+                // }
             });
         } catch (e) {
             console.log(e);

@@ -15,6 +15,7 @@ export default async function summarizeGPT(
     prompt: promptOptions,
     userPrompt: string,
     API_KEY: string,
+    setSummary: (summary: string) => void,
     // setResponse: (response: any) => void
 
 ) {
@@ -44,15 +45,37 @@ export default async function summarizeGPT(
             temperature: prompt.requestOptions.temperature,
             presence_penalty: prompt.requestOptions.presence_penalty,
             frequency_penalty: prompt.requestOptions.frequency_penalty,
+            stream: true,
         }),
     };
     console.log("fetching...")
-    const completion = await fetch("https://api.openai.com/v1/chat/completions", requestOptions)
-    console.log("fetched")
-    const data = await completion.json();
-    console.log("error" in data)
-    if("error" in data){
-        return {status: completion.status, statustext: data.error.message, text: ""}
-    }
-    return {status: completion.status, text: data.choices[0].message?.content}
+    const completion = fetch("https://api.openai.com/v1/chat/completions", requestOptions)
+    const reader = (await completion).body?.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let text = "";
+    while (true) {
+        const result = await reader?.read() as ReadableStreamReadResult<Uint8Array>;
+        const { done, value } = result;
+        if (done) break;
+        let data: any = decoder.decode(value);
+        data = data.split("\n")
+        data = data.filter((item: string) => item !== "")
+        console.log(data)
+        data = data[data.length - 1]
+        data = data.substring(5, data.length)
+        console.log(data)
+        data = JSON.parse(data);
+        console.log(data)
+        if(data['choices'][0]['delta']["content"]){
+        }
+        text += data['choices'][0]['delta']['content']
+        setSummary(text);
+    } 
+    // console.log("fetched")
+    // const data = await completion.json();
+    // console.log("error" in data)
+    // if("error" in data){
+    //     return {status: completion.status, statustext: data.error.message, text: ""}
+    // }
+    // return {status: completion.status, text: data.choices[0].message?.content}
 }
