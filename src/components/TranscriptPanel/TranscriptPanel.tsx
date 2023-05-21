@@ -25,19 +25,19 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const [audioFile, setAudioFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
+    const [transcriptionProgress, setTranscriptionProgress] = useState(0);
 
-    const isElectron=
+    const isElectron =
         typeof process !== "undefined" &&
         process.versions &&
         process.versions.electron;
 
     useEffect(() => {
-        if(isElectron){
+        if (isElectron) {
             const { ipcRenderer } = require("electron");
             ipcRenderer.on("progressUpdate", (event: any, progress: any) => {
                 console.log(progress);
-                setModalText(progress);
-                setModalIsOpen(true);
+                setTranscriptionProgress(progress);
             });
             return () => {
                 ipcRenderer.removeAllListeners("progressUpdate");
@@ -93,37 +93,38 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         }
     }
 
-    async function runLocalTranscribe(file: File, doTranslate: boolean){
+    async function runLocalTranscribe(file: File, doTranslate: boolean) {
+        setTranscriptionProgress(0);
         const { ipcRenderer } = await import("electron"); //dynamic import to prevent vite from bundling ipcRenderer in the browser
 
         const audioPath = file.path;
-        try{
-            console.log("running local transcription from renderer process")
-            const result = await ipcRenderer.invoke('localTranscribe', audioPath, doTranslate);
+        try {
+            console.log("running local transcription from renderer process");
+            const result = await ipcRenderer.invoke(
+                "localTranscribe",
+                audioPath,
+                doTranslate
+            );
             return result;
-        }
-        catch(e){
+        } catch (e) {
             console.error(e);
             return "";
         }
-
     }
 
-    async function localTranscribe(){
-        try{
-        if(!fileUploaded || !audioFile){
-            return;
-        }
-        setIsLoading(true);
-        await runLocalTranscribe(audioFile, false).then(
-            (data: any) => {
-                console.log(data)
-                setTranscript(data["text"])
+    async function localTranscribe() {
+        try {
+            if (!fileUploaded || !audioFile) {
+                return;
             }
-        );
-        setIsLoading(false);
-        return;
-        } catch(e){
+            setIsLoading(true);
+            await runLocalTranscribe(audioFile, false).then((data: any) => {
+                console.log(data);
+                setTranscript(data["text"]);
+            });
+            setIsLoading(false);
+            return;
+        } catch (e) {
             console.error(e);
             setIsLoading(false);
             setModalIsOpen(true);
@@ -247,26 +248,29 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     }
 
     return (
-        <div id="transcript-panel" className={transcript? "transcript-loaded" : ""}>
+        <div
+            id="transcript-panel"
+            className={transcript ? "transcript-loaded" : ""}
+        >
             <br />
             <h2 id="transcript-title">Transcript</h2>
             <PanelAnchor position="top-left">
-            <div id="translate-check">
-                <label id="translate-section">
-                    <div
-                        id="checkmark"
-                        className="icon"
-                        onClick={handleCheckBoxChange}
-                    >
-                        {doTranslate ? (
-                            <FontAwesomeIcon icon={faSquareCheck} />
-                        ) : (
-                            <FontAwesomeIcon icon={faSquare} />
-                        )}
-                    </div>
-                    <p id="checkmark-label">Translate Audio</p>
-                </label>
-            </div>
+                <div id="translate-check">
+                    <label id="translate-section">
+                        <div
+                            id="checkmark"
+                            className="icon"
+                            onClick={handleCheckBoxChange}
+                        >
+                            {doTranslate ? (
+                                <FontAwesomeIcon icon={faSquareCheck} />
+                            ) : (
+                                <FontAwesomeIcon icon={faSquare} />
+                            )}
+                        </div>
+                        <p id="checkmark-label">Translate Audio</p>
+                    </label>
+                </div>
             </PanelAnchor>
             <button
                 className={
@@ -274,7 +278,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                         ? "non-icon-button"
                         : "non-icon-button disabled-button"
                 }
-                onClick={isElectron? localTranscribe : transcribeAudio}
+                onClick={isElectron ? localTranscribe : transcribeAudio}
             >
                 Transcribe
             </button>
@@ -297,22 +301,24 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             {!fileUploaded && !transcript && (
                 <FileDropButton setFile={handleFileUpload}></FileDropButton>
             )}
+            {isLoading && !isElectron && "Loading..."}
+            {isLoading && isElectron && (
+                <>
+                    <br />{" "}
+                    <ProgressBar progressPercent={transcriptionProgress} />
+                </>
+            )}
             <p id="transcript-content">
                 <br />
                 {/* TODO Add a nice style to this */}
-                {isLoading && "Loading..."}
-                <ProgressBar progressPercent={65}/>
-                {isLoading && isElectron && <><br /> <ProgressBar progressPercent={55}/></>}
+
                 {!isLoading && transcript}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
             <div id="word-counter-bar" className="hidden">
                 {transcript && <WordCounter transcriptProp={transcript} />}
             </div>
-            <AudioPanel
-                audioFile={audioFile}
-                fileIsUploaded={fileUploaded}
-            />
+            <AudioPanel audioFile={audioFile} fileIsUploaded={fileUploaded} />
         </div>
     );
 };
