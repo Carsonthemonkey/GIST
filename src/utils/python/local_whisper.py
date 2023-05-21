@@ -17,7 +17,7 @@ model = whisper.load_model("base")
 audio = whisper.load_audio(audio_path)
 
 # This will need to include translation via a command line arg
-result = model.transcribe(audio, task=mode)
+result = model.transcribe(audio, task=mode, verbose=False)
 json_result = json.dumps(result)
 
 print(json_result)

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
@@ -24,10 +24,26 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const [audioFile, setAudioFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
+
     const isElectron=
         typeof process !== "undefined" &&
         process.versions &&
         process.versions.electron;
+
+    useEffect(() => {
+        if(isElectron){
+            console.log("adding electron event listener")
+            const { ipcRenderer } = require("electron");
+            ipcRenderer.on("progressUpdate", (event: any, progress: any) => {
+                console.log(progress);
+                setModalText(progress);
+                setModalIsOpen(true);
+            });
+            return () => {
+                ipcRenderer.removeAllListeners("progressUpdate");
+            };
+        }
+    }, []);
 
     function handleFileUpload(file: File) {
         const validAudioFileType = [
