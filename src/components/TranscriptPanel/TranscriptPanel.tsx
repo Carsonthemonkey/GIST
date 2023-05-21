@@ -113,10 +113,10 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     }
 
     async function localTranscribe() {
+        if (!fileUploaded || !audioFile || isLoading) {
+            return;
+        }
         try {
-            if (!fileUploaded || !audioFile) {
-                return;
-            }
             setIsLoading(true);
             await runLocalTranscribe(audioFile, false).then((data: any) => {
                 console.log(data);
