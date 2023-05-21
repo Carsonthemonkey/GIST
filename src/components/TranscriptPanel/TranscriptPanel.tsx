@@ -32,7 +32,6 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
 
     useEffect(() => {
         if(isElectron){
-            console.log("adding electron event listener")
             const { ipcRenderer } = require("electron");
             ipcRenderer.on("progressUpdate", (event: any, progress: any) => {
                 console.log(progress);
