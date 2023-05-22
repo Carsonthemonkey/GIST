@@ -60,12 +60,9 @@ export default async function summarizeGPT(
         let data: any = decoder.decode(value);
         data = data.split("\n")
         data = data.filter((item: string) => item !== "")
-        console.log(data)
         data = data[data.length - 1]
         data = data.substring(5, data.length)
-        console.log(data)
         data = JSON.parse(data);
-        console.log(data)
         if(data['choices'][0]['delta']["content"]){
         }
         text += data['choices'][0]['delta']['content']
