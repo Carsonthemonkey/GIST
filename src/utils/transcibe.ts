@@ -55,7 +55,6 @@ async function translateWhisper(
                 "This is some translated debug text from the transcription script. It's not actually translated, it's just a placeholder.",
         };
     }
-    console.log("translating with translateWhisper");
     const formData = new FormData();
     formData.append("file", audioFile);
     formData.append("model", "whisper-1");
@@ -77,15 +76,6 @@ async function translateWhisper(
         status: response.status,
         transcript: data.text,
     };
-    // if (response.status === 200) {
-    //     console.log("success");
-    //     const data = await response.json();
-    //     if (data.text) {
-    //         return data.text;
-    //     } else {
-    //         console.error("Error. No response from OpenAI API");
-    //     }
-    // }
 }
 
 export { transcribeWhisper, translateWhisper };
