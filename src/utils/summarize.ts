@@ -61,6 +61,7 @@ export default async function summarizeGPT(
         if(data['choices'][0]['delta']["content"]){
             text += data['choices'][0]['delta']['content']
         }
-        setSummary(text);
-    } 
+        setSummary(text + ' ▌');
+    }
+    setSummary(text);
 }
