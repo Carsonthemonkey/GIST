@@ -19,13 +19,6 @@ export default async function summarizeGPT(
     // setResponse: (response: any) => void
 
 ) {
-
-    if(debug){
-        // wait 3 seconds to simulate a long request
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        return {status: 200, text: `- Here is the weird latex that wasnt working: $\\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ and also $a + b = c$ - Also here is another bullet point - Let's throw in a subtraction equation to be mean: $a - b = oh_{no}$ - We will need a few of these - Hey, how about more LaTeX? Here is a sum: $\\sum_{n=1} ^{\\infty} a_i x^i$`};
-        // setResponse(response);
-    }
     const requestOptions = {
         method: "POST",
         headers: {
@@ -58,21 +51,16 @@ export default async function summarizeGPT(
         const { done, value } = result;
         if (done) break;
         let data: any = decoder.decode(value);
-        data = data.split("\n")
-        data = data.filter((item: string) => item !== "")
+        data = data.split("\n").filter((item: string) => item !== "")
         data = data[data.length - 1]
         data = data.substring(5, data.length)
+
+        if(data === " [DONE]") break;
         data = JSON.parse(data);
+        
         if(data['choices'][0]['delta']["content"]){
+            text += data['choices'][0]['delta']['content']
         }
-        text += data['choices'][0]['delta']['content']
         setSummary(text);
     } 
-    // console.log("fetched")
-    // const data = await completion.json();
-    // console.log("error" in data)
-    // if("error" in data){
-    //     return {status: completion.status, statustext: data.error.message, text: ""}
-    // }
-    // return {status: completion.status, text: data.choices[0].message?.content}
 }
