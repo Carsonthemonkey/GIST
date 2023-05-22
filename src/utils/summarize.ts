@@ -16,7 +16,6 @@ export default async function summarizeGPT(
     userPrompt: string,
     API_KEY: string,
     setSummary: (summary: string) => void,
-    // setResponse: (response: any) => void
 
 ) {
     const requestOptions = {
