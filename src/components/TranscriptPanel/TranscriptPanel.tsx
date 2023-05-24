@@ -118,7 +118,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         }
         try {
             setIsLoading(true);
-            await runLocalTranscribe(audioFile, false).then((data: any) => {
+            await runLocalTranscribe(audioFile, doTranslate).then((data: any) => {
                 console.log(data);
                 setTranscript(data["text"]);
             });

@@ -4,6 +4,10 @@ import { join } from "node:path";
 import { update } from "./update";
 import path from "node:path";
 const child_process = require("child_process");
+const ffmpegPath = require('ffmpeg-static').replace(
+    'app.asar',
+    'app.asar.unpacked'
+);
 
 // The built directory structure
 //
@@ -144,8 +148,9 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
     return new Promise((resolve, reject) => {
         console.log("running local whisper")
         const pythonProcess = child_process.spawn(executablePath, [
+            clean_ffmpeg_path(ffmpegPath),
             audioPath,
-            doTranslate ? "translate" : "",
+            doTranslate ? "translate" : "transcribe",
         ]);
         let stdout = "";
         let stderr = "";
@@ -177,6 +182,11 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
         });
     });
 });
+
+function clean_ffmpeg_path(ffmpegPath: string){
+    const indexOfLastSlash = ffmpegPath.lastIndexOf("\\");
+    return ffmpegPath.slice(0, indexOfLastSlash);
+}
 
 function getExecutablePath(executableName: string): string {
     if (!app.isPackaged) {
