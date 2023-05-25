@@ -153,12 +153,11 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
             doTranslate ? "translate" : "transcribe",
         ]);
         let stdout = "";
-        let stderr = "";
         
         console.log("python process created")
         pythonProcess.stdout.on("data", (data: any) => {
             if(data.toString()[0] === "{"){
-                stdout = data.toString();
+                stdout += data.toString();
             }
         });
 
@@ -174,7 +173,8 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
 
         pythonProcess.on("close", (code: number) => {
             if (code === 0) {
-                let data = JSON.parse(stdout);
+                let data = stdout.slice(stdout.indexOf("{"), stdout.lastIndexOf("}") + 1);
+                data = JSON.parse(data);
                 resolve(data);
             } else {
                 reject(new Error("Local transcription failed"));
