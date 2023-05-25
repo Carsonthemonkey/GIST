@@ -156,7 +156,7 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
         
         console.log("python process created")
         pythonProcess.stdout.on("data", (data: any) => {
-            if(data.toString()[0] === "{"){
+            if(data.toString()){
                 stdout += data.toString();
             }
         });
