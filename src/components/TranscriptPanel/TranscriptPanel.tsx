@@ -301,11 +301,11 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             {!fileUploaded && !transcript && (
                 <FileDropButton setFile={handleFileUpload}></FileDropButton>
             )}
-            {isLoading && !isElectron && <p>Loading...</p>}
+            {isLoading && !isElectron && <p>Loading...</p>} 
             {isLoading && isElectron && (
                 <>
                     <br />{" "}
-                    <ProgressBar progressPercent={transcriptionProgress} />
+                    {!transcriptionProgress ? <div>preprocessing...</div> : <ProgressBar progressPercent={transcriptionProgress} />}
                 </>
             )}
             <p id="transcript-content">
