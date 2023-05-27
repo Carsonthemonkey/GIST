@@ -148,7 +148,7 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
     return new Promise((resolve, reject) => {
         console.log("running local whisper")
         const pythonProcess = child_process.spawn(executablePath, [
-            clean_ffmpeg_path(ffmpegPath),
+            path.dirname(ffmpegPath),
             audioPath,
             doTranslate ? "translate" : "transcribe",
         ]);
@@ -182,11 +182,6 @@ ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
         });
     });
 });
-
-function clean_ffmpeg_path(ffmpegPath: string){
-    const indexOfLastSlash = ffmpegPath.lastIndexOf("\\");
-    return ffmpegPath.slice(0, indexOfLastSlash);
-}
 
 function getExecutablePath(executableName: string): string {
     if (!app.isPackaged) {
