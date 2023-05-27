@@ -13,7 +13,7 @@ try:
 except:
     raise Exception("Insufficient arguments provided. Please provide the path to the ffmpeg executable and the path to the audio file.")
 
-os.environ['PATH'] = ffmpeg_path + ';' + os.environ['PATH'] # set the current path to where ffmpeg is located
+os.environ['PATH'] = ffmpeg_path + os.pathsep + os.environ['PATH'] # set the current path to where ffmpeg is located
 
 
 if len(args) > 2:
