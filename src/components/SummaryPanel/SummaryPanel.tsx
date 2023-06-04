@@ -115,7 +115,7 @@ const SummaryPanel = (props: Props) => {
             {/* <br /> */}
             <br />
             <h2 id="summary-title">Summary</h2>
-            <button
+            {/* <button
                 id="notes-button"
                 className="non-icon-button"
                 onClick={generateSummary}
@@ -128,7 +128,7 @@ const SummaryPanel = (props: Props) => {
                 onClick={toggleDropdown}
             >
                 <FontAwesomeIcon icon={faChevronDown} />
-            </button>
+            </button> */}
             <Dropdown
                 options={promptTypes}
                 buttonType="summary"
@@ -136,7 +136,7 @@ const SummaryPanel = (props: Props) => {
             >
                 Generate Summary
             </Dropdown>
-            {isOpen && (
+            {/* {isOpen && (
                 <ul id="summary-drop-down">
                     {promptTypes.map((title) => (
                         <li
@@ -148,7 +148,7 @@ const SummaryPanel = (props: Props) => {
                         </li>
                     ))}
                 </ul>
-            )}
+            )} */}
             <br />
             <br />
             <div id="summary-content">
