@@ -6,10 +6,16 @@ import "./SmallDropdown.css";
 interface Props {
     children: React.ReactNode;
     options: string[];
+    buttonType: string;
     displayKeyword?: string;
 }
 
-const Dropdown = ({ children, options, displayKeyword = "" }: Props) => {
+const Dropdown = ({
+    children,
+    options,
+    buttonType,
+    displayKeyword = "",
+}: Props) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [displayString, setDisplayString] = React.useState(
         children as string
@@ -26,22 +32,22 @@ const Dropdown = ({ children, options, displayKeyword = "" }: Props) => {
 
     return (
         <div className="small-drop-down">
-            {/* TODO need to add statment to change dropdown button, something like this:
+            {/* TODO need to add statment to change dropdown button, something like this: */}
             {buttonType === "simple" ? ( // Render different buttons based on button type prop
                 <button onClick={toggleDropdown}>
-                {displayString}
-                <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
+                    {displayString}
+                    <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
                 </button>
             ) : (
                 <div>
-                <button onClick={toggleDropdown}>Generate Summary</button>
-                <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
+                    <button onClick={toggleDropdown}>Generate Summary</button>
+                    <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
                 </div>
-            )} */}
-            <button onClick={toggleDropdown}>
+            )}
+            {/* <button onClick={toggleDropdown}>
                 {displayString}
                 <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
-            </button>
+            </button> */}
             {isOpen && (
                 <ul className="small-drop-down-content">
                     {options.map((option) => (

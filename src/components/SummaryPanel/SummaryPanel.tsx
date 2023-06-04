@@ -108,7 +108,9 @@ const SummaryPanel = (props: Props) => {
     return (
         <div id="summary-panel">
             <PanelAnchor position="top-left">
-                <Dropdown options={subjects}>Select Topic</Dropdown>
+                <Dropdown options={subjects} buttonType="simple">
+                    Select Topic
+                </Dropdown>
             </PanelAnchor>
             {/* <br /> */}
             <br />
@@ -127,7 +129,11 @@ const SummaryPanel = (props: Props) => {
             >
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
-            <Dropdown options={promptTypes} displayKeyword="Generate ">
+            <Dropdown
+                options={promptTypes}
+                buttonType="summary"
+                displayKeyword="Generate "
+            >
                 Generate Summary
             </Dropdown>
             {isOpen && (
