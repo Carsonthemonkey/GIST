@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import "./SummaryButton.css";
 import summarizeGPT from "../../utils/summarize";
 import promptsOBJ from "../../assets/prompts.json";
 import { Context } from "../../App";
@@ -87,9 +88,9 @@ const SummaryButton = (props: Props) => {
     }
 
     return (
-        <div>
+        <div id="summary-button">
             <button
-                id="notes-button"
+                id="generate-button"
                 className="non-icon-button"
                 onClick={generateSummary}
             >

@@ -9,50 +9,35 @@
     bottom: vars.$audio-panel-height;
     overflow-y: scroll;
 
-    // #notes-button {
-    //     border-right: none;
-    //     border-top-right-radius: 0;
-    //     border-bottom-right-radius: 0;
-    //     width: vars.$notes-button-width;
-    //     padding-right: 8px;
+    // Needs to be moves to SmallDropdown.scss (for Dropdown element, needs to get renamed)
+    // #summary-drop-down {
+    //     list-style-type: none;
+    //     padding: 0;
+    //     margin-top: 0;
+    //     width: 35%;
+    //     background-color: var(--background-color);
+    //     // centers the drop down
+    //     position: absolute;
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     width: calc(
+    //         vars.$notes-button-width + vars.$summary-drop-down-button-width -
+    //             20px
+    //     );
+
+    //     .summary-drop-down-item {
+    //         background-color: var(--background-color);
+    //         margin-top: 3px;
+    //         padding: 10px;
+    //         cursor: pointer;
+    //         border: 1px solid var(--accent-color);
+    //         border-radius: 15px;
+
+    //         &:hover {
+    //             background-color: var(--highlight-color);
+    //         }
+    //     }
     // }
-
-    // #summary-drop-down-button {
-    //     border-top-left-radius: 0;
-    //     border-bottom-left-radius: 0;
-    //     padding-left: 9px;
-    //     padding-right: 12px;
-    //     width: vars.$summary-drop-down-button-width;
-    // }
-
-    #summary-drop-down {
-        list-style-type: none;
-        padding: 0;
-        margin-top: 0;
-        width: 35%;
-        background-color: var(--background-color);
-        // centers the drop down
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: calc(
-            vars.$notes-button-width + vars.$summary-drop-down-button-width -
-                20px
-        );
-
-        .summary-drop-down-item {
-            background-color: var(--background-color);
-            margin-top: 3px;
-            padding: 10px;
-            cursor: pointer;
-            border: 1px solid var(--accent-color);
-            border-radius: 15px;
-
-            &:hover {
-                background-color: var(--highlight-color);
-            }
-        }
-    }
 
     #summary-content {
         user-select: text;
