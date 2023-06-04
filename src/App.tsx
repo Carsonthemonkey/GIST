@@ -42,14 +42,14 @@ function App() {
     const [APIKey, setAPIKey] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalText, setModalText] = useState("");
-    let colorTheme = "light";
+    let colorTheme = "light"; // TODO should be a state variable?
     //This will need to be changed later
     const [transcript, setTranscriptText] = useState(``);
 
     useEffect(() => {
         //handles keyboard shortcuts
         document.addEventListener("keydown", handleKeyDown);
-        
+
         Modal.setAppElement(document.body);
     }, []);
 

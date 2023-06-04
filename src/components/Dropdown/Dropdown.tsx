@@ -8,7 +8,10 @@ interface Props {
     children: React.ReactNode;
     options: string[];
     buttonType: string;
+    // only the non-simple buttons need these props
     displayKeyword?: string;
+    APIKeyProp?: string;
+    transcriptProp?: string;
 }
 
 const Dropdown = ({
@@ -16,6 +19,8 @@ const Dropdown = ({
     options,
     buttonType,
     displayKeyword = "",
+    APIKeyProp = "",
+    transcriptProp = "",
 }: Props) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [displayString, setDisplayString] = React.useState(
@@ -36,9 +41,17 @@ const Dropdown = ({
             {/* Render different buttons based on button type prop */}
             {buttonType === "summary" ? (
                 <div>
-                    <SummaryButton></SummaryButton>
-                    <button onClick={toggleDropdown}>Generate Summary</button>
-                    <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
+                    <SummaryButton
+                        APIKeyProp={APIKeyProp}
+                        transcriptProp={transcriptProp}
+                    ></SummaryButton>
+                    <button
+                        id="summary-drop-down-button"
+                        className="non-icon-button"
+                        onClick={toggleDropdown}
+                    >
+                        <FontAwesomeIcon icon={faChevronDown} />
+                    </button>
                 </div>
             ) : (
                 // Else, render a simple button
