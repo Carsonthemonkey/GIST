@@ -64,8 +64,7 @@ const SummaryPanel = (props: Props) => {
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
-                // TODO test if summary is actually changing now that summary
-                button is in a new component
+                {/* TODO test if summary is actually changing now that summary button is in a new component */}
                 {!isLoading && summary && <MarkdownFormatter text={summary} />}
             </div>
         </div>

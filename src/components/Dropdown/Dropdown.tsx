@@ -60,10 +60,6 @@ const Dropdown = ({
                     <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
                 </button>
             )}
-            {/* <button onClick={toggleDropdown}>
-                {displayString}
-                <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
-            </button> */}
             {isOpen && (
                 <ul className="small-drop-down-content">
                     {options.map((option) => (
