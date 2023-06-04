@@ -10,6 +10,7 @@ import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
 // import { Context } from "../../App";
 
 interface Props {
+    // might want to use context for these since there passed down only to be used 4 compoenents down
     APIKeyProp: string;
     transcriptProp: string;
 }
@@ -53,27 +54,18 @@ const SummaryPanel = (props: Props) => {
                 options={promptTypes}
                 buttonType="summary"
                 displayKeyword="Generate "
+                APIKeyProp={props.APIKeyProp}
+                transcriptProp={props.transcriptProp}
             >
                 Generate Summary
             </Dropdown>
-            {/* {isOpen && (
-                <ul id="summary-drop-down">
-                    {promptTypes.map((title) => (
-                        <li
-                            className="summary-drop-down-item"
-                            key={title}
-                            onClick={handleItemClick}
-                        >
-                            {title}
-                        </li>
-                    ))}
-                </ul>
-            )} */}
             <br />
             <br />
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
+                // TODO test if summary is actually changing now that summary
+                button is in a new component
                 {!isLoading && summary && <MarkdownFormatter text={summary} />}
             </div>
         </div>
