@@ -33,18 +33,19 @@ const Dropdown = ({
 
     return (
         <div className="small-drop-down">
-            {/* TODO need to add statment to change dropdown button, something like this: */}
-            {buttonType === "simple" ? ( // Render different buttons based on button type prop
-                <button onClick={toggleDropdown}>
-                    {displayString}
-                    <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
-                </button>
-            ) : (
+            {/* Render different buttons based on button type prop */}
+            {buttonType === "summary" ? (
                 <div>
                     <SummaryButton></SummaryButton>
                     <button onClick={toggleDropdown}>Generate Summary</button>
                     <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
                 </div>
+            ) : (
+                // Else, render a simple button
+                <button onClick={toggleDropdown}>
+                    {displayString}
+                    <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
+                </button>
             )}
             {/* <button onClick={toggleDropdown}>
                 {displayString}
