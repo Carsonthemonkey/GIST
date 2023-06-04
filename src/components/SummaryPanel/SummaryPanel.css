@@ -6,20 +6,6 @@
   bottom: 50px;
   overflow-y: scroll;
 }
-#summary-panel #notes-button {
-  border-right: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  width: 210px;
-  padding-right: 8px;
-}
-#summary-panel #summary-drop-down-button {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding-left: 9px;
-  padding-right: 12px;
-  width: 41px;
-}
 #summary-panel #summary-drop-down {
   list-style-type: none;
   padding: 0;

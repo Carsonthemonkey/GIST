@@ -50,7 +50,6 @@ const SummaryPanel = (props: Props) => {
             <Dropdown
                 options={promptTypes}
                 buttonType="summary"
-                displayKeyword="Generate "
                 APIKeyProp={props.APIKeyProp}
                 transcriptProp={props.transcriptProp}
             >

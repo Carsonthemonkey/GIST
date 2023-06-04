@@ -1,31 +1,71 @@
 @use "../../styles/variables" as vars;
 
-.small-drop-down{
+.drop-down {
     list-style-type: none;
     padding: 0;
     margin-top: 0;
-    .fa-icon{
+
+    .fa-icon {
         padding-left: 4px;
         padding-right: 4px;
     }
-    button{
-        border: none;
-        // padding: 4px;
-    }
-    ul{
+
+    ul {
         padding: 0;
         margin: 0;
     }
-    
-    .small-drop-down-content{
+
+    .simple-drop-down-button {
+        border: none;
+    }
+
+    #summary-drop-down-button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding-left: 9px;
+        padding-right: 12px;
+        width: vars.$summary-drop-down-button-width;
+    }
+
+    // TODO figure out how to reconcile this with the below, how different should styling be for summary vs topic?
+    // .summary-drop-down-content {
+    //     list-style-type: none;
+    //     padding: 0;
+    //     margin-top: 0;
+    //     width: 35%;
+    //     background-color: var(--background-color);
+    //     // centers the drop down
+    //     position: absolute;
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     width: calc(
+    //         vars.$notes-button-width + vars.$summary-drop-down-button-width -
+    //             20px
+    //     );
+
+    //     .summary-drop-down-item {
+    //         background-color: var(--background-color);
+    //         margin-top: 3px;
+    //         padding: 10px;
+    //         cursor: pointer;
+    //         border: 1px solid var(--accent-color);
+    //         border-radius: 15px;
+
+    //         &:hover {
+    //             background-color: var(--highlight-color);
+    //         }
+    //     }
+    // }
+
+    .drop-down-content {
         border-top: 2px solid var(--accent-color);
         border-left: 2px solid var(--accent-color);
         border-right: 2px solid var(--accent-color);
         padding: 0px;
         margin: 0px;
         background-color: var(--background-color);
-        
-        .small-drop-down-item{
+
+        .drop-down-item {
             margin: 0px;
             font-size: 14px;
             list-style-type: none;
@@ -33,7 +73,7 @@
             cursor: pointer;
             border-bottom: 2px solid var(--accent-color);
 
-            &:hover{
+            &:hover {
                 background-color: var(--highlight-color);
             }
         }

@@ -1,0 +1,9 @@
+@use "../../styles/variables" as vars;
+
+#generate-button {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: vars.$notes-button-width;
+    padding-right: 8px;
+}

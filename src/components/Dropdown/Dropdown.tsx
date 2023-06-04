@@ -9,7 +9,6 @@ interface Props {
     options: string[];
     buttonType: string;
     // only the non-simple buttons need these props
-    displayKeyword?: string;
     APIKeyProp?: string;
     transcriptProp?: string;
 }
@@ -18,7 +17,6 @@ const Dropdown = ({
     children,
     options,
     buttonType,
-    displayKeyword = "",
     APIKeyProp = "",
     transcriptProp = "",
 }: Props) => {
@@ -28,23 +26,30 @@ const Dropdown = ({
     );
 
     function handleClick(e: any) {
-        setDisplayString(displayKeyword + e.target.innerText);
+        setDisplayString(e.target.innerText);
         setIsOpen(false);
     }
+
+    // const handleItemClick = (e: any) => {
+    //     setActivePromptType(e.target.innerText);
+    //     setIsOpen(false);
+    // };
 
     function toggleDropdown() {
         setIsOpen(!isOpen);
     }
 
     return (
-        <div className="small-drop-down">
+        <div className="drop-down">
             {/* Render different buttons based on button type prop */}
             {buttonType === "summary" ? (
                 <div>
                     <SummaryButton
                         APIKeyProp={APIKeyProp}
                         transcriptProp={transcriptProp}
-                    ></SummaryButton>
+                    >
+                        {displayString}
+                    </SummaryButton>
                     <button
                         id="summary-drop-down-button"
                         className="non-icon-button"
@@ -55,16 +60,19 @@ const Dropdown = ({
                 </div>
             ) : (
                 // Else, render a simple button
-                <button onClick={toggleDropdown}>
+                <button
+                    className="simple-drop-down-button"
+                    onClick={toggleDropdown}
+                >
                     {displayString}
                     <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
                 </button>
             )}
             {isOpen && (
-                <ul className="small-drop-down-content">
+                <ul className="drop-down-content">
                     {options.map((option) => (
                         <li
-                            className="small-drop-down-item"
+                            className="drop-down-item"
                             key={option}
                             onClick={handleClick}
                         >

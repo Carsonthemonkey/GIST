@@ -4,6 +4,7 @@ import promptsOBJ from "../../assets/prompts.json";
 import { Context } from "../../App";
 
 interface Props {
+    children: React.ReactNode;
     APIKeyProp: string;
     transcriptProp: string;
 }
@@ -35,6 +36,7 @@ const SummaryButton = (props: Props) => {
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
     const [summary, setSummary] = React.useState(``);
     const [isLoading, setIsLoading] = React.useState(false);
+    // TODO figure out how to make this update in relation to the dropdown component
     const [activePromptType, setActivePromptType] = React.useState(
         promptTypes[0]
     );
@@ -91,7 +93,7 @@ const SummaryButton = (props: Props) => {
                 className="non-icon-button"
                 onClick={generateSummary}
             >
-                Generate {activePromptType}
+                Generate {props.children}
             </button>
         </div>
     );
