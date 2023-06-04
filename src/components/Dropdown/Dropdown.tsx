@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./SmallDropdown.css";
+import SummaryButton from "../SummaryButton/SummaryButton";
 
 interface Props {
     children: React.ReactNode;
@@ -40,6 +41,7 @@ const Dropdown = ({
                 </button>
             ) : (
                 <div>
+                    <SummaryButton></SummaryButton>
                     <button onClick={toggleDropdown}>Generate Summary</button>
                     <FontAwesomeIcon className="fa-icon" icon={faChevronDown} />
                 </div>
