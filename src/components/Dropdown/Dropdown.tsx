@@ -30,11 +30,6 @@ const Dropdown = ({
         setIsOpen(false);
     }
 
-    // const handleItemClick = (e: any) => {
-    //     setActivePromptType(e.target.innerText);
-    //     setIsOpen(false);
-    // };
-
     function toggleDropdown() {
         setIsOpen(!isOpen);
     }

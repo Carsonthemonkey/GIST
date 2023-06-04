@@ -53,7 +53,7 @@ const SummaryPanel = (props: Props) => {
                 APIKeyProp={props.APIKeyProp}
                 transcriptProp={props.transcriptProp}
             >
-                Generate Summary
+                Summary
             </Dropdown>
             <br />
             <br />
