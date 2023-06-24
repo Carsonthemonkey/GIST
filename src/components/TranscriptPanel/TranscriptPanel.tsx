@@ -258,6 +258,12 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         setDoTranslate(!doTranslate);
     }
 
+    function handleSegmentSelect(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
+        const element = event.target as HTMLSpanElement;
+        const id = parseInt(element.id.substring(8));
+        console.log(`clicked on segment ${id}`)
+    }
+
     return (
         <div
             id="transcript-panel"
@@ -322,7 +328,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             <p id="transcript-content">
                 <br />
                 {!isLoading && !isElectron? transcript : transcriptSegments.map(obj => (
-                    <span id={`segment-${obj.id}`} className="transcript-segment">{obj.text}</span>
+                    <span id={`segment-${obj.id}`} className="transcript-segment" onClick={handleSegmentSelect}>{obj.text}</span>
                 )
                 )}
             </p>
