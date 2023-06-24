@@ -31,6 +31,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const { modalText, setModalText } = useContext(Context);
     const [fileUploaded, setFileUploaded] = useState(false);
     const [audioFile, setAudioFile] = useState<File | null>(null);
+    const [audioTime, setAudioTime] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
     const [transcriptionProgress, setTranscriptionProgress] = useState(0);
@@ -261,7 +262,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     function handleSegmentSelect(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
         const element = event.target as HTMLSpanElement;
         const id = parseInt(element.id.substring(8));
-        console.log(`clicked on segment ${id}`)
+        setAudioTime(transcriptSegments[id].start);
     }
 
     return (
@@ -336,7 +337,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             <div id="word-counter-bar" className="hidden">
                 {transcript && <WordCounter transcriptProp={transcript} />}
             </div>
-            <AudioPanel audioFile={audioFile} fileIsUploaded={fileUploaded} />
+            <AudioPanel audioFile={audioFile} fileIsUploaded={fileUploaded} targetTime={audioTime} />
         </div>
     );
 };
