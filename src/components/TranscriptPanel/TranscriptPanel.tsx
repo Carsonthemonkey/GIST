@@ -325,7 +325,6 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
                     <span id={`segment-${obj.id}`} className="transcript-segment">{obj.text}</span>
                 )
                 )}
-                {/* {!isLoading && transcriptSegments[0]?.text} */}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
             <div id="word-counter-bar" className="hidden">
