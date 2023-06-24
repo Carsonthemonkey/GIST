@@ -321,7 +321,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             )}
             <p id="transcript-content">
                 <br />
-                {!isLoading && transcriptSegments.map(obj => (
+                {!isLoading && !isElectron? transcript : transcriptSegments.map(obj => (
                     <span id={`segment-${obj.id}`} className="transcript-segment">{obj.text}</span>
                 )
                 )}
