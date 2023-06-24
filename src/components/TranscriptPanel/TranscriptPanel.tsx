@@ -10,11 +10,19 @@ import AudioPanel from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { test } from "node:test";
 
 interface Props {
     APIKey: string;
     transcript: string;
     setTranscript: (transcript: string) => void;
+}
+
+interface TranscriptSegment{
+    id: number;
+    start: number;
+    end: number;
+    text: string;
 }
 
 const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
@@ -26,6 +34,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
     const [transcriptionProgress, setTranscriptionProgress] = useState(0);
+    const [transcriptSegments, setTranscriptSegments] = useState<TranscriptSegment[]>([]);
 
     const isElectron =
         typeof process !== "undefined" &&
@@ -119,8 +128,10 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         try {
             setIsLoading(true);
             await runLocalTranscribe(audioFile, doTranslate).then((data: any) => {
-                console.log(data);
+                console.log(data["segments"])
+                setTranscriptSegments(data["segments"]);
                 setTranscript(data["text"]);
+                console.log(transcriptSegments)
             });
             setIsLoading(false);
             return;
@@ -310,9 +321,11 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             )}
             <p id="transcript-content">
                 <br />
-                {/* TODO Add a nice style to this */}
-
-                {!isLoading && transcript}
+                {!isLoading && transcriptSegments.map(obj => (
+                    <span id={`segment-${obj.id}`} className="transcript-segment">{obj.text}</span>
+                )
+                )}
+                {/* {!isLoading && transcriptSegments[0]?.text} */}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
             <div id="word-counter-bar" className="hidden">
