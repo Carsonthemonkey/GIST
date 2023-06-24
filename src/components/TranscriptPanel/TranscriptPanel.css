@@ -64,6 +64,16 @@
           user-select: text;
   padding: 0 20px;
 }
+#transcript-panel #transcript-content .transcript-segment {
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  transition: all 0.1s;
+}
+#transcript-panel #transcript-content .transcript-segment:hover {
+  cursor: pointer;
+  color: var(--background-color);
+  background-color: var(--accent-color);
+}
 #transcript-panel #word-counter-bar {
   position: fixed;
   bottom: 50px;
