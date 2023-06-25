@@ -272,7 +272,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         const element = event.target as HTMLSpanElement;
         const id = parseInt(element.id.substring(8));
         audioPanelRef.current?.setAudioTime(transcriptSegments[id].start);
-        // setAudioTime(transcriptSegments[id].start);
+        audioPanelRef.current?.playAudio();
     }
 
     return (
