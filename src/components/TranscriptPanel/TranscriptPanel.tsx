@@ -36,6 +36,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
     const [transcriptionProgress, setTranscriptionProgress] = useState(0);
+    const [transcriptUploaded, setTranscriptUploaded] = useState(false);
     const [transcriptSegments, setTranscriptSegments] = useState<
         TranscriptSegment[]
     >([]);
@@ -85,6 +86,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             reader.onload = (e) => {
                 if (e.target) {
                     setTranscript(e.target.result as string);
+                    setTranscriptUploaded(true);
                 }
             };
             reader.readAsText(file);
@@ -340,7 +342,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             )}
             <p id="transcript-content">
                 <br />
-                {!isLoading && !isElectron
+                {!isLoading && transcriptUploaded || !isElectron
                     ? transcript
                     : transcriptSegments.map((obj) => (
                           <span
