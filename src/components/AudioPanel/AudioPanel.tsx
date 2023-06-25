@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useImperativeHandle } from "react";
 import "./AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
@@ -8,10 +8,15 @@ import formatTimestamp from "../../utils/formatTimestamp";
 interface AudioPanelProps {
     audioFile: File | null;
     fileIsUploaded: boolean;
-    targetTime: number;
 }
 
-const AudioPanel = ({ audioFile, fileIsUploaded, targetTime }: AudioPanelProps) => {
+export type AudioPanelRef = {
+    playAudio: () => void;
+    pauseAudio: () => void;
+    setAudioTime: (time: number) => void;
+}
+
+const AudioPanel = React.forwardRef<AudioPanelRef, AudioPanelProps>(({ audioFile, fileIsUploaded }, ref) => {
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [audioDuration, setAudioDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0); 
@@ -21,18 +26,15 @@ const AudioPanel = ({ audioFile, fileIsUploaded, targetTime }: AudioPanelProps) 
     const timelineRef = useRef<HTMLDivElement>(null);
     let scrubTime: null | number = null;
 
+    useImperativeHandle(ref, () => ({
+        playAudio,
+        pauseAudio,
+        setAudioTime
+    }));
+
     audio?.addEventListener("loadedmetadata", (event) => {
         setAudioDuration(audio?.duration);
     });
-
-    useEffect(() => {
-        if(audio){
-            setAudioTime(targetTime);
-        }
-        if(!audioIsPlaying && audio && fileIsUploaded){
-            playAudio();
-        }
-    }, [targetTime]);
 
     useEffect(() => {
         let audioURL = audioFile ? URL.createObjectURL(audioFile) : null;
@@ -163,6 +165,6 @@ const AudioPanel = ({ audioFile, fileIsUploaded, targetTime }: AudioPanelProps) 
         {fileIsUploaded? <div id="timestamp">{formatTimestamp(currentTime)} / {formatTimestamp(audioDuration)}</div> : <div id="timestamp">- - / - -</div>}
         </div>
     );
-};
+});
 
 export default AudioPanel;

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import "./TranscriptPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +6,7 @@ import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { transcribeWhisper, translateWhisper } from "../../utils/transcibe";
 import WordCounter from "../WordCounter/WordCounter";
 import { Context } from "../../App";
-import AudioPanel from "../AudioPanel/AudioPanel";
+import AudioPanel, {AudioPanelRef} from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -31,6 +31,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const { modalText, setModalText } = useContext(Context);
     const [fileUploaded, setFileUploaded] = useState(false);
     const [audioFile, setAudioFile] = useState<File | null>(null);
+    const audioPanelRef = useRef<AudioPanelRef | null>(null);
     const [audioTime, setAudioTime] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
@@ -262,7 +263,8 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     function handleSegmentSelect(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
         const element = event.target as HTMLSpanElement;
         const id = parseInt(element.id.substring(8));
-        setAudioTime(transcriptSegments[id].start);
+        audioPanelRef.current?.setAudioTime(transcriptSegments[id].start);
+        // setAudioTime(transcriptSegments[id].start);
     }
 
     return (
@@ -337,7 +339,7 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             <div id="word-counter-bar" className="hidden">
                 {transcript && <WordCounter transcriptProp={transcript} />}
             </div>
-            <AudioPanel audioFile={audioFile} fileIsUploaded={fileUploaded} targetTime={audioTime} />
+            <AudioPanel audioFile={audioFile} fileIsUploaded={fileUploaded} ref={audioPanelRef} />
         </div>
     );
 };
