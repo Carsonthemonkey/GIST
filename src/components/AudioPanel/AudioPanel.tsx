@@ -8,6 +8,8 @@ import formatTimestamp from "../../utils/formatTimestamp";
 interface AudioPanelProps {
     audioFile: File | null;
     fileIsUploaded: boolean;
+    currentTime: number;
+    setCurrentTime: (time: number) => void;
 }
 
 export type AudioPanelRef = {
@@ -16,10 +18,10 @@ export type AudioPanelRef = {
     setAudioTime: (time: number) => void;
 }
 
-const AudioPanel = React.forwardRef<AudioPanelRef, AudioPanelProps>(({ audioFile, fileIsUploaded }, ref) => {
+const AudioPanel = React.forwardRef<AudioPanelRef, AudioPanelProps>(({ audioFile, fileIsUploaded, currentTime, setCurrentTime}, ref) => {
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [audioDuration, setAudioDuration] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0); 
+    // const [currentTime, setCurrentTime] = useState(0); 
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
     const [playheadPosition, setPlayheadPosition] = useState(0);
     const [isDragging, setIsDragging] = useState(false);

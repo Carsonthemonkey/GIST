@@ -83,6 +83,9 @@
                 background-color: var(--accent-color);
             }
         }
+        .active-segment{
+            text-decoration: underline;
+        }
     }
 
     #word-counter-bar {

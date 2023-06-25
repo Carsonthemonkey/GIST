@@ -74,6 +74,9 @@
   color: var(--background-color);
   background-color: var(--accent-color);
 }
+#transcript-panel #transcript-content .active-segment {
+  text-decoration: underline;
+}
 #transcript-panel #word-counter-bar {
   position: fixed;
   bottom: 50px;

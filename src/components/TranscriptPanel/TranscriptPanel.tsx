@@ -6,7 +6,7 @@ import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { transcribeWhisper, translateWhisper } from "../../utils/transcibe";
 import WordCounter from "../WordCounter/WordCounter";
 import { Context } from "../../App";
-import AudioPanel, {AudioPanelRef} from "../AudioPanel/AudioPanel";
+import AudioPanel, { AudioPanelRef } from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -18,7 +18,7 @@ interface Props {
     setTranscript: (transcript: string) => void;
 }
 
-interface TranscriptSegment{
+interface TranscriptSegment {
     id: number;
     start: number;
     end: number;
@@ -36,7 +36,9 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [doTranslate, setDoTranslate] = useState(false);
     const [transcriptionProgress, setTranscriptionProgress] = useState(0);
-    const [transcriptSegments, setTranscriptSegments] = useState<TranscriptSegment[]>([]);
+    const [transcriptSegments, setTranscriptSegments] = useState<
+        TranscriptSegment[]
+    >([]);
 
     const isElectron =
         typeof process !== "undefined" &&
@@ -129,12 +131,14 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         }
         try {
             setIsLoading(true);
-            await runLocalTranscribe(audioFile, doTranslate).then((data: any) => {
-                console.log(data["segments"])
-                setTranscriptSegments(data["segments"]);
-                setTranscript(data["text"]);
-                console.log(transcriptSegments)
-            });
+            await runLocalTranscribe(audioFile, doTranslate).then(
+                (data: any) => {
+                    console.log(data["segments"]);
+                    setTranscriptSegments(data["segments"]);
+                    setTranscript(data["text"]);
+                    console.log(transcriptSegments);
+                }
+            );
             setIsLoading(false);
             return;
         } catch (e) {
@@ -260,7 +264,9 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
         setDoTranslate(!doTranslate);
     }
 
-    function handleSegmentSelect(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
+    function handleSegmentSelect(
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ): void {
         const element = event.target as HTMLSpanElement;
         const id = parseInt(element.id.substring(8));
         audioPanelRef.current?.setAudioTime(transcriptSegments[id].start);
@@ -321,25 +327,42 @@ const TranscriptPanel = ({ APIKey, transcript, setTranscript }: Props) => {
             {!fileUploaded && !transcript && (
                 <FileDropButton setFile={handleFileUpload}></FileDropButton>
             )}
-            {isLoading && !isElectron && <p>Loading...</p>} 
+            {isLoading && !isElectron && <p>Loading...</p>}
             {isLoading && isElectron && (
                 <>
                     <br />{" "}
-                    {!transcriptionProgress ? <div>preprocessing...</div> : <ProgressBar progressPercent={transcriptionProgress} />}
+                    {!transcriptionProgress ? (
+                        <div>preprocessing...</div>
+                    ) : (
+                        <ProgressBar progressPercent={transcriptionProgress} />
+                    )}
                 </>
             )}
             <p id="transcript-content">
                 <br />
-                {!isLoading && !isElectron? transcript : transcriptSegments.map(obj => (
-                    <span id={`segment-${obj.id}`} className="transcript-segment" onClick={handleSegmentSelect}>{obj.text}</span>
-                )
-                )}
+                {!isLoading && !isElectron
+                    ? transcript
+                    : transcriptSegments.map((obj) => (
+                          <span
+                              id={`segment-${obj.id}`}
+                              className={obj.start <= audioTime && obj.end > audioTime ? "transcript-segment active-segment" : "transcript-segment"}
+                              onClick={handleSegmentSelect}
+                          >
+                              {obj.text}
+                          </span>
+                      ))}
             </p>
             {/* Might be good to move this to a separate component (and maybe add like a copy and save/download button?) */}
             <div id="word-counter-bar" className="hidden">
                 {transcript && <WordCounter transcriptProp={transcript} />}
             </div>
-            <AudioPanel audioFile={audioFile} fileIsUploaded={fileUploaded} ref={audioPanelRef} />
+            <AudioPanel
+                audioFile={audioFile}
+                fileIsUploaded={fileUploaded}
+                currentTime={audioTime}
+                setCurrentTime={setAudioTime}
+                ref={audioPanelRef}
+            />
         </div>
     );
 };
