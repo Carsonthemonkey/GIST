@@ -8,6 +8,7 @@ import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import promptsOBJ from "../../assets/prompts.json";
 import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
 import { Context } from "../../App";
+import { estimatePrice } from "../../utils/tokenCounter";
 
 interface Props {
     APIKeyProp: string;
@@ -50,10 +51,17 @@ const SummaryPanel = (props: Props) => {
     );
     const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
     const [autoScroll, setAutoScroll] = React.useState(true);
-    
+    const [priceEstimate, setPriceEstimate] = React.useState(0);
+
+    useEffect(() => {
+        const inputPrice = estimatePrice(props.transcriptProp, 0.003); // TODO: make the price per token dynamic depending on the active model
+        const outputPriceEstimate = 0.003; // This will need to be the Max tokens for the model * the batches needed to generate the summary * price per token
+        setPriceEstimate(inputPrice + outputPriceEstimate);
+    }, [props.transcriptProp]);
+
     useEffect(() => {
         const scrollElement = scrollRef.current;
-        if(autoScroll && scrollElement){
+        if (autoScroll && scrollElement) {
             scrollElement.scrollTop = scrollElement.scrollHeight;
         }
     });
@@ -64,8 +72,7 @@ const SummaryPanel = (props: Props) => {
             const { scrollTop, clientHeight, scrollHeight } = scrollElement;
             if (scrollTop + clientHeight >= scrollHeight - 5) {
                 setAutoScroll(true);
-            }
-            else{
+            } else {
                 setAutoScroll(false);
             }
         }
@@ -169,6 +176,13 @@ const SummaryPanel = (props: Props) => {
             )}
             <br />
             <br />
+            {/* make this dynamically estimate price for model */}
+            {props.transcriptProp && !summary && (
+                <div id="price-estimate">
+                    Estimated summary price: 
+                    {priceEstimate >= 0.01 ? <strong> ${priceEstimate.toFixed(2)}</strong> : <strong> Less than 1¢</strong>}
+                </div>
+            )}
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}

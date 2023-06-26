@@ -8,6 +8,6 @@ export function countTokens(text: string) {
     return encode(text).length;
 }
 
-export function estimatePrice(text: string, pricePerToken: number) {
-    return countTokens(text) * pricePerToken;
+export function estimatePrice(text: string, pricePerThousandTokens: number) {
+    return countTokens(text) * pricePerThousandTokens / 1000;
 }
