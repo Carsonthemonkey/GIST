@@ -1,0 +1,17 @@
+{
+    "gpt-3.5-turbo": {
+        "max_input_tokens": 4096,
+        "price_per_one_thousand_input_tokens": 0.0015,
+        "price_per_one_thousand_output_tokens": 0.002
+    },
+    "gpt-3.5-16k": {
+        "max_input_tokens": 16384,
+        "price_per_one_thousand_input_tokens": 0.003,
+        "price_per_one_thousand_output_tokens": 0.004
+    },
+    "gpt-4-32k": {
+        "max_input_tokens": 32768,
+        "price_per_one_thousand_input_tokens": 0.06,
+        "price_per_one_thousand_output_tokens": 0.12
+    }
+}

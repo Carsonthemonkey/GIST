@@ -7,3 +7,7 @@ export function isShorterThanTokenLimit(text: string, limit: number) {
 export function countTokens(text: string) {
     return encode(text).length;
 }
+
+export function estimatePrice(text: string, pricePerToken: number) {
+    return countTokens(text) * pricePerToken;
+}
