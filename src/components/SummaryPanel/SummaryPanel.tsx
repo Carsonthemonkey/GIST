@@ -53,9 +53,15 @@ const SummaryPanel = (props: Props) => {
     const [autoScroll, setAutoScroll] = React.useState(true);
     const [priceEstimate, setPriceEstimate] = React.useState(0);
 
+    const PRICE_PER_THOUSAND_INPUT_TOKENS = 0.0015; //TODO: make this dynamic depending on the model
+    const PRICE_PER_THOUSAND_OUTPUT_TOKENS = 0.002; //TODO: make this dynamic depending on the model
+    const MAX_INPUT_TOKENS = 4096; //TODO: make this dynamic depending on the model
+    const MAX_OUTPUT_TOKENS = 1000; //TODO: make this dynamic depending on the model
+    let summaryBatches = 1; //* This will need to be the batches needed to generate the summary, evaluated based on the transcript length
+
     useEffect(() => {
-        const inputPrice = estimatePrice(props.transcriptProp, 0.003); // TODO: make the price per token dynamic depending on the active model
-        const outputPriceEstimate = 0.003; // This will need to be the Max tokens for the model * the batches needed to generate the summary * price per token
+        const inputPrice = estimatePrice(props.transcriptProp, PRICE_PER_THOUSAND_INPUT_TOKENS); 
+        const outputPriceEstimate = PRICE_PER_THOUSAND_OUTPUT_TOKENS * summaryBatches * MAX_OUTPUT_TOKENS / 1000;
         setPriceEstimate(inputPrice + outputPriceEstimate);
     }, [props.transcriptProp]);
 
