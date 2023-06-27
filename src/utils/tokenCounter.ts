@@ -1,10 +1,19 @@
 import { encode } from "gpt-3-encoder";
 
 export function countTokens(text: string) {
+    /**Counts the number of tokens in a string.
+     * @param {string} text - The text to count the tokens of
+     * @returns {number} - The number of tokens
+     * */
     return encode(text).length;
 }
 
 export function estimatePrice(text: string, pricePerThousandTokens: number) {
+    /**Estimates the price of the text based on the number of tokens and the price per thousand tokens.
+     * @param {string} text - The text to estimate the price of
+     * @param {number} pricePerThousandTokens - The price per thousand tokens
+     * @returns {number} - The estimated price
+     * */
     return countTokens(text) * pricePerThousandTokens / 1000;
 }
 
