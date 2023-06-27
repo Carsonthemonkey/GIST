@@ -1,4 +1,5 @@
-import { encode } from "gpt-3-encoder";
+import { encode, decode } from "gpt-3-encoder";
+import { RiArrowDownCircleFill } from "react-icons/ri";
 
 export function countTokens(text: string) {
     /**Counts the number of tokens in a string.
@@ -47,7 +48,7 @@ export function splitTextIntoBatches(text: string, maxTokens: number) {
         batch.push(sentence);
         currentTokens += sentenceTokens;
     }
-    batches.push(batch.join(" "));
+    if(batch.length > 0) batches.push(batch.join(" "));
     return batches;
 }
 
@@ -64,23 +65,50 @@ function splitLongSentence(sentence: string, maxTokens: number) {
     let batch = [];
     for(let word of words) {
         const wordTokens = countTokens(word);
-        if(currentTokens + wordTokens + ELIPSE_TOKENS > maxTokens) {
+        if(currentTokens + wordTokens + ELIPSE_TOKENS >= maxTokens) {
             if(batch.length === 0) {
-                //Somehow, there is a single word that exceeds the token limit. This should probably never happen, but for robustness, split the word into tokens
+                const tokenBatch = splitLongWord(word, maxTokens);
+                batches.push(...tokenBatch);
+                batch = [];
+                currentTokens = 0;
+                console.log(tokenBatch)
+                continue;
             }
-            batches.push(batch.join(" ") + "...");
-            batch = [];
-            currentTokens = 0;
+            else {
+                batches.push(batch.join(" ") + "...");
+                batch = [];
+                currentTokens = 0;
+            }
         }
         batch.push(word);
         currentTokens += wordTokens;
     }
-    batches.push(batch.join(" "));
+    if(batch.length > 0) batches.push(batch.join(" "));
     return batches;
 }
 
 function splitLongWord(word: string, maxTokens: number){
-    //split the incredibly long word into batches that fit in the model
+    /** splits words that are too long into batches for model to read
+     * @param {string} word - The word to split into batches
+     * @param {number} maxTokens - The maximum number of tokens per batch
+     * @returns {string[]} - An array of batches
+    */
+    const ELIPSE_TOKENS = 1;
+    const rawTokens = encode(word);
+    let batches = [];
+    let batch = [];
+    let currentTokens = 0;
+    for(let i = 0; i < rawTokens.length; i++) {
+        console.log(console.log(decode([rawTokens[i]])))
+        if(currentTokens + ELIPSE_TOKENS >= maxTokens){
+            batches.push(decode(batch) + "...");
+            batch = [];
+            currentTokens = 0;
+        }
+        batch.push(rawTokens[i]);
+        currentTokens++;
+    }
+    return batches;
 }
 
 console.log(splitTextIntoBatches("Hello there! How are you today? it is a pleasure to meet you.", 10))
