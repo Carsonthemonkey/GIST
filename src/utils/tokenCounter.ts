@@ -1,8 +1,4 @@
-import { isWithinTokenLimit, encode} from "gpt-tokenizer";
-
-export function isShorterThanTokenLimit(text: string, limit: number) {
-    return isWithinTokenLimit(text, limit);
-}
+import { encode } from "gpt-3-encoder";
 
 export function countTokens(text: string) {
     return encode(text).length;
