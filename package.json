@@ -13,9 +13,9 @@
   "scripts": {
     "start": "electron .",
     "dev": "vite",
-    "dev-electron" : "vite --config vite.config.electron.ts",
+    "dev-electron": "vite --config vite.config.electron.ts",
     "build": "tsc && vite build",
-    "build-electron" : "tsc && vite build --config vite.config.electron.ts && electron-builder",
+    "build-electron": "tsc && vite build --config vite.config.electron.ts && electron-builder",
     "preview": "vite preview",
     "predeploy": "node build_tools/confirmDeploy.js && npm run build",
     "deploy": "gh-pages -d dist"
@@ -26,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "electron-updater": "^5.3.0",
+    "gpt-3-encoder": "^1.1.4",
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
