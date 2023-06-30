@@ -8,6 +8,8 @@ import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import promptsOBJ from "../../assets/prompts.json";
 import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
 import { Context } from "../../App";
+import { estimatePrice } from "../../utils/tokenCounter";
+
 
 interface Props {
     APIKeyProp: string;
@@ -50,6 +52,20 @@ const SummaryPanel = (props: Props) => {
     );
     const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
     const [autoScroll, setAutoScroll] = React.useState(true);
+    const [priceEstimate, setPriceEstimate] = React.useState(0);
+
+    const PRICE_PER_THOUSAND_INPUT_TOKENS = 0.0015; //TODO: make this dynamic depending on the model
+    const PRICE_PER_THOUSAND_OUTPUT_TOKENS = 0.002; //TODO: make this dynamic depending on the model
+    const MAX_INPUT_TOKENS = 4096; //TODO: make this dynamic depending on the model
+    const MAX_OUTPUT_TOKENS = 1000; //TODO: make this dynamic depending on the model
+    let summaryBatches = 1; //* This will need to be the batches needed to generate the summary, evaluated based on the transcript length
+
+
+    useEffect(() => {
+        const inputPrice = estimatePrice(props.transcriptProp, PRICE_PER_THOUSAND_INPUT_TOKENS);
+        const outputPriceEstimate = PRICE_PER_THOUSAND_OUTPUT_TOKENS * summaryBatches * MAX_OUTPUT_TOKENS / 1000;
+        setPriceEstimate(inputPrice + outputPriceEstimate);    
+    }, [props.transcriptProp]);
     
     useEffect(() => {
         const scrollElement = scrollRef.current;
@@ -169,6 +185,13 @@ const SummaryPanel = (props: Props) => {
             )}
             <br />
             <br />
+            {/* make this dynamically estimate price for model */}
+            {props.transcriptProp && !summary && (
+                <div id="price-estimate">
+                    Estimated summary price: 
+                    {priceEstimate >= 0.01 ? <strong> ${priceEstimate.toFixed(2)}</strong> : <strong> Less than 1¢</strong>}
+                </div>
+            )}
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
