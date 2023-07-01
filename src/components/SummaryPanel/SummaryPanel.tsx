@@ -8,7 +8,7 @@ import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import promptsOBJ from "../../assets/prompts.json";
 import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
 import { Context } from "../../App";
-import { estimatePrice } from "../../utils/tokenCounter";
+import { estimatePrice, splitTextIntoBatches } from "../../utils/tokenCounter";
 
 interface Props {
     APIKeyProp: string;
@@ -52,21 +52,30 @@ const SummaryPanel = (props: Props) => {
     const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
     const [autoScroll, setAutoScroll] = React.useState(true);
     const [priceEstimate, setPriceEstimate] = React.useState(0);
+    const [transcriptBatches, setTranscriptBatches] = React.useState<string[]>(
+        []
+    );
 
     const PRICE_PER_THOUSAND_INPUT_TOKENS = 0.0015; //TODO: make this dynamic depending on the model
     const PRICE_PER_THOUSAND_OUTPUT_TOKENS = 0.002; //TODO: make this dynamic depending on the model
     const MAX_INPUT_TOKENS = 4096; //TODO: make this dynamic depending on the model
     const MAX_OUTPUT_TOKENS = 1000; //TODO: make this dynamic depending on the model
-    let summaryBatches = 1; //* This will need to be the batches needed to generate the summary, evaluated based on the transcript length
 
     useEffect(() => {
+        // Estimate prices and split text into batches
+        let batches = splitTextIntoBatches(
+            props.transcriptProp,
+            MAX_INPUT_TOKENS
+        );
+        setTranscriptBatches(batches);
+        let transcriptBatchCount = batches.length;
         const inputPrice = estimatePrice(
             props.transcriptProp,
             PRICE_PER_THOUSAND_INPUT_TOKENS
         );
         const outputPriceEstimate =
             (PRICE_PER_THOUSAND_OUTPUT_TOKENS *
-                summaryBatches *
+                transcriptBatchCount *
                 MAX_OUTPUT_TOKENS) /
             1000;
         setPriceEstimate(inputPrice + outputPriceEstimate);
@@ -125,15 +134,17 @@ const SummaryPanel = (props: Props) => {
         }
         try {
             let summaryChunks = [];
-            // setIsLoading(true);
-            for await (const summaryChunk of summarizeGPT(
-                DEBUG,
-                prompts[activeSubject].prompts[activePromptType],
-                props.transcriptProp,
-                props.APIKeyProp
-            )) {
-                summaryChunks.push(summaryChunk);
-                setSummary(summaryChunks.join("") + ' ▌');
+            for (const transcriptBatch of transcriptBatches) {
+                for await (const summaryChunk of summarizeGPT(
+                    DEBUG,
+                    prompts[activeSubject].prompts[activePromptType],
+                    transcriptBatch,
+                    props.APIKeyProp
+                )) {
+                    summaryChunks.push(summaryChunk);
+                    setSummary(summaryChunks.join("") + " ▌");
+                }
+                summaryChunks.push("\n---\n"); //Make this look nice in markdown
             }
             setSummary(summaryChunks.join(""));
         } catch (e) {
