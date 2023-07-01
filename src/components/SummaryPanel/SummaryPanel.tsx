@@ -44,7 +44,7 @@ const SummaryPanel = (props: Props) => {
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
-    const [summary, setSummary] = useState(`\n---\n`); //! for testing markdown formatting. should be empty string by default
+    const [summary, setSummary] = useState(``); //! for testing markdown formatting. should be empty string by default
     const [isLoading, setIsLoading] = useState(false);
     const [activePromptType, setActivePromptType] = useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = useState(subjects[0]);
