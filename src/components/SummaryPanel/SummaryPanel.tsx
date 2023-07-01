@@ -44,17 +44,13 @@ const SummaryPanel = (props: Props) => {
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
-    const [summary, setSummary] = useState(``);
+    const [summary, setSummary] = useState(`\n---\n`); //! for testing markdown formatting. should be empty string by default
     const [isLoading, setIsLoading] = useState(false);
-    const [activePromptType, setActivePromptType] = useState(
-        promptTypes[0]
-    );
+    const [activePromptType, setActivePromptType] = useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = useState(subjects[0]);
     const [autoScroll, setAutoScroll] = useState(true);
     const [priceEstimate, setPriceEstimate] = useState(0);
-    const [transcriptBatches, setTranscriptBatches] = useState<string[]>(
-        []
-    );
+    const [transcriptBatches, setTranscriptBatches] = useState<string[]>([]);
 
     const PRICE_PER_THOUSAND_INPUT_TOKENS = 0.0015; //TODO: make this dynamic depending on the model
     const PRICE_PER_THOUSAND_OUTPUT_TOKENS = 0.002; //TODO: make this dynamic depending on the model
