@@ -44,15 +44,15 @@ const SummaryPanel = (props: Props) => {
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
-    const [summary, setSummary] = React.useState(``);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [activePromptType, setActivePromptType] = React.useState(
+    const [summary, setSummary] = useState(``);
+    const [isLoading, setIsLoading] = useState(false);
+    const [activePromptType, setActivePromptType] = useState(
         promptTypes[0]
     );
-    const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
-    const [autoScroll, setAutoScroll] = React.useState(true);
-    const [priceEstimate, setPriceEstimate] = React.useState(0);
-    const [transcriptBatches, setTranscriptBatches] = React.useState<string[]>(
+    const [activeSubject, setActiveSubject] = useState(subjects[0]);
+    const [autoScroll, setAutoScroll] = useState(true);
+    const [priceEstimate, setPriceEstimate] = useState(0);
+    const [transcriptBatches, setTranscriptBatches] = useState<string[]>(
         []
     );
 
