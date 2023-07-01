@@ -10,7 +10,6 @@ import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
 import { Context } from "../../App";
 import { estimatePrice } from "../../utils/tokenCounter";
 
-
 interface Props {
     APIKeyProp: string;
     transcriptProp: string;
@@ -60,16 +59,22 @@ const SummaryPanel = (props: Props) => {
     const MAX_OUTPUT_TOKENS = 1000; //TODO: make this dynamic depending on the model
     let summaryBatches = 1; //* This will need to be the batches needed to generate the summary, evaluated based on the transcript length
 
+    useEffect(() => {
+        const inputPrice = estimatePrice(
+            props.transcriptProp,
+            PRICE_PER_THOUSAND_INPUT_TOKENS
+        );
+        const outputPriceEstimate =
+            (PRICE_PER_THOUSAND_OUTPUT_TOKENS *
+                summaryBatches *
+                MAX_OUTPUT_TOKENS) /
+            1000;
+        setPriceEstimate(inputPrice + outputPriceEstimate);
+    }, [props.transcriptProp]);
 
     useEffect(() => {
-        const inputPrice = estimatePrice(props.transcriptProp, PRICE_PER_THOUSAND_INPUT_TOKENS);
-        const outputPriceEstimate = PRICE_PER_THOUSAND_OUTPUT_TOKENS * summaryBatches * MAX_OUTPUT_TOKENS / 1000;
-        setPriceEstimate(inputPrice + outputPriceEstimate);    
-    }, [props.transcriptProp]);
-    
-    useEffect(() => {
         const scrollElement = scrollRef.current;
-        if(autoScroll && scrollElement){
+        if (autoScroll && scrollElement) {
             scrollElement.scrollTop = scrollElement.scrollHeight;
         }
     });
@@ -80,8 +85,7 @@ const SummaryPanel = (props: Props) => {
             const { scrollTop, clientHeight, scrollHeight } = scrollElement;
             if (scrollTop + clientHeight >= scrollHeight - 5) {
                 setAutoScroll(true);
-            }
-            else{
+            } else {
                 setAutoScroll(false);
             }
         }
@@ -120,23 +124,18 @@ const SummaryPanel = (props: Props) => {
             return;
         }
         try {
+            let summaryChunks = [];
             // setIsLoading(true);
-            await summarizeGPT(
+            for await (const summaryChunk of summarizeGPT(
                 DEBUG,
                 prompts[activeSubject].prompts[activePromptType],
                 props.transcriptProp,
-                props.APIKeyProp,
-                setSummary
-            ).then((r) => {
-                // setIsLoading(false);
-                // if (r.status === 200) {
-                //     setSummary(r.text);
-                // }
-                // else{
-                //     setModalIsOpen(true);
-                //     setModalText(r.statustext)
-                // }
-            });
+                props.APIKeyProp
+            )) {
+                summaryChunks.push(summaryChunk);
+                setSummary(summaryChunks.join("") + ' ▌');
+            }
+            setSummary(summaryChunks.join(""));
         } catch (e) {
             console.log(e);
         }
@@ -188,8 +187,12 @@ const SummaryPanel = (props: Props) => {
             {/* make this dynamically estimate price for model */}
             {props.transcriptProp && !summary && (
                 <div id="price-estimate">
-                    Estimated summary price: 
-                    {priceEstimate >= 0.01 ? <strong> ${priceEstimate.toFixed(2)}</strong> : <strong> Less than 1¢</strong>}
+                    Estimated summary price:
+                    {priceEstimate >= 0.01 ? (
+                        <strong> ${priceEstimate.toFixed(2)}</strong>
+                    ) : (
+                        <strong> Less than 1¢</strong>
+                    )}
                 </div>
             )}
             <div id="summary-content">

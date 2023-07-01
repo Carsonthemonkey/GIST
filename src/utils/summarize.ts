@@ -10,12 +10,11 @@ interface promptOptions{
     }
 }
 
-export default async function summarizeGPT(
+export default async function* summarizeGPT(
     debug: boolean,
     prompt: promptOptions,
     userPrompt: string,
     API_KEY: string,
-    setSummary: (summary: string) => void,
 
 ) {
     const requestOptions = {
@@ -58,9 +57,9 @@ export default async function summarizeGPT(
         data = JSON.parse(data);
         
         if(data['choices'][0]['delta']["content"]){
-            text += data['choices'][0]['delta']['content']
+            text = data['choices'][0]['delta']['content']
         }
-        setSummary(text + ' ▌');
+        yield text;
     }
-    setSummary(text);
+    return;
 }
