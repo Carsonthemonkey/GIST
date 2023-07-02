@@ -64,6 +64,9 @@
 .markdown-body code {
   text-align: left;
 }
+.markdown-body hr {
+  border: 1px solid var(--code-block-background);
+}
 .markdown-body blockquote {
   margin: 1em 0;
   padding-left: 1em;

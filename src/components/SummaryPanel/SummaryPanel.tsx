@@ -8,6 +8,7 @@ import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import promptsOBJ from "../../assets/prompts.json";
 import MarkdownFormatter from "../MarkdownFormatter/MarkdownFormatter";
 import { Context } from "../../App";
+import { estimatePrice, splitTextIntoBatches } from "../../utils/tokenCounter";
 
 interface Props {
     APIKeyProp: string;
@@ -43,17 +44,42 @@ const SummaryPanel = (props: Props) => {
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
-    const [summary, setSummary] = React.useState(``);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [activePromptType, setActivePromptType] = React.useState(
-        promptTypes[0]
-    );
-    const [activeSubject, setActiveSubject] = React.useState(subjects[0]);
-    const [autoScroll, setAutoScroll] = React.useState(true);
-    
+    const [summary, setSummary] = useState(``);
+    const [isLoading, setIsLoading] = useState(false);
+    const [activePromptType, setActivePromptType] = useState(promptTypes[0]);
+    const [activeSubject, setActiveSubject] = useState(subjects[0]);
+    const [autoScroll, setAutoScroll] = useState(true);
+    const [priceEstimate, setPriceEstimate] = useState(0);
+    const [transcriptBatches, setTranscriptBatches] = useState<string[]>([]);
+
+    const PRICE_PER_THOUSAND_INPUT_TOKENS = 0.0015; //TODO: make this dynamic depending on the model
+    const PRICE_PER_THOUSAND_OUTPUT_TOKENS = 0.002; //TODO: make this dynamic depending on the model
+    const MAX_INPUT_TOKENS = 4096; //TODO: make this dynamic depending on the model
+    const MAX_OUTPUT_TOKENS = 1000; //TODO: make this dynamic depending on the model
+
+    useEffect(() => {
+        // Estimate prices and split text into batches
+        let batches = splitTextIntoBatches(
+            props.transcriptProp,
+            MAX_INPUT_TOKENS
+        );
+        setTranscriptBatches(batches);
+        let transcriptBatchCount = batches.length;
+        const inputPrice = estimatePrice(
+            props.transcriptProp,
+            PRICE_PER_THOUSAND_INPUT_TOKENS
+        );
+        const outputPriceEstimate =
+            (PRICE_PER_THOUSAND_OUTPUT_TOKENS *
+                transcriptBatchCount *
+                MAX_OUTPUT_TOKENS) /
+            1000;
+        setPriceEstimate(inputPrice + outputPriceEstimate);
+    }, [props.transcriptProp]);
+
     useEffect(() => {
         const scrollElement = scrollRef.current;
-        if(autoScroll && scrollElement){
+        if (autoScroll && scrollElement) {
             scrollElement.scrollTop = scrollElement.scrollHeight;
         }
     });
@@ -64,8 +90,7 @@ const SummaryPanel = (props: Props) => {
             const { scrollTop, clientHeight, scrollHeight } = scrollElement;
             if (scrollTop + clientHeight >= scrollHeight - 5) {
                 setAutoScroll(true);
-            }
-            else{
+            } else {
                 setAutoScroll(false);
             }
         }
@@ -104,23 +129,21 @@ const SummaryPanel = (props: Props) => {
             return;
         }
         try {
-            // setIsLoading(true);
-            await summarizeGPT(
-                DEBUG,
-                prompts[activeSubject].prompts[activePromptType],
-                props.transcriptProp,
-                props.APIKeyProp,
-                setSummary
-            ).then((r) => {
-                // setIsLoading(false);
-                // if (r.status === 200) {
-                //     setSummary(r.text);
-                // }
-                // else{
-                //     setModalIsOpen(true);
-                //     setModalText(r.statustext)
-                // }
-            });
+            let summaryChunks = [];
+            for (const transcriptBatch of transcriptBatches) {
+                for await (const summaryChunk of summarizeGPT(
+                    DEBUG,
+                    prompts[activeSubject].prompts[activePromptType],
+                    transcriptBatch,
+                    props.APIKeyProp
+                )) {
+                    summaryChunks.push(summaryChunk);
+                    setSummary(summaryChunks.join("") + " ▌");
+                }
+                if(transcriptBatches.length > 1) summaryChunks.push("\n\n---\n");
+            }
+            summaryChunks.pop(); //* I don't know why the last token repeats, but this should fix it for now
+            setSummary(summaryChunks.join(""));
         } catch (e) {
             console.log(e);
         }
@@ -169,6 +192,17 @@ const SummaryPanel = (props: Props) => {
             )}
             <br />
             <br />
+            {/* make this dynamically estimate price for model */}
+            {props.transcriptProp && !summary && (
+                <div id="price-estimate">
+                    Estimated summary price:
+                    {priceEstimate >= 0.01 ? (
+                        <strong> ${priceEstimate.toFixed(2)}</strong>
+                    ) : (
+                        <strong> Less than 1¢</strong>
+                    )}
+                </div>
+            )}
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
