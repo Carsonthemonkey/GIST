@@ -73,6 +73,19 @@
     #transcript-content {
         user-select: text;
         padding: 0 20px;
+        .transcript-segment{
+            padding-top: 1.5px;
+            padding-bottom: 1.5px;
+            transition: all 0.1s;
+            &:hover{
+                cursor: pointer;
+                color: var(--background-color);
+                background-color: var(--accent-color);
+            }
+        }
+        .active-segment{
+            text-decoration: underline;
+        }
     }
 
     #word-counter-bar {
