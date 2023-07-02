@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useImperativeHandle } from "react";
 import "./AudioPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
@@ -8,17 +8,31 @@ import formatTimestamp from "../../utils/formatTimestamp";
 interface AudioPanelProps {
     audioFile: File | null;
     fileIsUploaded: boolean;
+    currentTime: number;
+    setCurrentTime: (time: number) => void;
 }
 
-const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
+export type AudioPanelRef = {
+    playAudio: () => void;
+    pauseAudio: () => void;
+    setAudioTime: (time: number) => void;
+}
+
+const AudioPanel = React.forwardRef<AudioPanelRef, AudioPanelProps>(({ audioFile, fileIsUploaded, currentTime, setCurrentTime}, ref) => {
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [audioDuration, setAudioDuration] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0); 
+    // const [currentTime, setCurrentTime] = useState(0); 
     const [audioIsPlaying, setAudioIsPlaying] = useState(false);
     const [playheadPosition, setPlayheadPosition] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const timelineRef = useRef<HTMLDivElement>(null);
     let scrubTime: null | number = null;
+
+    useImperativeHandle(ref, () => ({
+        playAudio,
+        pauseAudio,
+        setAudioTime
+    }));
 
     audio?.addEventListener("loadedmetadata", (event) => {
         setAudioDuration(audio?.duration);
@@ -52,7 +66,11 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         }
     }, [audioFile, fileIsUploaded]);
 
-
+    function setAudioTime(time: number) {
+        if(audio) audio.currentTime = time;
+        setPlayheadPosition((time / audioDuration) * 100);
+        setCurrentTime(time);
+    }
     
     function handleDrag(event: MouseEvent) {
         //This function will update the playhead position and the current audio time
@@ -64,9 +82,10 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         const timelineRight = timelineRect?.right ?? 0;
         const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
         console.log("dragging", isDragging);
-        setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
+        // setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
         scrubTime = (position / (timelineRight - timelineLeft)) * audioDuration
-        setCurrentTime(scrubTime);
+        // setCurrentTime(scrubTime);
+        setAudioTime(scrubTime);
     }
     
     function handleDragStart(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -82,13 +101,13 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
 
     function handleDragEnd(event: MouseEvent) {
         console.log("scrubTime",scrubTime)
-        if(audio && scrubTime !== null) audio.currentTime = scrubTime;
+        // if(audio && scrubTime !== null) audio.currentTime = scrubTime;
         setIsDragging(false);
         console.log("drag end", isDragging);
         document.removeEventListener("mousemove", handleDrag);
         document.removeEventListener("mouseup", handleDragEnd);
         document.body.style.cursor = "default";
-        if(audioIsPlaying) audio?.play();
+        if(audioIsPlaying) playAudio();
     }
 
     function handlePlayheadJump(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -97,10 +116,11 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
             const timelineLeft = timelineRect?.left ?? 0;
             const timelineRight = timelineRect?.right ?? 0;
             const position = Math.min(Math.max(event.clientX - timelineLeft, 0), timelineRight - timelineLeft);
-            setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
+            // setPlayheadPosition((position / (timelineRight - timelineLeft)) * 100);
             scrubTime = (position / (timelineRight - timelineLeft)) * audioDuration
-            setCurrentTime(scrubTime);
+            // setCurrentTime(scrubTime);
             handleDragStart(event);
+            setAudioTime(scrubTime);
     }
 
     function playAudio() {
@@ -147,6 +167,6 @@ const AudioPanel = ({ audioFile, fileIsUploaded }: AudioPanelProps) => {
         {fileIsUploaded? <div id="timestamp">{formatTimestamp(currentTime)} / {formatTimestamp(audioDuration)}</div> : <div id="timestamp">- - / - -</div>}
         </div>
     );
-};
+});
 
 export default AudioPanel;
