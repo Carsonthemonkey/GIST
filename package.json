@@ -1,7 +1,7 @@
 {
   "name": "GIST",
   "private": false,
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "dist-electron/main/index.js",
   "type": "commonjs",
   "homepage": "https://carsonthemonkey.github.io/GIST/",
@@ -13,9 +13,10 @@
   "scripts": {
     "start": "electron .",
     "dev": "vite",
-    "dev-electron" : "vite --config vite.config.electron.ts",
+    "dev-electron": "vite --config vite.config.electron.ts",
     "build": "tsc && vite build",
-    "build-electron" : "tsc && vite build --config vite.config.electron.ts && electron-builder",
+    "build-electron": "tsc && npm run build-python && vite build --config vite.config.electron.ts && electron-builder",
+    "build-python": "pyinstaller --onefile --distpath ./executables --collect-all whisper src/utils/python/local_whisper.py",
     "preview": "vite preview",
     "predeploy": "node build_tools/confirmDeploy.js && npm run build",
     "deploy": "gh-pages -d dist"
@@ -26,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "electron-updater": "^5.3.0",
+    "ffmpeg-static": "^5.1.0",
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

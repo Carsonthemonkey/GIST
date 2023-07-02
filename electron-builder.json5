@@ -9,8 +9,15 @@
   },
   "files": [
     "dist-electron",
-    "dist"
+    "dist",
   ],
+  "extraResources": [{
+    "from" : "./executables",
+    "to" : "./executables",
+    "filter" : [
+      "**/*"
+    ]
+  }],
   "mac": {
     "artifactName": "${productName}_${version}.${ext}",
     "target": [

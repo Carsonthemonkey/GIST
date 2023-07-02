@@ -2,6 +2,12 @@ import { app, BrowserWindow, shell, ipcMain } from "electron";
 import { release } from "node:os";
 import { join } from "node:path";
 import { update } from "./update";
+import path from "node:path";
+const child_process = require("child_process");
+const ffmpegPath = require('ffmpeg-static').replace(
+    'app.asar',
+    'app.asar.unpacked'
+);
 
 // The built directory structure
 //
@@ -13,6 +19,8 @@ import { update } from "./update";
 // ├─┬ dist
 // │ └── index.html    > Electron-Renderer
 //
+
+
 process.env.DIST_ELECTRON = join(__dirname, "../");
 process.env.DIST = join(process.env.DIST_ELECTRON, "../dist");
 process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL
@@ -56,7 +64,7 @@ async function createWindow() {
         },
         titleBarStyle: "hidden",
         titleBarOverlay: {
-            height: 28,  // should match the height of electron titlebar
+            height: 28, // should match the height of electron titlebar
             color: "#ada174",
             symbolColor: "#000",
         },
@@ -129,3 +137,56 @@ ipcMain.handle("open-win", (_, arg) => {
         childWindow.loadFile(indexHtml, { hash: arg });
     }
 });
+
+
+ipcMain.handle("localTranscribe", async (event, audioPath, doTranslate) => {
+    const executablePath = getExecutablePath("local_whisper");
+    // this path will need to be made relative
+    console.log(__dirname)
+    // const executablePath =
+    //     "C:\\Users\\carso\\Desktop\\Coding\\Spring_2023_hackathon\\GIST\\src\\executables\\local_whisper.exe";
+    return new Promise((resolve, reject) => {
+        console.log("running local whisper")
+        const pythonProcess = child_process.spawn(executablePath, [
+            path.dirname(ffmpegPath),
+            audioPath,
+            doTranslate ? "translate" : "transcribe",
+        ]);
+        let stdout = "";
+        
+        console.log("python process created")
+        pythonProcess.stdout.on("data", (data: any) => {
+            if(data.toString()){
+                stdout += data.toString();
+            }
+        });
+
+        pythonProcess.stderr.on("data", (data: any) => {
+            data = data.toString();
+            data = data.replace(/[\r]/g, "");
+            data = data.match(/\d+%/)
+            if(data){
+                data = parseInt(data[0].replace("%", ""))
+                win?.webContents.send("progressUpdate", data);
+            }
+        });
+
+        pythonProcess.on("close", (code: number) => {
+            if (code === 0) {
+                let data = stdout.slice(stdout.indexOf("{"), stdout.lastIndexOf("}") + 1);
+                data = JSON.parse(data);
+                resolve(data);
+            } else {
+                reject(new Error("Local transcription failed"));
+            }
+        });
+    });
+});
+
+function getExecutablePath(executableName: string): string {
+    if (!app.isPackaged) {
+        return path.join(__dirname, "..", "..", "executables", executableName);
+    } else {
+        return path.join(process.resourcesPath, "executables", executableName);
+    }
+}
