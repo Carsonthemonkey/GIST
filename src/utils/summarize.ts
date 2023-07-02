@@ -56,11 +56,11 @@ export default async function* summarizeGPT(
             console.log(`CHUNK: ${dataChunk} `)
             dataChunk = dataChunk.substring(5, dataChunk.length)
             if(dataChunk === " [DONE]") return;
-            try{dataChunk = JSON.parse(dataChunk);
+            dataChunk = JSON.parse(dataChunk);
             if(dataChunk['choices'][0]['delta']["content"] !== undefined){
                 text = dataChunk['choices'][0]['delta']['content']
             }
-            yield text;} catch(e){console.log(e); continue;}
+            yield text;
         }
     }
 }
