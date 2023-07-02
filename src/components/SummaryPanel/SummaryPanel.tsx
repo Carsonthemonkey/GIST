@@ -142,6 +142,7 @@ const SummaryPanel = (props: Props) => {
                 }
                 if(transcriptBatches.length > 1) summaryChunks.push("\n\n---\n");
             }
+            summaryChunks.pop(); //* I don't know why the last token repeats, but this should fix it for now
             setSummary(summaryChunks.join(""));
         } catch (e) {
             console.log(e);
