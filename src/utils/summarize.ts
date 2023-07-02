@@ -24,7 +24,7 @@ export default async function* summarizeGPT(
             Authorization: `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
-            model: "gpt-3.5-turbo",
+            model: "gpt-3.5-turbo", //gpt-3.5-turbo seems to be broken at the moment
             messages: [
                 {
                     role: "system",
@@ -50,16 +50,17 @@ export default async function* summarizeGPT(
         if (done) break;
         let data: any = decoder.decode(value);
         data = data.split("\n").filter((item: string) => item !== "")
-        data = data[data.length - 1]
-        data = data.substring(5, data.length)
-
-        if(data === " [DONE]") break;
-        data = JSON.parse(data);
-        
-        if(data['choices'][0]['delta']["content"]){
-            text = data['choices'][0]['delta']['content']
+        console.log(data.length)
+        //? maybe loop through data here to fix this bug
+        for(let dataChunk of data){
+            console.log(`CHUNK: ${dataChunk} `)
+            dataChunk = dataChunk.substring(5, dataChunk.length)
+            if(dataChunk === " [DONE]") return;
+            try{dataChunk = JSON.parse(dataChunk);
+            if(dataChunk['choices'][0]['delta']["content"] !== undefined){
+                text = dataChunk['choices'][0]['delta']['content']
+            }
+            yield text;} catch(e){console.log(e); continue;}
         }
-        yield text;
     }
-    return;
 }
