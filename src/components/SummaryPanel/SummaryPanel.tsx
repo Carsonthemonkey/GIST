@@ -45,9 +45,9 @@ const SummaryPanel = (props: Props) => {
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
-    const [activeSummary, setActiveSummary] = useState(``);
     const [summaries, setSummaries] = useState<string[]>([]);
-    const [activeSummaryIndex, setActiveSummaryIndex] = useState(0);
+    const [summaryPageNumber, setSummaryPageNumber] = useState(1);
+
     const [isLoading, setIsLoading] = useState(false);
     const [activePromptType, setActivePromptType] = useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = useState(subjects[0]);
@@ -108,11 +108,6 @@ const SummaryPanel = (props: Props) => {
         setIsOpen(false);
     };
 
-    function updateActiveSummary(index: number) {
-        console.log(`updating summary index to ${index}`);
-        setActiveSummary(summaries[index]);
-        setActiveSummaryIndex(index);
-    }
 
     async function generateSummary() {
         //We shoudl grey out the button when there is no transcript probably anyways, but this should stay in just in case
@@ -139,6 +134,8 @@ const SummaryPanel = (props: Props) => {
         }
         try {
             let summaryChunks = [];
+            setSummaryPageNumber(summaries.length + 1)
+            setSummaries([...summaries, ""]);
             for (const transcriptBatch of transcriptBatches) {
                 for await (const summaryChunk of summarizeGPT(
                     DEBUG,
@@ -147,14 +144,15 @@ const SummaryPanel = (props: Props) => {
                     props.APIKeyProp
                 )) {
                     summaryChunks.push(summaryChunk);
-                    setActiveSummary(summaryChunks.join("") + " ▌");
+                    // setActiveSummary(summaryChunks.join("") + " ▌");
+                    setSummaries([...summaries, summaryChunks.join("") + " ▌"])
                 }
                 if (transcriptBatches.length > 1)
                     summaryChunks.push("\n\n---\n");
             }
             summaryChunks.pop(); //* I don't know why the last token repeats, but this should fix it for now
             setSummaries([...summaries, summaryChunks.join("")]);
-            setActiveSummary(summaryChunks.join(""));
+            // setActiveSummary(summaryChunks.join(""));
         } catch (e) {
             console.log(e);
         }
@@ -205,12 +203,13 @@ const SummaryPanel = (props: Props) => {
             <br />
             {summaries.length > 1 && (
                 <PageSwitcher
+                    currentPageNumber={summaryPageNumber}
+                    setCurrentPageNumber={setSummaryPageNumber}
                     totalPageNumber={summaries.length}
-                    updateCurrentPageIndex={updateActiveSummary}
                 ></PageSwitcher>
             )}
             {/* make this dynamically estimate price for model */}
-            {props.transcriptProp && !activeSummary && (
+            {props.transcriptProp && !summaries.length && (
                 <div id="price-estimate">
                     Estimated summary price:
                     {priceEstimate >= 0.01 ? (
@@ -223,8 +222,8 @@ const SummaryPanel = (props: Props) => {
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
-                {!isLoading && activeSummary && (
-                    <MarkdownFormatter text={activeSummary} />
+                {!isLoading && summaries && (
+                    <MarkdownFormatter text={summaries[summaryPageNumber - 1]} />
                 )}
             </div>
         </div>
