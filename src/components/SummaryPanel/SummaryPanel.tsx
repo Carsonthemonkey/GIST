@@ -3,6 +3,7 @@ import "./SummaryPanel.css";
 import summarizeGPT from "../../utils/summarize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import PageSwitcher from "../PageSwitcher/PageSwitcher";
 import SmallDropdown from "../SmallDropdown/SmallDropdown";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import promptsOBJ from "../../assets/prompts.json";
@@ -44,7 +45,8 @@ const SummaryPanel = (props: Props) => {
     // const topics = ["Auto", "Math", "Comp Sci", "English", "History"];
     const subjects = Object.keys(prompts).filter((key) => key !== "default");
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
-    const [summary, setSummary] = useState(``);
+    const [activeSummary, setActiveSummary] = useState(``);
+    const [summaries, setSummaries] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [activePromptType, setActivePromptType] = useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = useState(subjects[0]);
@@ -138,12 +140,12 @@ const SummaryPanel = (props: Props) => {
                     props.APIKeyProp
                 )) {
                     summaryChunks.push(summaryChunk);
-                    setSummary(summaryChunks.join("") + " ▌");
+                    setActiveSummary(summaryChunks.join("") + " ▌");
                 }
                 if(transcriptBatches.length > 1) summaryChunks.push("\n\n---\n");
             }
             summaryChunks.pop(); //* I don't know why the last token repeats, but this should fix it for now
-            setSummary(summaryChunks.join(""));
+            setActiveSummary(summaryChunks.join(""));
         } catch (e) {
             console.log(e);
         }
@@ -192,8 +194,9 @@ const SummaryPanel = (props: Props) => {
             )}
             <br />
             <br />
+            <PageSwitcher totalPageNumber={3}></PageSwitcher>
             {/* make this dynamically estimate price for model */}
-            {props.transcriptProp && !summary && (
+            {props.transcriptProp && !activeSummary && (
                 <div id="price-estimate">
                     Estimated summary price:
                     {priceEstimate >= 0.01 ? (
@@ -206,7 +209,7 @@ const SummaryPanel = (props: Props) => {
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
-                {!isLoading && summary && <MarkdownFormatter text={summary} />}
+                {!isLoading && activeSummary && <MarkdownFormatter text={activeSummary} />}
             </div>
         </div>
     );
