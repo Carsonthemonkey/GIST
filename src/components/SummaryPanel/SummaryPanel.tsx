@@ -47,6 +47,7 @@ const SummaryPanel = (props: Props) => {
     const promptTypes = Object.keys(prompts[subjects[0]].prompts);
     const [activeSummary, setActiveSummary] = useState(``);
     const [summaries, setSummaries] = useState<string[]>([]);
+    const [activeSummaryIndex, setActiveSummaryIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [activePromptType, setActivePromptType] = useState(promptTypes[0]);
     const [activeSubject, setActiveSubject] = useState(subjects[0]);
@@ -107,6 +108,12 @@ const SummaryPanel = (props: Props) => {
         setIsOpen(false);
     };
 
+    function updateActiveSummary(index: number) {
+        console.log(`updating summary index to ${index}`);
+        setActiveSummary(summaries[index]);
+        setActiveSummaryIndex(index);
+    }
+
     async function generateSummary() {
         //We shoudl grey out the button when there is no transcript probably anyways, but this should stay in just in case
         if (!props.transcriptProp) {
@@ -142,9 +149,11 @@ const SummaryPanel = (props: Props) => {
                     summaryChunks.push(summaryChunk);
                     setActiveSummary(summaryChunks.join("") + " ▌");
                 }
-                if(transcriptBatches.length > 1) summaryChunks.push("\n\n---\n");
+                if (transcriptBatches.length > 1)
+                    summaryChunks.push("\n\n---\n");
             }
             summaryChunks.pop(); //* I don't know why the last token repeats, but this should fix it for now
+            setSummaries([...summaries, summaryChunks.join("")]);
             setActiveSummary(summaryChunks.join(""));
         } catch (e) {
             console.log(e);
@@ -194,7 +203,12 @@ const SummaryPanel = (props: Props) => {
             )}
             <br />
             <br />
-            <PageSwitcher totalPageNumber={3}></PageSwitcher>
+            {summaries.length > 1 && (
+                <PageSwitcher
+                    totalPageNumber={summaries.length}
+                    updateCurrentPageIndex={updateActiveSummary}
+                ></PageSwitcher>
+            )}
             {/* make this dynamically estimate price for model */}
             {props.transcriptProp && !activeSummary && (
                 <div id="price-estimate">
@@ -209,7 +223,9 @@ const SummaryPanel = (props: Props) => {
             <div id="summary-content">
                 {/* TODO: add a loading spinner here */}
                 {isLoading && <p>Loading...</p>}
-                {!isLoading && activeSummary && <MarkdownFormatter text={activeSummary} />}
+                {!isLoading && activeSummary && (
+                    <MarkdownFormatter text={activeSummary} />
+                )}
             </div>
         </div>
     );
