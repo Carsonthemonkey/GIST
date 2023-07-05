@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./PageSwitcher.css";
 
 interface Props {
     totalPageNumber: number;
@@ -24,6 +25,7 @@ const PageSwitcher = ({ totalPageNumber, updateCurrentPageNumbe: updateCurrentPa
 
     return (
         <>
+        {/* Make these buttons icons */}
             <button onClick={backPage}>&lt;</button>
             <span>
                 {currentPageNumber} / {totalPageNumber}
