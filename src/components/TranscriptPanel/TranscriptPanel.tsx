@@ -10,7 +10,6 @@ import AudioPanel, { AudioPanelRef } from "../AudioPanel/AudioPanel";
 import FileDropButton from "../FileDropButton/FileDropButton";
 import PanelAnchor from "../PanelAnchor/PanelAnchor";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { test } from "node:test";
 
 interface Props {
     APIKey: string;
